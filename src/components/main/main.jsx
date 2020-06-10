@@ -1,7 +1,10 @@
 import React from "react";
 
-const Main = () => {
-  return  (
+const Main = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const {placesToStay} = props;
+
+  return (
     <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
@@ -26,7 +29,7 @@ const Main = () => {
         </div>
       </header>
       <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
+        <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
@@ -65,9 +68,9 @@ const Main = () => {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-          <section className="cities__places places">
+            <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{placesToStay} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
