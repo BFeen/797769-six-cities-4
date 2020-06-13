@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 
 const createLocationsListTemplate = (cities) => {
@@ -66,7 +67,6 @@ const createPlaceCardTemplate = (offers) => {
 };
 
 const Main = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {cities, placesToStay, offers} = props;
 
   const placeCardMarkup = createPlaceCardTemplate(offers);
@@ -133,6 +133,12 @@ const Main = (props) => {
       </main>
     </div>
   );
+};
+
+Main.propTypes = {
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  placesToStay: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Main;

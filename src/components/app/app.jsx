@@ -1,8 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
 const App = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {cities, placesToStay, offers} = props;
 
   return (
@@ -12,6 +12,12 @@ const App = (props) => {
       offers={offers}
     />
   );
+};
+
+App.propTypes = {
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  placesToStay: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default App;
