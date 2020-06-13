@@ -3,11 +3,27 @@ import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 
 
-const Settings = {
-  RENTAL_OFFERS: 100500,
-};
+const Offers = [
+  `Beautiful & luxurious apartment at great location`,
+  `Wood and stone place`,
+  `Canal view Princengracht`,
+  `Nice, cozy, warm big bed apartment`,
+];
+
+const Cities = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
+  `Amsterdam`,
+  `Hamburg`,
+  `Dusseldorf`,
+];
 
 ReactDOM.render(
-    <App placesToStay={Settings.RENTAL_OFFERS}/>,
+    <App
+      cities={Cities}
+      placesToStay={Offers.length}
+      offers={Offers}
+    />,
     document.querySelector(`#root`)
 );
