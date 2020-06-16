@@ -25,7 +25,7 @@ const createLocationsListTemplate = (cities) => {
   );
 };
 
-const createPlaceCardTemplate = (offers) => {
+const createPlaceCardTemplate = (offers, onCardTitleClick) => {
   return offers.map((offer, index) => {
     return (
       <article key={offer + index} className="cities__place-card place-card">
@@ -56,7 +56,10 @@ const createPlaceCardTemplate = (offers) => {
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
-          <h2 className="place-card__name">
+          <h2
+            onClick={onCardTitleClick}
+            className="place-card__name"
+          >
             <a href="#">{offer}</a>
           </h2>
           <p className="place-card__type">Apartment</p>
@@ -67,9 +70,9 @@ const createPlaceCardTemplate = (offers) => {
 };
 
 const Main = (props) => {
-  const {cities, placesToStay, offers} = props;
+  const {cities, placesToStay, offers, onCardTitleClick} = props;
 
-  const placeCardMarkup = createPlaceCardTemplate(offers);
+  const placeCardMarkup = createPlaceCardTemplate(offers, onCardTitleClick);
   const citiesMarkup = createLocationsListTemplate(cities);
 
   return (
@@ -139,6 +142,7 @@ Main.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   placesToStay: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onCardTitleClick: PropTypes.func.isRequired,
 };
 
 export default Main;
