@@ -1,23 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
+import {Cities, Offers} from "./const.js";
 
-
-const Offers = [
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`,
-  `Canal view Princengracht`,
-  `Nice, cozy, warm big bed apartment`,
-];
-
-const Cities = [
-  `Paris`,
-  `Cologne`,
-  `Brussels`,
-  `Amsterdam`,
-  `Hamburg`,
-  `Dusseldorf`,
-];
 
 ReactDOM.render(
     <App
