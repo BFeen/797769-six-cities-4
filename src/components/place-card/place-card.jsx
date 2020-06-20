@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import HousingTypes from "../../const.js";
 
 
 const PlaceCard = (props) => {
-  const {offers} = props;
+  const {offers, MouseEnterHandler} = props;
 
-  return offers.map((offer) => {
+  return offers.map((offer, i) => {
     return (      
-      <article className="cities__place-card place-card">
-        {isPremium ? 
+      <article key={`${offer.description + i}`} className="cities__place-card place-card"
+        onMouseEnter={MouseEnterHandler}
+      >
+        {offer.isPremium ? 
         <div className="place-card__mark">
           <span>Premium</span>
         </div> 
@@ -17,7 +18,7 @@ const PlaceCard = (props) => {
         ``}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={offer.picture} width="260" height="200" alt="Place image" />
+            <img className="place-card__image" src={offer.picture} width="260" height="200" alt={offer.description} />
           </a>
         </div>
         <div className="place-card__info">
@@ -55,7 +56,7 @@ PlaceCard.propTypes = {
     picture: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
     price: PropTypes.number.isRequired,
-    type: PropTypes.oneOf(HousingTypes).isRequired,
+    type: PropTypes.oneOf([`Apartment`,`Room`,`House`,`Hotel`]).isRequired,
     rating: PropTypes.number.isRequired,
   })).isRequired,
 };

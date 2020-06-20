@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-import {Cities, Offers} from "./const.js";
+import {CITIES, OFFERS} from "./const.js";
 
 
 ReactDOM.render(
     <App
-      cities={Cities}
-      placesToStay={Offers.length}
-      offers={Offers}
+      cities={CITIES}
+      placesToStay={OFFERS.length}
+      offers={OFFERS}
     />,
     document.querySelector(`#root`)
 );

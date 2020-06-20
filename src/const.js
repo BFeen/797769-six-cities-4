@@ -1,11 +1,11 @@
-const Offers = [
+const OFFERS = [
   `Beautiful & luxurious apartment at great location`,
   `Wood and stone place`,
   `Canal view Princengracht`,
- `Nice, cozy, warm big bed apartment`,
+  `Nice, cozy, warm big bed apartment`,
 ];
 
-const Cities = [
+const CITIES = [
   `Paris`,
   `Cologne`,
   `Brussels`,
@@ -14,11 +14,4 @@ const Cities = [
   `Dusseldorf`,
 ];
 
-const HousingTypes = [
-  `Apartment`,
-  `Room`,
-  `House`,
-  `Hotel`,
-];
-
-export default {Offers, Cities, HousingTypes};
+export {OFFERS, CITIES};
