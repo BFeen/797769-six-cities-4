@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 
 const PlaceCard = (props) => {
-  const {offer, HandleCardMouseEnter} = props;
+  const {offer, onCardMouseEnter, key} = props;
 
   return (      
-    <article key={`${offer.description + i}`} className="cities__place-card place-card"
-      onMouseEnter={HandleCardMouseEnter}
+    <article key={`${offer.description + key}`} className="cities__place-card place-card"
+      onMouseEnter={(evt) => {
+        onCardMouseEnter(evt.target);
+      }}
     >
       {offer.isPremium ? 
       <div className="place-card__mark">
@@ -49,6 +51,7 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
+  key: PropTypes.number.isRequired,
   offer: PropTypes.shape({
     description: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
@@ -57,7 +60,7 @@ PlaceCard.propTypes = {
     type: PropTypes.oneOf([`Apartment`,`Room`,`House`,`Hotel`]).isRequired,
     rating: PropTypes.number.isRequired,
   }).isRequired,
-  HandleCardMouseEnter: PropTypes.func.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;
