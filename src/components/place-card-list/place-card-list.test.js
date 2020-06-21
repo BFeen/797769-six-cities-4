@@ -40,6 +40,7 @@ describe(`PlaceCardList snapshot checking`, () => {
     const tree = renderer.create(
         <PlaceCardList
           offers={Offers}
+          onCardTitleClick={() => {}}
         />
     ).toJSON();
 

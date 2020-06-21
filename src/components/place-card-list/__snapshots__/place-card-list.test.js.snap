@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PlaceCardList snapshot checking PlaceCardList rendering 1`] = `
-Array [
+<div
+  className="cities__places-list places__list tabs__content"
+>
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
@@ -91,6 +93,7 @@ Array [
       </div>
       <h2
         className="place-card__name"
+        onClick={[Function]}
       >
         <a
           href="#"
@@ -104,7 +107,7 @@ Array [
         Apartment
       </p>
     </div>
-  </article>,
+  </article>
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
@@ -194,6 +197,7 @@ Array [
       </div>
       <h2
         className="place-card__name"
+        onClick={[Function]}
       >
         <a
           href="#"
@@ -207,7 +211,7 @@ Array [
         House
       </p>
     </div>
-  </article>,
+  </article>
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
@@ -291,6 +295,7 @@ Array [
       </div>
       <h2
         className="place-card__name"
+        onClick={[Function]}
       >
         <a
           href="#"
@@ -304,7 +309,7 @@ Array [
         Room
       </p>
     </div>
-  </article>,
+  </article>
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
@@ -388,6 +393,7 @@ Array [
       </div>
       <h2
         className="place-card__name"
+        onClick={[Function]}
       >
         <a
           href="#"
@@ -401,6 +407,6 @@ Array [
         Apartment
       </p>
     </div>
-  </article>,
-]
+  </article>
+</div>
 `;

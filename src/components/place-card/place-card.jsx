@@ -5,18 +5,18 @@ import PropTypes from "prop-types";
 const PlaceCard = (props) => {
   const {offer, onCardMouseEnter, onCardTitleClick} = props;
 
-  return (      
+  return (
     <article className="cities__place-card place-card"
       onMouseEnter={(evt) => {
         onCardMouseEnter(evt.target);
       }}
     >
-      {offer.isPremium ? 
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div> 
-      : 
-      ``}
+      {offer.isPremium ?
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+        :
+        ``}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={offer.picture} width="260" height="200" alt={offer.description} />
@@ -41,16 +41,16 @@ const PlaceCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 
+        <h2
           className="place-card__name"
           onClick={onCardTitleClick}
         >
           <a href="#">{offer.description}</a>
         </h2>
         <p className="place-card__type">{offer.type}</p>
-      </div>  
+      </div>
     </article>
-    );
+  );
 };
 
 PlaceCard.propTypes = {
@@ -59,7 +59,7 @@ PlaceCard.propTypes = {
     picture: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
     price: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`Apartment`,`Room`,`House`,`Hotel`]).isRequired,
+    type: PropTypes.oneOf([`Apartment`, `Room`, `House`, `Hotel`]).isRequired,
     rating: PropTypes.number.isRequired,
   }).isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,

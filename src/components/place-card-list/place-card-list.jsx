@@ -14,7 +14,7 @@ class PlaceCardList extends PureComponent {
 
   render() {
     const {offers, onCardTitleClick} = this.props;
-    
+
     return (
       <div className="cities__places-list places__list tabs__content">
         {offers.map((offer, index) => {
@@ -29,7 +29,7 @@ class PlaceCardList extends PureComponent {
         })}
       </div>
     );
-  };
+  }
 }
 
 PlaceCardList.propTypes = {
@@ -38,7 +38,7 @@ PlaceCardList.propTypes = {
     picture: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
     price: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`Apartment`,`Room`,`House`,`Hotel`]).isRequired,
+    type: PropTypes.oneOf([`Apartment`, `Room`, `House`, `Hotel`]).isRequired,
     rating: PropTypes.number.isRequired,
   })).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,

@@ -15,9 +15,10 @@ describe(`PlaceCard snapshot testing`, () => {
   it(`PlaceCard rendering`, () => {
     const tree = renderer.create(
         <PlaceCard
-          key={1}
+          key={`${offer.description + 0}`}
           offer={offer}
           onCardMouseEnter={() => {}}
+          onCardTitleClick={() => {}}
         />
     ).toJSON();
 

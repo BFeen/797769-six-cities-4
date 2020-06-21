@@ -64,9 +64,9 @@ class Main extends PureComponent {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-  
+
               {citiesMarkup}
-  
+
             </section>
           </div>
           <div className="cities">
@@ -83,11 +83,11 @@ class Main extends PureComponent {
                     <option className="places__option" value="top-rated">Top rated first</option>
                   </select>
                 </form>
-  
-                  <PlaceCardList
-                    offers={offers}
-                    onCardTitleClick={onCardTitleClick}
-                  />
+
+                <PlaceCardList
+                  offers={offers}
+                  onCardTitleClick={onCardTitleClick}
+                />
 
               </section>
               <div className="cities__right-section">
@@ -99,7 +99,7 @@ class Main extends PureComponent {
       </div>
     );
   }
-};
+}
 
 Main.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -109,7 +109,7 @@ Main.propTypes = {
     picture: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
     price: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`Apartment`,`Room`,`House`,`Hotel`]).isRequired,
+    type: PropTypes.oneOf([`Apartment`, `Room`, `House`, `Hotel`]).isRequired,
     rating: PropTypes.number.isRequired,
   })).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
