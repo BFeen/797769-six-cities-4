@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 
 const PlaceCard = (props) => {
-  const {offer, onCardMouseEnter, key} = props;
+  const {offer, onCardMouseEnter, onCardTitleClick} = props;
 
   return (      
-    <article key={`${offer.description + key}`} className="cities__place-card place-card"
+    <article className="cities__place-card place-card"
       onMouseEnter={(evt) => {
         onCardMouseEnter(evt.target);
       }}
@@ -41,7 +41,10 @@ const PlaceCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
+        <h2 
+          className="place-card__name"
+          onClick={onCardTitleClick}
+        >
           <a href="#">{offer.description}</a>
         </h2>
         <p className="place-card__type">{offer.type}</p>
@@ -51,7 +54,6 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
-  key: PropTypes.number.isRequired,
   offer: PropTypes.shape({
     description: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
@@ -61,6 +63,7 @@ PlaceCard.propTypes = {
     rating: PropTypes.number.isRequired,
   }).isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
+  onCardTitleClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;

@@ -1,10 +1,3 @@
-const OFFERS = [
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`,
-  `Canal view Princengracht`,
-  `Nice, cozy, warm big bed apartment`,
-];
-
 const CITIES = [
   `Paris`,
   `Cologne`,
@@ -14,4 +7,4 @@ const CITIES = [
   `Dusseldorf`,
 ];
 
-export {OFFERS, CITIES};
+export {CITIES};

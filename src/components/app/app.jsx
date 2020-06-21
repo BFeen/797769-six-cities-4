@@ -3,25 +3,32 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
 
-const CardTitleClickHandler = () => {};
+const handleCardTitleClick = () => {};
 
 const App = (props) => {
-  const {cities, placesToStay, offers} = props;
+  const {cities, placesCount, offers} = props;
 
   return (
     <Main
       cities={cities}
-      placesToStay={placesToStay}
+      placesCount={placesCount}
       offers={offers}
-      onCardTitleClick={CardTitleClickHandler}
+      onCardTitleClick={handleCardTitleClick}
     />
   );
 };
 
 App.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  placesToStay: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  placesCount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    type: PropTypes.oneOf([`Apartment`,`Room`,`House`,`Hotel`]).isRequired,
+    rating: PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 export default App;

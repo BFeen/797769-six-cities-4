@@ -8,7 +8,7 @@ export default [
     rating: 4,
   }, {
     description: `Wood and stone place`,
-    picture: `img/studio-01.jpg`,
+    picture: `img/apartment-03.jpg`,
     isPremium: true,
     price: 170,
     type: `House`,
