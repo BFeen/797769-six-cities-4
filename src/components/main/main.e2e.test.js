@@ -41,7 +41,7 @@ Enzyme.configure({
 });
 
 describe(`Main e2e testing:`, () => {
-  it(`Should card title clicking.`, () => {
+  it(`Should card title clicking`, () => {
     const onCardTitleClick = jest.fn();
 
     const main = mount(

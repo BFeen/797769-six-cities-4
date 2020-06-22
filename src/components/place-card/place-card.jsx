@@ -6,9 +6,10 @@ const PlaceCard = (props) => {
   const {offer, onCardMouseEnter, onCardTitleClick} = props;
 
   return (
-    <article className="cities__place-card place-card"
-      onMouseEnter={(evt) => {
-        onCardMouseEnter(evt.target);
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={() => {
+        onCardMouseEnter(offer);
       }}
     >
       {offer.isPremium ?

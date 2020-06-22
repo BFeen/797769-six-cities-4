@@ -8,7 +8,7 @@ class PlaceCardList extends PureComponent {
     super(props);
 
     this.state = {
-      activeCard: null,
+      activeCard: {},
     };
   }
 
@@ -22,7 +22,11 @@ class PlaceCardList extends PureComponent {
             <PlaceCard
               key={`${offer.description + index}`}
               offer={offer}
-              onCardMouseEnter={() => {}}
+              onCardMouseEnter={(currentOffer) => {
+                this.setState({
+                  activeCard: currentOffer
+                });
+              }}
               onCardTitleClick={onCardTitleClick}
             />
           );
