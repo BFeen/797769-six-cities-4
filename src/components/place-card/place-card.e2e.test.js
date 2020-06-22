@@ -18,7 +18,7 @@ Enzyme.configure({
 });
 
 describe(`PlaceCard e2e tests`, () => {
-  it(`Should PlaceCard handler working`, () => {
+  it(`Should PlaceCard mouse enter handler calles with correct mock`, () => {
     const handleCardMouseEnter = jest.fn();
 
     const placeCard = shallow(
@@ -32,7 +32,7 @@ describe(`PlaceCard e2e tests`, () => {
     const article = placeCard.find(`article`);
     article.simulate(`mouseenter`, {target: offer});
 
-    // expect(handleCardMouseEnter).toHaveBeenCalledTimes(1);
-    expect(handleCardMouseEnter.mock.calls[0][0]).toMatchObject(offer);
+    expect(handleCardMouseEnter).toHaveBeenCalledTimes(1);
+    expect(handleCardMouseEnter).toHaveBeenCalledWith(offer)
   });
 });

@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
+import offerPropType from "../../mocks/offer-prop-type.js";
 
 
 const createLocationsListTemplate = (cities) => {
@@ -27,9 +28,6 @@ const createLocationsListTemplate = (cities) => {
 };
 
 class Main extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const {cities, placesCount, offers, onCardTitleClick} = this.props;
@@ -104,14 +102,7 @@ class Main extends PureComponent {
 Main.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   placesCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Room`, `House`, `Hotel`]).isRequired,
-    rating: PropTypes.number.isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(offerPropType).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 
