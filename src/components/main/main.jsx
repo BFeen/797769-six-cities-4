@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
-import offerPropType from "../../mocks/offer-prop-type.js";
+import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 
 
 const createLocationsListTemplate = (cities) => {
@@ -102,7 +102,7 @@ class Main extends PureComponent {
 Main.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   placesCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(offerPropType).isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 

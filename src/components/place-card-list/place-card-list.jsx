@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
-import offerPropType from "../../mocks/offer-prop-type.js";
+import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 
 
 class PlaceCardList extends PureComponent {
@@ -21,7 +21,7 @@ class PlaceCardList extends PureComponent {
         {offers.map((offer, index) => {
           return (
             <PlaceCard
-              key={`${offer.description + index}`}
+              key={`${offer.title + index}`}
               offer={offer}
               onCardMouseEnter={(currentOffer) => {
                 this.setState({
@@ -38,7 +38,7 @@ class PlaceCardList extends PureComponent {
 }
 
 PlaceCardList.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType).isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 

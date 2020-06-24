@@ -1,27 +1,27 @@
-export default [
+const Offers = [
   {
-    description: `Beautiful & luxurious apartment at great location`,
+    title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     isPremium: true,
     price: 200,
     type: `Apartment`,
     rating: 4,
   }, {
-    description: `Wood and stone place`,
+    title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     isPremium: true,
     price: 170,
     type: `House`,
     rating: 5,
   }, {
-    description: `Canal view Princengracht`,
+    title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
     price: 70,
     type: `Room`,
     rating: 3,
   }, {
-    description: `Nice, cozy, warm big bed apartment`,
+    title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
     price: 150,
@@ -29,3 +29,124 @@ export default [
     rating: 4,
   }
 ];
+
+const OffersDetails = [
+  {
+    title: `Beautiful & luxurious apartment at great location`,
+    details: {
+      pictures: [
+        `img/apartment-01.jpg`,
+        `img/room.jpg`,
+        `img/apartment-02.jpg`,
+        `img/apartment-03.jpg`,
+        `img/studio-01.jpg`,
+        `img/apartment-01.jpg`,
+      ],
+      description: [
+        `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. 
+        The building is green and from 18th century.`,
+        `An independent House, strategically located between Rembrand Square and National Opera, 
+        but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+      ],
+      bedroomsCount: `3 bedrooms`,
+      maxGuests: `Max 4 adults`,
+      insideItems: [
+        `Wi-Fi`,
+        `Heating`,
+        `Kitchen`,
+        `Friddge`,
+        `Washing machine`,
+        `Coffee machine`,
+        `Dishwasher`,
+        `Towels`,
+        `Baby seat`,
+        `Cabel TV`,
+      ],
+      host: {
+        avatar: `img/avatar-angelina.jpg`,
+        name: `Angelina`,
+        isSuper: true,
+      }
+    }
+  }, {
+    title: `Wood and stone place`,
+    details: {
+      pictures: [
+        `img/apartment-03.jpg`,
+        `img/apartment-01.jpg`,
+        `img/room.jpg`,
+        `img/apartment-02.jpg`,
+        `img/studio-01.jpg`,
+        `img/apartment-01.jpg`,
+      ],
+      description: [],
+      bedroomsCount: `3 bedrooms`,
+      maxGuests: `Max 4 adults`,
+      insideItems: [
+        `Wi-Fi`,
+        `Heating`,
+        `Kitchen`,
+        `Friddge`,
+        `Washing machine`,
+      ],
+      host: {
+        avatar: `img/avatar-max.jpg`,
+        name: `Max`,
+        isSuper: false,
+      }
+    }
+  }, {
+    title: `Canal view Princengracht`,
+    details: {
+      pictures: [
+        `img/room.jpg`,
+        `img/apartment-01.jpg`,
+        `img/apartment-02.jpg`,
+        `img/apartment-03.jpg`,
+        `img/studio-01.jpg`,
+        `img/apartment-01.jpg`,
+      ],
+      description: [],
+      bedroomsCount: `3 bedrooms`,
+      maxGuests: `Max 4 adults`,
+      insideItems: [
+        `Wi-Fi`,
+        `Kitchen`,
+        `Friddge`,
+      ],
+      host: {
+        avatar: ``,
+        name: `Alessa`,
+        isSuper: false,
+      }
+    }
+  }, {
+    title: `Nice, cozy, warm big bed apartment`,
+    details: {
+      pictures: [
+        `img/apartment-02.jpg`,
+        `img/room.jpg`,
+        `img/apartment-01.jpg`,
+        `img/apartment-03.jpg`,
+        `img/studio-01.jpg`,
+        `img/apartment-01.jpg`,
+      ],
+      description: [],
+      bedroomsCount: `1 bedrooms`,
+      maxGuests: `Max 2 adults`,
+      insideItems: [
+        `Wi-Fi`,
+        `Kitchen`,
+        `Friddge`,
+        `Cabel TV`,
+      ],
+      host: {
+        avatar: ``,
+        name: `Kristian`,
+        isSuper: true,
+      }
+    }
+  },
+];
+
+export {Offers, OffersDetails};

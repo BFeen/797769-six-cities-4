@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import offerPropType from "../../mocks/offer-prop-type.js";
+import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 
 
 const PlaceCard = (props) => {
@@ -19,7 +19,7 @@ const PlaceCard = (props) => {
         </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={offer.picture} width="260" height="200" alt={offer.description} />
+          <img className="place-card__image" src={offer.picture} width="260" height="200" alt={offer.title} />
         </a>
       </div>
       <div className="place-card__info">
@@ -45,7 +45,7 @@ const PlaceCard = (props) => {
           className="place-card__name"
           onClick={onCardTitleClick}
         >
-          <a href="#">{offer.description}</a>
+          <a href="#">{offer.title}</a>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
@@ -54,7 +54,7 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
-  offer: offerPropType,
+  offer: offerPropTypes,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };

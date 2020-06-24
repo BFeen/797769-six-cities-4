@@ -1,34 +1,49 @@
-import React from "react";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
+import PlaceDetails from "../place-details/place-details.jsx";
+import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 
 
 const handleCardTitleClick = () => {};
 
-const App = (props) => {
-  const {cities, placesCount, offers} = props;
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Main
-      cities={cities}
-      placesCount={placesCount}
-      offers={offers}
-      onCardTitleClick={handleCardTitleClick}
-    />
-  );
+    this.state = {};
+  }
+
+  render() {
+    const {cities, placesCount, offers} = this.props;
+  
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Main
+              cities={cities}
+              placesCount={placesCount}
+              offers={offers}
+              onCardTitleClick={handleCardTitleClick}
+            />
+          </Route>
+          <Route exact path="/details">
+            <PlaceDetails 
+              offer={offers[0]}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 };
 
 App.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   placesCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`Apartment`, `Room`, `House`, `Hotel`]).isRequired,
-    rating: PropTypes.number.isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
 export default App;
