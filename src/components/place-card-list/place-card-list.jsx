@@ -25,7 +25,7 @@ class PlaceCardList extends PureComponent {
               offer={offer}
               onCardMouseEnter={(currentOffer) => {
                 this.setState({
-                  activeCard: currentOffer
+                  activeCard: currentOffer,
                 });
               }}
               onCardTitleClick={onCardTitleClick}

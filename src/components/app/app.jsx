@@ -6,28 +6,23 @@ import PlaceDetails from "../place-details/place-details.jsx";
 import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 
 
-const handleCardTitleClick = () => {};
-
 class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      step: -1,
+    };
   }
 
   render() {
-    const {cities, placesCount, offers} = this.props;
+    const {offers} = this.props;
   
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Main
-              cities={cities}
-              placesCount={placesCount}
-              offers={offers}
-              onCardTitleClick={handleCardTitleClick}
-            />
+            {this._renderMainPage()}
           </Route>
           <Route exact path="/details">
             <PlaceDetails 
@@ -37,6 +32,37 @@ class App extends PureComponent {
         </Switch>
       </BrowserRouter>
     );
+  }
+
+  _renderMainPage() {
+    const {cities, placesCount, offers} = this.props;
+    const {step} = this.state;
+    const offer = offers[step]
+    
+    if (step === -1 || step >= offers.length) {
+      return (
+        <Main
+          cities={cities}
+          placesCount={placesCount}
+          offers={offers}
+          onCardTitleClick={(offerId) => {
+            this.setState(() => ({
+              step: offerId,
+            }));
+          }}
+        />
+      );
+    }
+
+    if (offer) {
+      return (
+        <PlaceDetails 
+          offer={offer}
+        />
+      );
+    }
+
+    return null;
   }
 };
 

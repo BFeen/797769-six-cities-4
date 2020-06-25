@@ -1,5 +1,6 @@
 const Offers = [
   {
+    id: 0,
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     isPremium: true,
@@ -7,6 +8,7 @@ const Offers = [
     type: `Apartment`,
     rating: 4,
   }, {
+    id: 1,
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     isPremium: true,
@@ -14,6 +16,7 @@ const Offers = [
     type: `House`,
     rating: 5,
   }, {
+    id: 2,
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
@@ -21,6 +24,7 @@ const Offers = [
     type: `Room`,
     rating: 3,
   }, {
+    id: 3,
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
@@ -32,7 +36,7 @@ const Offers = [
 
 const OffersDetails = [
   {
-    title: `Beautiful & luxurious apartment at great location`,
+    id: 0,
     details: {
       pictures: [
         `img/apartment-01.jpg`,
@@ -69,7 +73,7 @@ const OffersDetails = [
       }
     }
   }, {
-    title: `Wood and stone place`,
+    id: 1,
     details: {
       pictures: [
         `img/apartment-03.jpg`,
@@ -96,7 +100,7 @@ const OffersDetails = [
       }
     }
   }, {
-    title: `Canal view Princengracht`,
+    id: 2,
     details: {
       pictures: [
         `img/room.jpg`,
@@ -121,7 +125,7 @@ const OffersDetails = [
       }
     }
   }, {
-    title: `Nice, cozy, warm big bed apartment`,
+    id: 3,
     details: {
       pictures: [
         `img/apartment-02.jpg`,

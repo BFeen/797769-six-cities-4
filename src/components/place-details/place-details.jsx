@@ -8,7 +8,7 @@ class PlaceDetails extends PureComponent {
   render() {
     const {offer} = this.props;
     const details = OffersDetails.reduce((obj, item) => {
-      if (item.title === offer.title) {
+      if (item.id === offer.id) {
         obj = Object.assign({}, item.details);
       }
       return obj;

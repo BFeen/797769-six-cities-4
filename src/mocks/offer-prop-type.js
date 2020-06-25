@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 const offerPropTypes = PropTypes.shape({
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
   isPremium: PropTypes.bool.isRequired,
@@ -10,7 +11,7 @@ const offerPropTypes = PropTypes.shape({
 }).isRequired;
 
 const offerDetailsPropTypes = PropTypes.shape({
-  title: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   details: PropTypes.shape({
     pictures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     desctiption: PropTypes.arrayOf(PropTypes.string).isRequired,
