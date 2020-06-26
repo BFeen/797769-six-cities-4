@@ -17,7 +17,7 @@ class App extends PureComponent {
 
   render() {
     const {offers} = this.props;
-  
+
     return (
       <BrowserRouter>
         <Switch>
@@ -25,7 +25,7 @@ class App extends PureComponent {
             {this._renderMainPage()}
           </Route>
           <Route exact path="/details">
-            <PlaceDetails 
+            <PlaceDetails
               offer={offers[0]}
             />
           </Route>
@@ -37,8 +37,8 @@ class App extends PureComponent {
   _renderMainPage() {
     const {cities, placesCount, offers} = this.props;
     const {step} = this.state;
-    const offer = offers[step]
-    
+    const offer = offers[step];
+
     if (step === -1 || step >= offers.length) {
       return (
         <Main
@@ -56,7 +56,7 @@ class App extends PureComponent {
 
     if (offer) {
       return (
-        <PlaceDetails 
+        <PlaceDetails
           offer={offer}
         />
       );
@@ -64,7 +64,7 @@ class App extends PureComponent {
 
     return null;
   }
-};
+}
 
 App.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,

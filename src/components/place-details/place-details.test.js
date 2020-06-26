@@ -11,14 +11,14 @@ const offer = {
   price: 200,
   type: `Apartment`,
   rating: 4,
-}
+};
 
 describe(`PlaceDetails snapshot test`, () => {
   it(`PlaceDetails rendering`, () => {
     const tree = renderer.create(
-      <PlaceDetails
-        offer={offer}
-      />
+        <PlaceDetails
+          offer={offer}
+        />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

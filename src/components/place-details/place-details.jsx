@@ -12,7 +12,7 @@ class PlaceDetails extends PureComponent {
       }
       return obj;
     }, {});
-    
+
     return (
       <div className="page">
         <header className="header">
@@ -43,19 +43,19 @@ class PlaceDetails extends PureComponent {
               <div className="property__gallery">
 
                 {details.pictures.map((picture, index) => {
-                    return (
-                      <div key={`${picture + index}`} className="property__image-wrapper">
-                        <img className="property__image" src={picture} alt="Photo studio" />
-                      </div>
-                    );
-                  })}
-                  
+                  return (
+                    <div key={`${picture + index}`} className="property__image-wrapper">
+                      <img className="property__image" src={picture} alt="Photo studio" />
+                    </div>
+                  );
+                })}
+
               </div>
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
 
-                {offer.isPremium && 
+                {offer.isPremium &&
                 <div className="property__mark">
                   <span>Premium</span>
                 </div>}
@@ -312,7 +312,7 @@ class PlaceDetails extends PureComponent {
   }
 }
 
-PlaceDetails.propType = {
+PlaceDetails.propTypes = {
   offer: offerPropTypes,
 };
 

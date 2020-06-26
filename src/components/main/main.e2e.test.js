@@ -45,7 +45,7 @@ Enzyme.configure({
 });
 
 describe(`Main e2e testing:`, () => {
-  it(`Should card title clicking`, () => {
+  it(`Should card title clicking and handle`, () => {
     const onCardTitleClick = jest.fn();
 
     const main = mount(
@@ -62,5 +62,6 @@ describe(`Main e2e testing:`, () => {
     cardTitleElement.simulate(`click`);
 
     expect(onCardTitleClick).toHaveBeenCalledTimes(1);
+    expect(onCardTitleClick).toHaveBeenCalledWith(Offers[0].id);
   });
 });

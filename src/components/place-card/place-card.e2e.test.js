@@ -34,6 +34,6 @@ describe(`PlaceCard e2e tests`, () => {
     article.simulate(`mouseenter`, {target: offer});
 
     expect(handleCardMouseEnter).toHaveBeenCalledTimes(1);
-    expect(handleCardMouseEnter).toHaveBeenCalledWith(offer)
+    expect(handleCardMouseEnter).toHaveBeenCalledWith(offer);
   });
 });
