@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PlaceCard from "./place-card.jsx";
+import PlaceDetails from "./place-details.jsx";
+
 
 const offer = {
   id: 0,
@@ -10,17 +11,14 @@ const offer = {
   price: 200,
   type: `Apartment`,
   rating: 4,
-};
+}
 
-describe(`PlaceCard snapshot testing`, () => {
-  it(`PlaceCard rendering`, () => {
+describe(`PlaceDetails snapshot test`, () => {
+  it(`PlaceDetails rendering`, () => {
     const tree = renderer.create(
-        <PlaceCard
-          key={`${offer.id + 0}`}
-          offer={offer}
-          onCardMouseEnter={() => {}}
-          onCardTitleClick={() => {}}
-        />
+      <PlaceDetails
+        offer={offer}
+      />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

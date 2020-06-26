@@ -5,7 +5,8 @@ import PlaceCard from "./place-card.jsx";
 
 
 const offer = {
-  description: `Beautiful & luxurious apartment at great location`,
+  id: 0,
+  title: `Beautiful & luxurious apartment at great location`,
   picture: `img/apartment-01.jpg`,
   isPremium: true,
   price: 200,

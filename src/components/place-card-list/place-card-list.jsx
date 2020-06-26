@@ -18,10 +18,10 @@ class PlaceCardList extends PureComponent {
 
     return (
       <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer, index) => {
+        {offers.map((offer) => {
           return (
             <PlaceCard
-              key={`${offer.title + index}`}
+              key={`${offer.id}`}
               offer={offer}
               onCardMouseEnter={(currentOffer) => {
                 this.setState({

@@ -1,5 +1,4 @@
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
 import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 import {OffersDetails} from "../../mocks/offers.js";
 
@@ -42,6 +41,7 @@ class PlaceDetails extends PureComponent {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
+
                 {details.pictures.map((picture, index) => {
                     return (
                       <div key={`${picture + index}`} className="property__image-wrapper">
@@ -49,6 +49,7 @@ class PlaceDetails extends PureComponent {
                       </div>
                     );
                   })}
+                  
               </div>
             </div>
             <div className="property__container container">
@@ -118,7 +119,7 @@ class PlaceDetails extends PureComponent {
 
                     {details.description.map((desc, index) => {
                       return (
-                        <p key={`${desc + index}`} className="property__text">
+                        <p key={`${offer.id + index}`} className="property__text">
                           {desc}
                         </p>
                       );

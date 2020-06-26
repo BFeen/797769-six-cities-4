@@ -28,7 +28,6 @@ const createLocationsListTemplate = (cities) => {
 };
 
 class Main extends PureComponent {
-
   render() {
     const {cities, placesCount, offers, onCardTitleClick} = this.props;
 
