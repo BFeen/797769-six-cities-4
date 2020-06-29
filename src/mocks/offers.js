@@ -1,4 +1,4 @@
-const Offers = [
+const offers = [
   {
     id: 0,
     title: `Beautiful & luxurious apartment at great location`,
@@ -7,6 +7,10 @@ const Offers = [
     price: 200,
     type: `Apartment`,
     rating: 4,
+    coordinates: [
+      52.3909553943508,
+      4.85309666406198
+    ],
   }, {
     id: 1,
     title: `Wood and stone place`,
@@ -15,6 +19,10 @@ const Offers = [
     price: 170,
     type: `House`,
     rating: 5,
+    coordinates: [
+      52.369553943508,
+      4.85309666406198
+    ]
   }, {
     id: 2,
     title: `Canal view Princengracht`,
@@ -23,6 +31,10 @@ const Offers = [
     price: 70,
     type: `Room`,
     rating: 3,
+    coordinates: [
+      52.3909553943508,
+      4.929309666406198
+    ]
   }, {
     id: 3,
     title: `Nice, cozy, warm big bed apartment`,
@@ -31,10 +43,14 @@ const Offers = [
     price: 150,
     type: `Apartment`,
     rating: 4,
+    coordinates: [
+      52.3809553943508,
+      4.939309666406198
+    ]
   }
 ];
 
-const OffersDetails = [
+const offersDetails = [
   {
     id: 0,
     details: {

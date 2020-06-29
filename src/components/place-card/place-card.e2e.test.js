@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import PlaceCard from "./place-card.jsx";
 
 
-const offer = {
+const offer ={
   id: 0,
   title: `Beautiful & luxurious apartment at great location`,
   picture: `img/apartment-01.jpg`,
@@ -12,7 +12,11 @@ const offer = {
   price: 200,
   type: `Apartment`,
   rating: 4,
-};
+  coordinates: [
+    52.3909553943508,
+    4.85309666406198
+  ],
+}
 
 Enzyme.configure({
   adapter: new Adapter(),

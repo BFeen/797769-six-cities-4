@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
 
-const Offers = [
+const offers = [
   {
     id: 0,
     title: `Beautiful & luxurious apartment at great location`,
@@ -13,14 +13,22 @@ const Offers = [
     price: 200,
     type: `Apartment`,
     rating: 4,
+    coordinates: [
+      52.3909553943508,
+      4.85309666406198
+    ],
   }, {
     id: 1,
     title: `Wood and stone place`,
-    picture: `img/studio-01.jpg`,
+    picture: `img/apartment-03.jpg`,
     isPremium: true,
     price: 170,
     type: `House`,
     rating: 5,
+    coordinates: [
+      52.369553943508,
+      4.85309666406198
+    ]
   }, {
     id: 2,
     title: `Canal view Princengracht`,
@@ -29,6 +37,10 @@ const Offers = [
     price: 70,
     type: `Room`,
     rating: 3,
+    coordinates: [
+      52.3909553943508,
+      4.929309666406198
+    ]
   }, {
     id: 3,
     title: `Nice, cozy, warm big bed apartment`,
@@ -37,6 +49,10 @@ const Offers = [
     price: 150,
     type: `Apartment`,
     rating: 4,
+    coordinates: [
+      52.3809553943508,
+      4.939309666406198
+    ]
   }
 ];
 
@@ -51,8 +67,8 @@ describe(`Main e2e testing:`, () => {
     const main = mount(
         <Main
           cities={[`Moscow`, `St-Petersburg`]}
-          placesCount={Offers.length}
-          offers={Offers}
+          placesCount={offers.length}
+          offers={offers}
           onCardTitleClick={onCardTitleClick}
         />
     );
@@ -62,6 +78,6 @@ describe(`Main e2e testing:`, () => {
     cardTitleElement.simulate(`click`);
 
     expect(onCardTitleClick).toHaveBeenCalledTimes(1);
-    expect(onCardTitleClick).toHaveBeenCalledWith(Offers[0].id);
+    expect(onCardTitleClick).toHaveBeenCalledWith(offers[0].id);
   });
 });

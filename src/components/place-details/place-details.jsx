@@ -1,12 +1,12 @@
 import React, {PureComponent} from "react";
 import {offerPropTypes} from "../../mocks/offer-prop-type.js";
-import {OffersDetails} from "../../mocks/offers.js";
+import {offersDetails} from "../../mocks/offers.js";
 
 
 class PlaceDetails extends PureComponent {
   render() {
     const {offer} = this.props;
-    const details = OffersDetails.reduce((obj, item) => {
+    const details = offersDetails.reduce((obj, item) => {
       if (item.id === offer.id) {
         obj = Object.assign({}, item.details);
       }

@@ -8,6 +8,7 @@ const offerPropTypes = PropTypes.shape({
   price: PropTypes.number.isRequired,
   type: PropTypes.oneOf([`Apartment`, `Room`, `House`, `Hotel`]).isRequired,
   rating: PropTypes.number.isRequired,
+  coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
 }).isRequired;
 
 const offerDetailsPropTypes = PropTypes.shape({

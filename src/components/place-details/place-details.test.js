@@ -11,6 +11,10 @@ const offer = {
   price: 200,
   type: `Apartment`,
   rating: 4,
+  coordinates: [
+    52.3909553943508,
+    4.85309666406198
+  ],
 };
 
 describe(`PlaceDetails snapshot test`, () => {
