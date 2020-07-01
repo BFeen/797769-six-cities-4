@@ -95,7 +95,7 @@ class Main extends PureComponent {
                     offers={offers}
                   />
                 </section>
-                
+
               </div>
             </div>
           </div>

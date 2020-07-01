@@ -11,9 +11,9 @@ class Map extends PureComponent {
 
     this.state = {
       cityPosition: [52.38333, 4.9],
-    }
+    };
   }
-  
+
   render() {
     const {cityPosition} = this.state;
     const {offers} = this.props;
@@ -50,7 +50,7 @@ class Map extends PureComponent {
       </LeafletMap>
     );
   }
-};
+}
 
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes)
