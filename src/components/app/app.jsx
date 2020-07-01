@@ -11,7 +11,7 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      step: -1,
+      offerId: -1,
     };
   }
 
@@ -36,10 +36,10 @@ class App extends PureComponent {
 
   _renderMainPage() {
     const {cities, placesCount, offers} = this.props;
-    const {step} = this.state;
-    const offer = offers[step];
+    const {offerId} = this.state;
+    const offer = offers[offerId];
 
-    if (step === -1 || step >= offers.length) {
+    if (offerId === -1 || offerId >= offers.length) {
       return (
         <Main
           cities={cities}
@@ -47,7 +47,7 @@ class App extends PureComponent {
           offers={offers}
           onCardTitleClick={(offerId) => {
             this.setState(() => ({
-              step: offerId,
+              offerId: offerId,
             }));
           }}
         />

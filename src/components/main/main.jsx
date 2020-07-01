@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
+import Map from "../map/map.jsx";
 import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 
 
@@ -88,7 +89,9 @@ class Main extends PureComponent {
 
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+                <Map
+                  offers={offers}
+                />
               </div>
             </div>
           </div>

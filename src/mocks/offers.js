@@ -169,4 +169,4 @@ const offersDetails = [
   },
 ];
 
-export {Offers, OffersDetails};
+export {offers, offersDetails};
