@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import Map from "./map.jsx";
 
 
 const offers = [
@@ -55,19 +55,16 @@ const offers = [
   }
 ];
 
-describe(`Main component tests:`, () => {
-  it(`Render Main.`, () => {
-    const tree = renderer
-      .create(<Main
-        cities={[`Moscow`, `St-Petersburg`]}
-        placesCount={4}
+describe(`Map snapshot testing`, () => {
+  it(`Map rendering correctly`, () => {
+    const tree = renderer.create(
+      <Map
         offers={offers}
-        onCardTitleClick={() => {}}
       />,
       {
         createNodeMock: () => document.createElement(`div`),
-      })
-      .toJSON();
+      }
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

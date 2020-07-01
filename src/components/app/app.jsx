@@ -45,9 +45,9 @@ class App extends PureComponent {
           cities={cities}
           placesCount={placesCount}
           offers={offers}
-          onCardTitleClick={(offerId) => {
+          onCardTitleClick={(id) => {
             this.setState(() => ({
-              offerId: offerId,
+              offerId: id,
             }));
           }}
         />

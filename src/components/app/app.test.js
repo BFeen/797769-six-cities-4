@@ -62,7 +62,10 @@ describe(`App snapshot test`, () => {
         cities={[`Moscow`, `St-Petersburg`]}
         placesCount={offers.length}
         offers={offers}
-      />)
+      />,
+      {
+        createNodeMock: () => document.createElement(`div`),
+      })
       .toJSON();
 
     expect(tree).toMatchSnapshot();

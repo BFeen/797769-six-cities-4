@@ -129,7 +129,7 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering 1`] = `
           alt="Wood and stone place"
           className="place-card__image"
           height="200"
-          src="img/studio-01.jpg"
+          src="img/apartment-03.jpg"
           width="260"
         />
       </a>

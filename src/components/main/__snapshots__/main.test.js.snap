@@ -289,7 +289,7 @@ exports[`Main component tests: Render Main. 1`] = `
                     alt="Wood and stone place"
                     className="place-card__image"
                     height="200"
-                    src="img/studio-01.jpg"
+                    src="img/apartment-03.jpg"
                     width="260"
                   />
                 </a>
@@ -573,7 +573,16 @@ exports[`Main component tests: Render Main. 1`] = `
         >
           <section
             className="cities__map map"
-          />
+          >
+            <div
+              style={
+                Object {
+                  "height": "572px",
+                  "width": "512px",
+                }
+              }
+            />
+          </section>
         </div>
       </div>
     </div>

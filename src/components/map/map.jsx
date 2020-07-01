@@ -16,9 +16,7 @@ class Map extends PureComponent {
   
   render() {
     const {cityPosition} = this.state;
-
-    const offerCords = [52.3709553943508, 4.89309666406198];
-    const zoom = 12;
+    const {offers} = this.props;
 
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
@@ -26,25 +24,30 @@ class Map extends PureComponent {
     });
 
     return (
-      <section className="cities__map map">
-        <LeafletMap
-          center={cityPosition}
-          zoom={12}
-          zoomControl={false}
-          style={{width: `${512}px`, height: `${572}px`}}
-        >
-          <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-            attribution="&copy; <a href=&quot;https://www.openstreetmap.org/copyright&quot;>OpenStreetMap</a> contributors &copy; <a href=&quot;https://carto.com/attributions&quot;>CARTO</a>"
-          />
-          <Marker
-            position={offerCords}
-            icon={icon}
-          >
-            <Popup />
-          </Marker>
-        </LeafletMap>
-      </section>
+      <LeafletMap
+        center={cityPosition}
+        zoom={12}
+        zoomControl={false}
+        style={{width: `${512}px`, height: `${572}px`}}
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution="&copy; <a href=&quot;https://www.openstreetmap.org/copyright&quot;>OpenStreetMap</a> contributors &copy; <a href=&quot;https://carto.com/attributions&quot;>CARTO</a>"
+        />
+        {offers.map((offer) => {
+          return (
+            <Marker
+              key={offer.id}
+              position={offer.coordinates}
+              icon={icon}
+            >
+              <Popup>
+                {offer.title}
+              </Popup>
+            </Marker>
+          );
+        })}
+      </LeafletMap>
     );
   }
 };
