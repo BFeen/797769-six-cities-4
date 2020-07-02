@@ -60,9 +60,8 @@ describe(`Map snapshot testing`, () => {
     const tree = renderer.create(
         <Map
           offers={offers}
-        />,
-        {
-          createNodeMock: () => document.createElement(`div`),
+        />, {
+          createNodeMock: () => document.createElement(`div`)
         }
     ).toJSON();
 

@@ -24,7 +24,7 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderMainPage()}
           </Route>
-          <Route exact path="/details">
+          <Route exact path="/details-details/id">
             <PlaceDetails
               offer={offers[0]}
             />

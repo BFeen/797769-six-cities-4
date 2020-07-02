@@ -63,11 +63,9 @@ describe(`Main component tests:`, () => {
         placesCount={4}
         offers={offers}
         onCardTitleClick={() => {}}
-      />,
-      {
-        createNodeMock: () => document.createElement(`div`),
-      })
-      .toJSON();
+      />, {
+        createNodeMock: () => document.createElement(`div`)
+      }).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
