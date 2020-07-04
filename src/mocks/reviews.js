@@ -1,4 +1,5 @@
-import generateAvatar from "../const.js";
+import {generateAvatar} from "../const.js";
+
 
 export default [
   {

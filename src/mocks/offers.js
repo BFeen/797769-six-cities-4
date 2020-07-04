@@ -1,3 +1,6 @@
+import {generateAvatar} from "../const.js";
+
+
 const offers = [
   {
     id: 0,
@@ -99,7 +102,9 @@ const offersDetails = [
         `img/studio-01.jpg`,
         `img/apartment-01.jpg`,
       ],
-      description: [],
+      description: [
+        `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
+      ],
       bedroomsCount: `3 bedrooms`,
       maxGuests: `Max 4 adults`,
       insideItems: [
@@ -126,7 +131,10 @@ const offersDetails = [
         `img/studio-01.jpg`,
         `img/apartment-01.jpg`,
       ],
-      description: [],
+      description: [
+        `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
+        `Eligendi repellendus ut optio ad repudiandae obcaecati reprehenderit ipsa.`,  
+      ],
       bedroomsCount: `3 bedrooms`,
       maxGuests: `Max 4 adults`,
       insideItems: [
@@ -135,7 +143,7 @@ const offersDetails = [
         `Friddge`,
       ],
       host: {
-        avatar: ``,
+        avatar: generateAvatar(),
         name: `Alessa`,
         isSuper: false,
       }
@@ -151,7 +159,11 @@ const offersDetails = [
         `img/studio-01.jpg`,
         `img/apartment-01.jpg`,
       ],
-      description: [],
+      description: [
+        `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
+        `Eligendi repellendus ut optio ad repudiandae obcaecati reprehenderit ipsa.`,  
+        `Quia labore atque nostrum eum repudiandae laboriosam molestias corrupti numquam aliquid? Ab, deleniti.`
+      ],
       bedroomsCount: `1 bedrooms`,
       maxGuests: `Max 2 adults`,
       insideItems: [
@@ -161,7 +173,7 @@ const offersDetails = [
         `Cabel TV`,
       ],
       host: {
-        avatar: ``,
+        avatar: generateAvatar(),
         name: `Kristian`,
         isSuper: true,
       }

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
 import {offerPropTypes} from "../../mocks/offer-prop-type.js";
+import reviews from "../../mocks/reviews.js";
 
 
 class App extends PureComponent {
@@ -27,6 +28,7 @@ class App extends PureComponent {
           <Route exact path="/details-details/id">
             <PlaceDetails
               offer={offers[0]}
+              reviews={reviews}
             />
           </Route>
         </Switch>
