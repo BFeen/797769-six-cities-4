@@ -1,3 +1,9 @@
+const AVATAR_URL = `https://api.adorable.io/avatars/128`;
+
+const generateAvatar = () => {
+  return `${AVATAR_URL}/${Math.random()}`
+};
+
 const CITIES = [
   `Paris`,
   `Cologne`,
@@ -7,4 +13,4 @@ const CITIES = [
   `Dusseldorf`,
 ];
 
-export {CITIES};
+export {CITIES, generateAvatar};
