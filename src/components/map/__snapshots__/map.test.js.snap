@@ -3,6 +3,5 @@
 exports[`Map snapshot testing Map rendering correctly 1`] = `
 <section
   className="cities__map map"
-  id="map"
 />
 `;

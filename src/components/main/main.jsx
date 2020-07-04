@@ -89,11 +89,9 @@ class Main extends PureComponent {
 
               </section>
               <div className="cities__right-section">
-                <div id="map">
-                  <Map
-                    offers={offers}
-                  />
-                </div>
+                <Map
+                  offers={offers}
+                />
               </div>
             </div>
           </div>

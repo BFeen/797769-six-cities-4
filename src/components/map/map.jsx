@@ -19,7 +19,6 @@ class Map extends PureComponent {
   render() {
     return (
       <section
-        id="map"
         ref={this._mapRef}
         className="cities__map map"
       />

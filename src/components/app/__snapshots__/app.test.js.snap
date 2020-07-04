@@ -571,14 +571,9 @@ exports[`App snapshot test App rendering 1`] = `
         <div
           className="cities__right-section"
         >
-          <div
-            id="map"
-          >
-            <section
-              className="cities__map map"
-              id="map"
-            />
-          </div>
+          <section
+            className="cities__map map"
+          />
         </div>
       </div>
     </div>
