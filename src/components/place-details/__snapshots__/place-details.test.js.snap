@@ -359,7 +359,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
                     className="reviews__avatar-wrapper user__avatar-wrapper"
                   >
                     <img
-                      alt="Reviews avatar"
+                      alt="Max"
                       className="reviews__avatar user__avatar"
                       height="54"
                       src="img/avatar-max.jpg"
@@ -382,7 +382,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
                       className="reviews__stars rating__stars"
                     >
                       <span
-                        className={
+                        style={
                           Object {
                             "width": "80%",
                           }
@@ -404,7 +404,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
                     className="reviews__time"
                     dateTime="2019-04-24"
                   >
-                    April 2019
+                    April 2014
                   </time>
                 </div>
               </li>

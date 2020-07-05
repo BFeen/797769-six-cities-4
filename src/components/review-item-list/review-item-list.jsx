@@ -2,7 +2,6 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import ReviewItem from "../review-item/review-item.jsx";
 import reviews from "../../mocks/reviews.js";
-import reviewPropTypes from "../../prop-types/review-prop-types.js";
 
 
 const ReviewItemList = (props) => {

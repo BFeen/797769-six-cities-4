@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
 import {offerPropTypes} from "../../mocks/offer-prop-type.js";
-import reviews from "../../mocks/reviews.js";
 
 
 class App extends PureComponent {
@@ -25,10 +24,9 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderMainPage()}
           </Route>
-          <Route exact path="/details-details/id">
+          <Route exact path="/details">
             <PlaceDetails
               offer={offers[0]}
-              reviews={reviews}
             />
           </Route>
         </Switch>
@@ -37,11 +35,12 @@ class App extends PureComponent {
   }
 
   _renderMainPage() {
-    const {cities, placesCount, offers} = this.props;
+    const {offers} = this.props;
     const {offerId} = this.state;
-    const offer = offers[offerId];
+    const offerIndex = offers.findIndex((item) => item.id === offerId);
 
-    if (offerId === -1 || offerId >= offers.length) {
+    if (offerIndex === -1) {
+      const {cities, placesCount} = this.props;
       return (
         <Main
           cities={cities}
@@ -54,8 +53,10 @@ class App extends PureComponent {
           }}
         />
       );
-    }
-
+    } 
+    
+    const offer = offers[offerIndex];
+    
     if (offer) {
       return (
         <PlaceDetails

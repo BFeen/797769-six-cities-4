@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewItem snapshot testing Review item rendering correctly 1`] = `
+<li
+  className="reviews__item"
+>
+  <div
+    className="reviews__user user"
+  >
+    <div
+      className="reviews__avatar-wrapper user__avatar-wrapper"
+    >
+      <img
+        alt="John"
+        className="reviews__avatar user__avatar"
+        height="54"
+        src="img"
+        width="54"
+      />
+    </div>
+    <span
+      className="reviews__user-name"
+    >
+      John
+    </span>
+  </div>
+  <div
+    className="reviews__info"
+  >
+    <div
+      className="reviews__rating rating"
+    >
+      <div
+        className="reviews__stars rating__stars"
+      >
+        <span
+          style={
+            Object {
+              "width": "80%",
+            }
+          }
+        />
+        <span
+          className="visually-hidden"
+        >
+          Rating
+        </span>
+      </div>
+    </div>
+    <p
+      className="reviews__text"
+    >
+      Best place of the world!
+    </p>
+    <time
+      className="reviews__time"
+      dateTime="2019-04-24"
+    >
+      December 2012
+    </time>
+  </div>
+</li>
+`;
