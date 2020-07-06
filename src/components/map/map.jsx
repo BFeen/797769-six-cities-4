@@ -17,10 +17,11 @@ class Map extends PureComponent {
   }
 
   render() {
+    const {className} = this.props;
     return (
       <section
         ref={this._mapRef}
-        className="cities__map map"
+        className={`${className}__map map`}
       />
     );
   }
@@ -48,6 +49,10 @@ class Map extends PureComponent {
     offers.forEach((offer) => this._addMarker(offer, this._map));
   }
 
+  componentWillUnmount() {
+    this._map = null;
+  }
+
   _addMarker(offer, leafletMap) {
     const {coordinates, title} = offer;
     const icon = leaflet.icon({
@@ -63,7 +68,8 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes)
+  className: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
 export default Map;

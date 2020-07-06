@@ -1,15 +1,19 @@
 import React, {PureComponent} from "react";
 import ReviewItemList from "../review-item-list/review-item-list.jsx";
+import Map from "../map/map.jsx";
+import PropTypes from "prop-types";
 import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 import {offersDetails} from "../../mocks/offers.js";
-import {reviewPropTypes} from "../../prop-types/review-prop-types.js";
 
 
 class PlaceDetails extends PureComponent {
   render() {
-    const {offer} = this.props;
+    const {offers, offerId, mapClassName} = this.props;
+    const offer = offers[offerId];
+    const nearPlaces = [].concat(offers.slice(0, offerId), offers.slice(offerId+1));
+    console.log(nearPlaces)
     const details = offersDetails.reduce((obj, item) => {
-      if (item.id === offer.id) {
+      if (item.id === offerId) {
         obj = Object.assign({}, item.details);
       }
       return obj;
@@ -121,7 +125,7 @@ class PlaceDetails extends PureComponent {
 
                     {details.description.map((desc, index) => {
                       return (
-                        <p key={`${offer.id + index}`} className="property__text">
+                        <p key={`${offerId + index}`} className="property__text">
                           {desc}
                         </p>
                       );
@@ -132,7 +136,7 @@ class PlaceDetails extends PureComponent {
                 <section className="property__reviews reviews">
 
                   <ReviewItemList
-                    offerId={offer.id}
+                    offerId={offerId}
                   />
 
                   <form className="reviews__form form" action="#" method="post">
@@ -184,7 +188,10 @@ class PlaceDetails extends PureComponent {
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            <Map
+              className={mapClassName}
+              offers={nearPlaces}
+            />
           </section>
           <div className="container">
             <section className="near-places places">
@@ -295,7 +302,9 @@ class PlaceDetails extends PureComponent {
 }
 
 PlaceDetails.propTypes = {
-  offer: offerPropTypes,
+  mapClassName: PropTypes.string.isRequired,
+  offerId: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
 export default PlaceDetails;

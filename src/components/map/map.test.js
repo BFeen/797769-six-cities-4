@@ -59,6 +59,7 @@ describe(`Map snapshot testing`, () => {
   it(`Map rendering correctly`, () => {
     const tree = renderer.create(
         <Map
+          className={`cities`}
           offers={offers}
         />, {
           createNodeMock: () => document.createElement(`div`)

@@ -13,4 +13,9 @@ const CITIES = [
   `Dusseldorf`,
 ];
 
-export {CITIES, generateAvatar};
+const MapClassNames = {
+  CITIES: `cities`,
+  PROPERTY: `property`,
+};
+
+export {CITIES, MapClassNames, generateAvatar};

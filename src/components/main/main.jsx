@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from "../map/map.jsx";
 import {offerPropTypes} from "../../mocks/offer-prop-type.js";
+import { MapClassNames } from "../../const.js";
 
 
 const createLocationsListTemplate = (cities) => {
@@ -30,7 +31,7 @@ const createLocationsListTemplate = (cities) => {
 
 class Main extends PureComponent {
   render() {
-    const {cities, placesCount, offers, onCardTitleClick} = this.props;
+    const {cities, placesCount, offers, mapClassName, onCardTitleClick} = this.props;
 
     const citiesMarkup = createLocationsListTemplate(cities);
 
@@ -90,6 +91,7 @@ class Main extends PureComponent {
               </section>
               <div className="cities__right-section">
                 <Map
+                  className={mapClassName}
                   offers={offers}
                 />
               </div>
