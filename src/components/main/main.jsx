@@ -86,6 +86,7 @@ class Main extends PureComponent {
                 <PlaceCardList
                   offers={offers}
                   onCardTitleClick={onCardTitleClick}
+                  isMain={true}
                 />
 
               </section>

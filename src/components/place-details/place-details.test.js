@@ -62,6 +62,7 @@ describe(`PlaceDetails snapshot test`, () => {
           mapClassName={`cities`}
           offerId={1}
           offers={offers}
+          onCardTitleClick={() => {}}
         />
     ).toJSON();
 

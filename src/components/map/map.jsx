@@ -10,6 +10,7 @@ class Map extends PureComponent {
 
     this._map = null;
     this._mapRef = createRef();
+    this._markers = [];
 
     this.state = {
       cityPosition: [52.38333, 4.9],
@@ -45,25 +46,41 @@ class Map extends PureComponent {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this._map);
-
-    offers.forEach((offer) => this._addMarker(offer, this._map));
+    
+    offers.forEach((offer) => this._createMarker(offer));
+    console.log(this._markers);
   }
 
   componentWillUnmount() {
+    this._map.remove();
     this._map = null;
   }
 
-  _addMarker(offer, leafletMap) {
+  componentDidUpdate() {
+    const {offers} = this.props;
+    
+    this._markers.forEach((marker) => {
+      this._map.removeLayer(marker);
+    });
+
+    this._markers = [];
+
+    offers.forEach((offer) => this._createMarker(offer));
+  }
+
+  _createMarker(offer) {
     const {coordinates, title} = offer;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [27, 39],
     });
 
-    leaflet
-      .marker(coordinates, {icon})
-      .bindPopup(title).openPopup()
-      .addTo(leafletMap);
+    this._markers.push(
+      leaflet
+        .marker(coordinates, {icon})
+        .bindPopup(title).openPopup()
+        .addTo(this._map)
+      );
   }
 }
 

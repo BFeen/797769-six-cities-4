@@ -4,11 +4,11 @@ import {offerPropTypes} from "../../mocks/offer-prop-type.js";
 
 
 const PlaceCard = (props) => {
-  const {offer, onCardMouseEnter, onCardTitleClick} = props;
+  const {offer, className, onCardMouseEnter, onCardTitleClick} = props;
 
   return (
     <article
-      className="cities__place-card place-card"
+      className={`${className} place-card`}
       onMouseEnter={() => {
         onCardMouseEnter(offer);
       }}
@@ -17,7 +17,7 @@ const PlaceCard = (props) => {
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={offer.picture} width="260" height="200" alt={offer.title} />
         </a>
@@ -57,6 +57,7 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   offer: offerPropTypes,
+  className: PropTypes.string.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };

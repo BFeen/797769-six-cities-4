@@ -14,6 +14,8 @@ class App extends PureComponent {
     this.state = {
       offerId: -1,
     };
+
+    this._handleCardTitleClick = this._handleCardTitleClick.bind(this);
   }
 
   render() {
@@ -30,6 +32,7 @@ class App extends PureComponent {
               mapClassName={MapClassNames.PROPERTY}
               offerId={0}
               offers={offers}
+              onCardTitleClick={this._handleCardTitleClick}
             />
           </Route>
         </Switch>
@@ -50,11 +53,7 @@ class App extends PureComponent {
           placesCount={placesCount}
           offers={offers}
           mapClassName={MapClassNames.CITIES}
-          onCardTitleClick={(id) => {
-            this.setState(() => ({
-              offerId: id,
-            }));
-          }}
+          onCardTitleClick={this._handleCardTitleClick}
         />
       );
     } else {
@@ -63,9 +62,16 @@ class App extends PureComponent {
           mapClassName={MapClassNames.PROPERTY}
           offerId={offerId}
           offers={offers}
+          onCardTitleClick={this._handleCardTitleClick}
         />
       );
     }
+  }
+
+  _handleCardTitleClick(id) {
+    this.setState(() => ({
+      offerId: id,
+    }));
   }
 }
 
