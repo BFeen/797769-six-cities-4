@@ -61,6 +61,7 @@ describe(`PlaceCardList snapshot checking`, () => {
         <PlaceCardList
           offers={offers}
           onCardTitleClick={() => {}}
+          isMain={true}
         />
     ).toJSON();
 

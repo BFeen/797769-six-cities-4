@@ -3,7 +3,8 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
-import {offerPropTypes} from "../../mocks/offer-prop-type.js";
+import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import {MapClassNames} from "../../const.js";
 
 
@@ -19,7 +20,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, reviews} = this.props;
 
     return (
       <BrowserRouter>
@@ -32,6 +33,7 @@ class App extends PureComponent {
               mapClassName={MapClassNames.PROPERTY}
               offerId={0}
               offers={offers}
+              reviews={reviews}
               onCardTitleClick={this._handleCardTitleClick}
             />
           </Route>
@@ -41,7 +43,7 @@ class App extends PureComponent {
   }
 
   _renderMainPage() {
-    const {offers} = this.props;
+    const {offers, reviews} = this.props;
     const {offerId} = this.state;
     const offer = offers.find((item) => item.id === offerId);
 
@@ -62,6 +64,7 @@ class App extends PureComponent {
           mapClassName={MapClassNames.PROPERTY}
           offerId={offerId}
           offers={offers}
+          reviews={reviews}
           onCardTitleClick={this._handleCardTitleClick}
         />
       );
@@ -79,6 +82,7 @@ App.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   placesCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
 };
 
 export default App;

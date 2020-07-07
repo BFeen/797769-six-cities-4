@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
-import {offerPropTypes} from "../../mocks/offer-prop-type.js";
+import offerPropTypes from "../../prop-types/offer-prop-types.js";
 
 
 class PlaceCardList extends PureComponent {

@@ -62,6 +62,7 @@ describe(`Main component tests:`, () => {
         cities={[`Moscow`, `St-Petersburg`]}
         placesCount={4}
         offers={offers}
+        mapClassName={`cities`}
         onCardTitleClick={() => {}}
       />, {
         createNodeMock: () => document.createElement(`div`)

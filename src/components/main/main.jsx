@@ -2,8 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from "../map/map.jsx";
-import {offerPropTypes} from "../../mocks/offer-prop-type.js";
-import { MapClassNames } from "../../const.js";
+import offerPropTypes from "../../prop-types/offer-prop-types.js";
 
 
 const createLocationsListTemplate = (cities) => {
@@ -108,6 +107,7 @@ Main.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   placesCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  mapClassName: PropTypes.string.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 

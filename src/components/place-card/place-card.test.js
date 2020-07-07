@@ -22,6 +22,7 @@ describe(`PlaceCard snapshot testing`, () => {
         <PlaceCard
           key={`${offer.id + 0}`}
           offer={offer}
+          className={`cities__place-card`}
           onCardMouseEnter={() => {}}
           onCardTitleClick={() => {}}
         />

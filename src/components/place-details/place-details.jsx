@@ -1,18 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ReviewItemList from "../review-item-list/review-item-list.jsx";
 import Map from "../map/map.jsx";
-import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
-import {offerPropTypes} from "../../mocks/offer-prop-type.js";
+import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import {offersDetails} from "../../mocks/offers.js";
 
 
 const PlaceDetails = (props) => {
-  const {offers, offerId, mapClassName, onCardTitleClick} = props;
-  const currentOffer = offers[offerId];
-  const nearPlaces = [].concat(offers.slice(0, offerId), offers.slice(offerId+1));
-
-  console.log(offerId)
+  const {offers, offerId, mapClassName, reviews, onCardTitleClick} = props;
+  const currentOffer = offers.find((item) => item.id === offerId);
+  const nearPlaces = [].concat(offers.slice(0, offerId), offers.slice(offerId + 1));
 
   const details = offersDetails.reduce((obj, item) => {
     if (item.id === offerId) {
@@ -139,6 +138,7 @@ const PlaceDetails = (props) => {
 
                 <ReviewItemList
                   offerId={offerId}
+                  reviews={reviews}
                 />
 
                 <form className="reviews__form form" action="#" method="post">
@@ -198,7 +198,7 @@ const PlaceDetails = (props) => {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            
+
             <PlaceCardList
               offers={nearPlaces}
               onCardTitleClick={onCardTitleClick}
@@ -210,12 +210,13 @@ const PlaceDetails = (props) => {
       </main>
     </div>
   );
-}
+};
 
 PlaceDetails.propTypes = {
   mapClassName: PropTypes.string.isRequired,
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 

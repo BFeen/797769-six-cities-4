@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {offerPropTypes} from "../../mocks/offer-prop-type.js";
+import offerPropTypes from "../../prop-types/offer-prop-types.js";
 
 
 const PlaceCard = (props) => {

@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
-import {offerPropTypes} from "../../mocks/offer-prop-type.js";
+import offerPropTypes from "../../prop-types/offer-prop-types.js";
 
 
 class Map extends PureComponent {
@@ -46,9 +46,8 @@ class Map extends PureComponent {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this._map);
-    
+
     offers.forEach((offer) => this._createMarker(offer));
-    console.log(this._markers);
   }
 
   componentWillUnmount() {
@@ -58,7 +57,7 @@ class Map extends PureComponent {
 
   componentDidUpdate() {
     const {offers} = this.props;
-    
+
     this._markers.forEach((marker) => {
       this._map.removeLayer(marker);
     });
@@ -76,11 +75,11 @@ class Map extends PureComponent {
     });
 
     this._markers.push(
-      leaflet
-        .marker(coordinates, {icon})
-        .bindPopup(title).openPopup()
-        .addTo(this._map)
-      );
+        leaflet
+          .marker(coordinates, {icon})
+          .bindPopup(title).openPopup()
+          .addTo(this._map)
+    );
   }
 }
 

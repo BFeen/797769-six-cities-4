@@ -1,4 +1,4 @@
-import {generateAvatar} from "../const.js";
+import {AVATAR_URL} from "../const.js";
 
 
 const offers = [
@@ -133,7 +133,7 @@ const offersDetails = [
       ],
       description: [
         `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
-        `Eligendi repellendus ut optio ad repudiandae obcaecati reprehenderit ipsa.`,  
+        `Eligendi repellendus ut optio ad repudiandae obcaecati reprehenderit ipsa.`,
       ],
       bedroomsCount: `3 bedrooms`,
       maxGuests: `Max 4 adults`,
@@ -143,7 +143,7 @@ const offersDetails = [
         `Friddge`,
       ],
       host: {
-        avatar: generateAvatar(),
+        avatar: `${AVATAR_URL}/1`,
         name: `Alessa`,
         isSuper: false,
       }
@@ -161,7 +161,7 @@ const offersDetails = [
       ],
       description: [
         `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
-        `Eligendi repellendus ut optio ad repudiandae obcaecati reprehenderit ipsa.`,  
+        `Eligendi repellendus ut optio ad repudiandae obcaecati reprehenderit ipsa.`,
         `Quia labore atque nostrum eum repudiandae laboriosam molestias corrupti numquam aliquid? Ab, deleniti.`
       ],
       bedroomsCount: `1 bedrooms`,
@@ -173,7 +173,7 @@ const offersDetails = [
         `Cabel TV`,
       ],
       host: {
-        avatar: generateAvatar(),
+        avatar: `${AVATAR_URL}/2`,
         name: `Kristian`,
         isSuper: true,
       }

@@ -1,11 +1,11 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import ReviewItem from "../review-item/review-item.jsx";
-import reviews from "../../mocks/reviews.js";
+import reviewPropTypes from "../../prop-types/review-prop-types.js";
 
 
 const ReviewItemList = (props) => {
-  const {offerId} = props;
+  const {offerId, reviews} = props;
 
   return (
     <Fragment>
@@ -20,6 +20,7 @@ const ReviewItemList = (props) => {
               />
             );
           }
+          return null;
         })}
       </ul>
     </Fragment>
@@ -28,6 +29,7 @@ const ReviewItemList = (props) => {
 
 ReviewItemList.propTypes = {
   offerId: PropTypes.number.isRequired,
+  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
 };
 
 export default ReviewItemList;

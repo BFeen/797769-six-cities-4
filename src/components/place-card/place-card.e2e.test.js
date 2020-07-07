@@ -29,6 +29,7 @@ describe(`PlaceCard e2e tests`, () => {
     const placeCard = shallow(
         <PlaceCard
           offer={offer}
+          className={`cities__place-card`}
           onCardMouseEnter={handleCardMouseEnter}
           onCardTitleClick={() => {}}
         />

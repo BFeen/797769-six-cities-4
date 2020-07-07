@@ -69,6 +69,7 @@ describe(`Main e2e testing:`, () => {
           cities={[`Moscow`, `St-Petersburg`]}
           placesCount={offers.length}
           offers={offers}
+          mapClassName={`cities`}
           onCardTitleClick={onCardTitleClick}
         />
     );
