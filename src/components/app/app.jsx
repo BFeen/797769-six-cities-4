@@ -5,7 +5,7 @@ import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
-import {MapClassNames} from "../../const.js";
+import {MapClassNames} from "../../common/const.js";
 
 
 class App extends PureComponent {
