@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from "../map/map.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import {cities} from "../../common/const.js";
 
 
-const createLocationsListTemplate = (cities) => {
+const createLocationsListTemplate = () => {
   return (
     <ul className="locations__list tabs__list">
       {cities.map((city, index) => {
@@ -19,7 +20,7 @@ const createLocationsListTemplate = (cities) => {
         return (
           <li key={city + index} className="locations__item">
             <a className={className} href="#">
-              <span>{city}</span>
+              <span>{city.name}</span>
             </a>
           </li>
         );
@@ -30,9 +31,9 @@ const createLocationsListTemplate = (cities) => {
 
 class Main extends PureComponent {
   render() {
-    const {cities, placesCount, offers, mapClassName, onCardTitleClick} = this.props;
+    const {placesCount, offers, mapClassName, onCardTitleClick} = this.props;
 
-    const citiesMarkup = createLocationsListTemplate(cities);
+    const citiesMarkup = createLocationsListTemplate();
 
     return (
       <div className="page page--gray page--main">
@@ -104,7 +105,6 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   placesCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   mapClassName: PropTypes.string.isRequired,

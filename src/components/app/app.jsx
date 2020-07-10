@@ -48,10 +48,9 @@ class App extends PureComponent {
     const offer = offers.find((item) => item.id === offerId);
 
     if (!offer) {
-      const {cities, placesCount} = this.props;
+      const {placesCount} = this.props;
       return (
         <Main
-          cities={cities}
           placesCount={placesCount}
           offers={offers}
           mapClassName={MapClassNames.CITIES}
@@ -61,10 +60,10 @@ class App extends PureComponent {
     } else {
       return (
         <PlaceDetails
-          mapClassName={MapClassNames.PROPERTY}
           offerId={offerId}
           offers={offers}
           reviews={reviews}
+          mapClassName={MapClassNames.PROPERTY}
           onCardTitleClick={this._handleCardTitleClick}
         />
       );
@@ -79,7 +78,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   placesCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,

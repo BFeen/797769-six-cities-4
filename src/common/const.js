@@ -1,17 +1,30 @@
 const AVATAR_URL = `https://api.adorable.io/avatars/128`;
 
-const CITIES = [
-  `Paris`,
-  `Cologne`,
-  `Brussels`,
-  `Amsterdam`,
-  `Hamburg`,
-  `Dusseldorf`,
-];
+const cities = [
+  {
+    name: `Paris`,
+    coordinates: [],
+  }, {
+    name: `Cologne`,
+    coordinates: [],
+  }, {
+    name: `Brussels`,
+    coordinates: [],
+  }, {
+    name: `Amsterdam`,
+    coordinates: [52.38333, 4.9],
+  }, {
+    name: `Hamburg`,
+    coordinates: [],
+  }, {
+    name: `Dusseldorf`,
+    coordinates: [],
+  }
+]
 
 const MapClassNames = {
   CITIES: `cities`,
   PROPERTY: `property`,
 };
 
-export {CITIES, MapClassNames, AVATAR_URL};
+export {cities, MapClassNames, AVATAR_URL};
