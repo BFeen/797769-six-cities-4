@@ -3,37 +3,12 @@ import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from "../map/map.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import {cities} from "../../common/const.js";
+import CitiesList from "../cities-list/cities-list.jsx";
 
-
-const createLocationsListTemplate = () => {
-  return (
-    <ul className="locations__list tabs__list">
-      {cities.map((city, index) => {
-        const isActive = index === 3;
-        let className = `locations__item-link tabs__item`;
-
-        if (isActive) {
-          className += ` tabs__item--active`;
-        }
-
-        return (
-          <li key={city + index} className="locations__item">
-            <a className={className} href="#">
-              <span>{city.name}</span>
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
 
 class Main extends PureComponent {
   render() {
     const {placesCount, offers, mapClassName, onCardTitleClick} = this.props;
-
-    const citiesMarkup = createLocationsListTemplate();
 
     return (
       <div className="page page--gray page--main">
@@ -64,7 +39,9 @@ class Main extends PureComponent {
           <div className="tabs">
             <section className="locations container">
 
-              {citiesMarkup}
+              <CitiesList
+                offers={offers}
+              />
 
             </section>
           </div>

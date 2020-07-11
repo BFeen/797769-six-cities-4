@@ -5,7 +5,28 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js"
 
 const CitiesList = (props) => {
   const {offers} = props;
-  return;
+  const availableCities = cities.filter((city) => offers.find((offer) => offer.city === city.name));
+  
+  return (
+    <ul className="locations__list tabs__list">
+      {availableCities.map((city, index) => {
+        const isActive = index === 3;
+        let className = `locations__item-link tabs__item`;
+
+        if (isActive) {
+          className += ` tabs__item--active`;
+        }
+
+        return (
+          <li key={city.name + index} className="locations__item">
+            <a className={className} href="#">
+              <span>{city.name}</span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
 };
 
 CitiesList.propTypes = {
