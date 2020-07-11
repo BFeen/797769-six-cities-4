@@ -76,6 +76,7 @@ const offerMock = {
 describe(`Reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
+      offerId: -1,
       city: `Amsterdam`,
       offers,
     });
@@ -83,24 +84,40 @@ describe(`Reducer testing`, () => {
   
   it(`Reducer should assign given value`, () => {
     expect(reducer({
+      offerId: -1,
+      city: `Amsterdam`,
+      offersMock,
+    }, {
+      type: ActionType.SELECT_OFFER,
+      payload: 2,
+    })).toEqual({
+      offerId: 2,
+      city: `Amsterdam`,
+      offersMock,
+    });
+
+    expect(reducer({
+      offerId: -1,
       city: `Amsterdam`,
       offersMock,
     }, {
       type: ActionType.CHANGE_CITY,
       payload: `Moscow`,
     })).toEqual({
+      offerId: -1,
       city: `Moscow`,
       offersMock,
     });
-
     
     expect(reducer({
+      offerId: -1,
       city: `Amsterdam`,
       offers: offersMock,
     }, {
       type: ActionType.GET_OFFERS,
       payload: offerMock,
     })).toEqual({
+      offerId: -1,
       city: `Amsterdam`,
       offers: offerMock,
     });
@@ -108,6 +125,13 @@ describe(`Reducer testing`, () => {
 });
 
 describe(`ActionCreator testing`, () => {
+  it(`ActionCreator returns correct action when offerId is changed`, () => {
+    expect(ActionCreator.selectOffer(2)).toEqual({
+      type: ActionType.SELECT_OFFER,
+      payload: 2,
+    });
+  });
+
   it(`ActionCreator for changing city should returns correct action`, () => {
     expect(ActionCreator.changeCity(`Moscow`)).toEqual({
       type: ActionType.CHANGE_CITY,

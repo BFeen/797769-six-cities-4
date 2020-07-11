@@ -4,16 +4,23 @@ import {offers} from "./mocks/offers.js";
 
 
 const initialState = {
-  city: cities[3].name,
+  offerId: -1,
+  city: cities[0].name,
   offers,
 };
 
 const ActionType = {
+  SELECT_OFFER: `SELECT_OFFER`,
   CHANGE_CITY: `CHANGE_CITY`,
   GET_OFFERS: `GET_OFFERS`,
 };
 
 const ActionCreator = {
+  selectOffer: (offerId) => ({
+    type: ActionType.SELECT_OFFER,
+    payload: offerId,
+  }),
+
   changeCity: (cityName) => ({
     type: ActionType.CHANGE_CITY,
     payload: cityName,
@@ -31,11 +38,14 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.SELECT_OFFER:
+      return extend(state, {
+        offerId: action.payload,
+      });
     case ActionType.CHANGE_CITY:
       return extend(state, {
         city: action.payload,
       });
-
     case ActionType.GET_OFFERS:
       return extend(state, {
         offers: action.payload,
