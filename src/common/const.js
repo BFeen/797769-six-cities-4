@@ -4,15 +4,15 @@ const cities = [
   {
     name: `Paris`,
     isActive: true,
-    coordinates: [],
+    coordinates: [48.8589507,2.2770201],
   }, {
     name: `Cologne`,
     isActive: false,
-    coordinates: [],
+    coordinates: [50.9578353,6.8272391],
   }, {
     name: `Brussels`,
     isActive: false,
-    coordinates: [],
+    coordinates: [50.8550625,4.3053502],
   }, {
     name: `Amsterdam`,
     isActive: false,
@@ -20,13 +20,13 @@ const cities = [
   }, {
     name: `Hamburg`,
     isActive: false,
-    coordinates: [],
+    coordinates: [53.5586526,9.6476419],
   }, {
     name: `Dusseldorf`,
     isActive: false,
-    coordinates: [],
+    coordinates: [51.2385861,6.674267],
   }
-]
+];
 
 const MapClassNames = {
   CITIES: `cities`,

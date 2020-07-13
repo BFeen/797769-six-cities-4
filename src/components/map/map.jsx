@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 
 class Map extends PureComponent {
@@ -11,9 +12,9 @@ class Map extends PureComponent {
     this._map = null;
     this._mapRef = createRef();
     this._markers = [];
-
+    
     this.state = {
-      cityPosition: [52.38333, 4.9],
+      cityPosition: this.props.city.coordinates,
     };
   }
 
@@ -53,6 +54,7 @@ class Map extends PureComponent {
   componentWillUnmount() {
     this._map.remove();
     this._map = null;
+    this._markers = [];
   }
 
   componentDidUpdate() {
@@ -84,8 +86,9 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  className: PropTypes.string.isRequired,
+  city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 export default Map;

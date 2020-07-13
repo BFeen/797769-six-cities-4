@@ -24,7 +24,7 @@ class CitiesList extends PureComponent {
               className="locations__item"
               onClick={() => {
                 this._onViewChange(city.name);
-                onCityChange(city.name);
+                onCityChange(city);
               }}
             >
               <a className={className} href="#">

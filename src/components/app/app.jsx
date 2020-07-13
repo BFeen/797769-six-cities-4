@@ -13,11 +13,11 @@ import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 class App extends PureComponent {
   _renderMainPage() {
-    const {offers, offerId, handleCardTitleClick} = this.props;
+    const {city, offers, offerId, handleCardTitleClick} = this.props;
     const offer = offers.find((item) => item.id === offerId);
 
     if (!offer) {
-      const {city, handleCityChange} = this.props;
+      const {handleCityChange} = this.props;
       return (
         <Main
           city={city}
@@ -31,6 +31,7 @@ class App extends PureComponent {
       const {reviews} = this.props;
       return (
         <PlaceDetails
+          city={city}
           offerId={offerId}
           offers={offers}
           reviews={reviews}
@@ -42,8 +43,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, reviews, handleCardTitleClick} = this.props;
-
+    const {city, offers, reviews, handleCardTitleClick} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -52,6 +52,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/details">
             <PlaceDetails
+              city={city}
               offerId={0}
               offers={offers}
               reviews={reviews}
@@ -81,9 +82,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleCityChange(cityName) {
-    dispatch(ActionCreator.changeCity(cityName));
-    dispatch(ActionCreator.getOffers(cityName));
+  handleCityChange(city) {
+    dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.getOffers(city.name));
   },
 
   handleCardTitleClick(offerId) {

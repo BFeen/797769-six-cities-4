@@ -9,8 +9,8 @@ import CitiesList from "../cities-list/cities-list.jsx";
 
 const Main = (props) => {
   const {
-    offers,
     city,
+    offers,
     mapClassName,
     onCardTitleClick,
     onCityChange,
@@ -78,6 +78,7 @@ const Main = (props) => {
             </section>
             <div className="cities__right-section">
               <Map
+                city={city}
                 className={mapClassName}
                 offers={offers}
               />
@@ -90,8 +91,8 @@ const Main = (props) => {
 }
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   city: cityPropTypes,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   mapClassName: PropTypes.string.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
   onCityChange: PropTypes.func.isRequired,
