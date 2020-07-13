@@ -6,6 +6,46 @@ exports[`CitiesList snapshot testing CitiesList rendering 1`] = `
 >
   <li
     className="locations__item"
+    onClick={[Function]}
+  >
+    <a
+      className="locations__item-link tabs__item tabs__item--active"
+      href="#"
+    >
+      <span>
+        Paris
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+    onClick={[Function]}
+  >
+    <a
+      className="locations__item-link tabs__item"
+      href="#"
+    >
+      <span>
+        Cologne
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+    onClick={[Function]}
+  >
+    <a
+      className="locations__item-link tabs__item"
+      href="#"
+    >
+      <span>
+        Brussels
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+    onClick={[Function]}
   >
     <a
       className="locations__item-link tabs__item"
@@ -13,6 +53,32 @@ exports[`CitiesList snapshot testing CitiesList rendering 1`] = `
     >
       <span>
         Amsterdam
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+    onClick={[Function]}
+  >
+    <a
+      className="locations__item-link tabs__item"
+      href="#"
+    >
+      <span>
+        Hamburg
+      </span>
+    </a>
+  </li>
+  <li
+    className="locations__item"
+    onClick={[Function]}
+  >
+    <a
+      className="locations__item-link tabs__item"
+      href="#"
+    >
+      <span>
+        Dusseldorf
       </span>
     </a>
   </li>

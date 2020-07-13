@@ -8,49 +8,23 @@ import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import {MapClassNames} from "../../common/const.js";
 import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
+import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {offers, reviews, handleCardTitleClick} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderMainPage()}
-          </Route>
-          <Route exact path="/details">
-            <PlaceDetails
-              mapClassName={MapClassNames.PROPERTY}
-              offerId={0}
-              offers={offers}
-              reviews={reviews}
-              onCardTitleClick={handleCardTitleClick}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-
   _renderMainPage() {
     const {offers, offerId, handleCardTitleClick} = this.props;
     const offer = offers.find((item) => item.id === offerId);
 
     if (!offer) {
-      const {city, onCityChange} = this.props;
+      const {city, handleCityChange} = this.props;
       return (
         <Main
           city={city}
           offers={offers}
           mapClassName={MapClassNames.CITIES}
           onCardTitleClick={handleCardTitleClick}
-          onCityChange={onCityChange}
+          onCityChange={handleCityChange}
         />
       );
     } else {
@@ -66,11 +40,38 @@ class App extends PureComponent {
       );
     }
   }
+
+  render() {
+    const {offers, reviews, handleCardTitleClick} = this.props;
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderMainPage()}
+          </Route>
+          <Route exact path="/details">
+            <PlaceDetails
+              offerId={0}
+              offers={offers}
+              reviews={reviews}
+              mapClassName={MapClassNames.PROPERTY}
+              onCardTitleClick={handleCardTitleClick}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 App.propTypes = {
+  city: cityPropTypes,
+  offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
+  handleCardTitleClick: PropTypes.func.isRequired,
+  handleCityChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -80,13 +81,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCityChange(cityName) {
+  handleCityChange(cityName) {
     dispatch(ActionCreator.changeCity(cityName));
     dispatch(ActionCreator.getOffers(cityName));
   },
 
-  handleCardTitleClick(id) {
-    dispatch(ActionCreator.selectOffer(id));
+  handleCardTitleClick(offerId) {
+    dispatch(ActionCreator.selectOffer(offerId));
   }
 });
 

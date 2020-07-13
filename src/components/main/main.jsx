@@ -1,8 +1,9 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from "../map/map.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import cityPropTypes from "../../prop-types/city-prop-types.js";
 import CitiesList from "../cities-list/cities-list.jsx";
 
 
@@ -57,7 +58,7 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in {city}</b>
+              <b className="places__found">{placesCount} places to stay in {city.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <select className="places__sorting-type" id="places-sorting" defaultValue="popular">
@@ -90,7 +91,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  city: PropTypes.string.isRequired,
+  city: cityPropTypes,
   mapClassName: PropTypes.string.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
   onCityChange: PropTypes.func.isRequired,

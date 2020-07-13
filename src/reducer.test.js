@@ -1,5 +1,4 @@
 import {reducer, ActionType, ActionCreator} from "./reducer.js";
-import {offers} from "./mocks/offers.js";
 
 
 const offersMock = [
@@ -73,52 +72,68 @@ const offerMock = {
   ],
 };
 
+const citiesMock = [
+  {
+    name: `Paris`,
+    coordinates: [],
+    isActive: true,
+  }, {
+    name: `Amsterdam`,
+    coordinates: [],
+    isActive: false,
+  }, {
+    name: `Moscow`,
+    coordinates: [],
+    isActive: false,
+  }
+];
+
 describe(`Reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       offerId: -1,
-      city: `Amsterdam`,
-      offers,
+      city: citiesMock[0],
+      offers: [],
     });
   });
   
   it(`Reducer should assign given value`, () => {
     expect(reducer({
       offerId: -1,
-      city: `Amsterdam`,
-      offersMock,
+      city: citiesMock[1],
+      offers: offersMock,
     }, {
       type: ActionType.SELECT_OFFER,
       payload: 2,
     })).toEqual({
       offerId: 2,
-      city: `Amsterdam`,
-      offersMock,
+      city: citiesMock[1],
+      offers: offersMock,
     });
 
     expect(reducer({
       offerId: -1,
-      city: `Amsterdam`,
-      offersMock,
+      city: citiesMock[1],
+      offers: offersMock,
     }, {
       type: ActionType.CHANGE_CITY,
-      payload: `Moscow`,
+      payload: citiesMock[2],
     })).toEqual({
       offerId: -1,
-      city: `Moscow`,
-      offersMock,
+      city: citiesMock[2],
+      offers: [],
     });
     
     expect(reducer({
       offerId: -1,
-      city: `Amsterdam`,
+      city: citiesMock[1],
       offers: offersMock,
     }, {
       type: ActionType.GET_OFFERS,
       payload: offerMock,
     })).toEqual({
       offerId: -1,
-      city: `Amsterdam`,
+      city: citiesMock[1],
       offers: offerMock,
     });
   });
@@ -133,14 +148,14 @@ describe(`ActionCreator testing`, () => {
   });
 
   it(`ActionCreator for changing city should returns correct action`, () => {
-    expect(ActionCreator.changeCity(`Moscow`)).toEqual({
+    expect(ActionCreator.changeCity(citiesMock[2])).toEqual({
       type: ActionType.CHANGE_CITY,
-      payload: `Moscow`,
+      payload: citiesMock[2],
     });
   });
 
   it(`ActionCreator for getting offers returns correct action`, () => {
-    expect(ActionCreator.getOffers(`Amsterdam`)).toEqual({
+    expect(ActionCreator.getOffers(citiesMock[1].name)).toEqual({
       type: ActionType.GET_OFFERS,
       payload: offersMock,
     })

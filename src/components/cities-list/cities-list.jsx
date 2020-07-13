@@ -1,38 +1,51 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {cities} from "../../common/const.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js"
 
-const CitiesList = (props) => {
-  const {offers, onCityChange} = props;
-  // const availableCities = cities.filter((city) => offers.find((offer) => offer.city === city.name));
-  
-  return (
-    <ul className="locations__list tabs__list">
-      {Object.values(cities).map((city, index) => {
-        const isActive = index === 0;
-        let className = `locations__item-link tabs__item`;
+class CitiesList extends PureComponent {
 
-        if (isActive) {
-          className += ` tabs__item--active`;
-        }
+  render() {
+    const {offers, onCityChange} = this.props;
+    // const availableCities = cities.filter((city) => offers.find((offer) => offer.city === city.name));
+    
+    return (
+      <ul className="locations__list tabs__list">
+        {Object.values(cities).map((city, index) => {
+          let className = `locations__item-link tabs__item`;
 
-        return (
-          <li
-            key={city.name + index}
-            className="locations__item"
-            onClick={() => {
-              onCityChange(city.name)
-            }}
-          >
-            <a className={className} href="#">
-              <span>{city.name}</span>
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  );
+          if (city.isActive) {
+            className += ` tabs__item--active`;
+          }
+
+          return (
+            <li
+              key={city.name + index}
+              className="locations__item"
+              onClick={() => {
+                this._onViewChange(city.name);
+                onCityChange(city.name);
+              }}
+            >
+              <a className={className} href="#">
+                <span>{city.name}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
+  _onViewChange(cityName) {
+    cities.forEach((item) => {
+      if (item.name !== cityName) {
+        item.isActive = false;
+      } else {
+        item.isActive = true;
+      }
+    });
+  }
 };
 
 CitiesList.propTypes = {

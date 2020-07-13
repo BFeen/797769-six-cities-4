@@ -64,6 +64,7 @@ describe(`CitiesList snapshot testing`, () => {
     const tree = renderer.create(
         <CitiesList
           offers={offersMock}
+          onCityChange={() => {}}
         />
     ).toJSON();
 

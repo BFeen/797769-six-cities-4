@@ -3,10 +3,16 @@ import {cities} from "./common/const.js";
 import {offers} from "./mocks/offers.js";
 
 
+const getOffersByCity = (cityName) => {
+  return offers.filter((offer) => offer.city === cityName);
+};
+
+const startingCity = cities[0];
+
 const initialState = {
   offerId: -1,
-  city: cities[0].name,
-  offers,
+  city: startingCity,
+  offers: getOffersByCity(startingCity.name),
 };
 
 const ActionType = {
@@ -21,17 +27,15 @@ const ActionCreator = {
     payload: offerId,
   }),
 
-  changeCity: (cityName) => ({
+  changeCity: (newCity) => ({
     type: ActionType.CHANGE_CITY,
-    payload: cityName,
+    payload: newCity,
   }),
 
   getOffers: (cityName) => {
-    const offersByCity = offers.filter((offer) => offer.city === cityName);
-
     return {
       type: ActionType.GET_OFFERS,
-      payload: offersByCity,
+      payload: getOffersByCity(cityName),
     };
   },
 };
@@ -45,6 +49,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return extend(state, {
         city: action.payload,
+        offers: getOffersByCity(action.payload.name)
       });
     case ActionType.GET_OFFERS:
       return extend(state, {
