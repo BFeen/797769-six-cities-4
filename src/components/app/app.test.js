@@ -93,8 +93,8 @@ const reviews = [
 
 const cityMock = {
   name: `Amsterdam`,
-  isActive: true,
-  coordinates: [],
+  isActive: false,
+  coordinates: [52.38333, 4.9],
 };
 
 describe(`App snapshot test`, () => {

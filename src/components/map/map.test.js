@@ -59,11 +59,32 @@ const offers = [
   }
 ];
 
+const cityMock = {
+  name: `Amsterdam`,
+  isActive: false,
+  coordinates: [52.38333, 4.9],
+};
+
 describe(`Map snapshot testing`, () => {
-  it(`Map rendering correctly`, () => {
+  it(`Map with classname 'cities' rendering correctly`, () => {
     const tree = renderer.create(
         <Map
-          className={`cities`}
+          city={cityMock}
+          mapClassName={`cities`}
+          offers={offers}
+        />, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Map with classname 'property' rendering correctly`, () => {
+    const tree = renderer.create(
+        <Map
+          city={cityMock}
+          mapClassName={`property`}
           offers={offers}
         />, {
           createNodeMock: () => document.createElement(`div`)

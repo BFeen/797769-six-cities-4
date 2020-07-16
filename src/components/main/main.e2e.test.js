@@ -63,7 +63,7 @@ const offersMock = [
 const cityMock = {
   name: `Amsterdam`,
   isActive: false,
-  coordinates: [],
+  coordinates: [52.38333, 4.9],
 };
 
 Enzyme.configure({
@@ -92,23 +92,24 @@ describe(`Main e2e testing`, () => {
     expect(handleCardTitleClick).toHaveBeenCalledWith(offersMock[0].id);
   });
 
-  it(`Should adding class by clicking on element`, () => {
-    const handleCityChange = jest.fn();
+// Этот тест для CitiesList
+  // it(`Should adding class by clicking on element`, () => {
+  //   const handleCityChange = jest.fn();
 
-    const main = mount(
-        <Main
-          offers={offersMock}
-          city={cityMock}
-          mapClassName={`cities`}
-          onCardTitleClick={() => {}}
-          onCityChange={handleCityChange}
-        />
-    );
+  //   const main = mount(
+  //       <Main
+  //         offers={offersMock}
+  //         city={cityMock}
+  //         mapClassName={`cities`}
+  //         onCardTitleClick={() => {}}
+  //         onCityChange={handleCityChange}
+  //       />
+  //   );
 
-    const cityElement = main.find(`li.locations__item`).at(1);
+  //   const cityElement = main.find(`li.locations__item`).at(1);
 
-    cityElement.simulate(`click`);
+  //   cityElement.simulate(`click`);
 
-    expect(handleCityChange).toHaveBeenCalledTimes(1);
-  });
+  //   expect(handleCityChange).toHaveBeenCalledTimes(1);
+  // });
 });
