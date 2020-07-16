@@ -4,7 +4,6 @@ import {cities} from "../../common/const.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js"
 
 class CitiesList extends PureComponent {
-
   render() {
     const {offers, onCityChange} = this.props;
     // const availableCities = cities.filter((city) => offers.find((offer) => offer.city === city.name));

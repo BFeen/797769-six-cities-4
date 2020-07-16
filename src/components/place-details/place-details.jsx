@@ -1,16 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReviewItemList from "../review-item-list/review-item-list.jsx";
-import Map from "../map/map.jsx";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import {offersDetails} from "../../mocks/offers.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
+import Map from "../map/map.jsx";
 
 
 const PlaceDetails = (props) => {
-  const {city, offers, offerId, mapClassName, reviews, onCardTitleClick} = props;
+  const {
+    renderMap,
+    city,
+    offers,
+    offerId,
+    mapClassName,
+    reviews,
+    onCardTitleClick
+  } = props;
+
   const currentOffer = offers.find((item) => item.id === offerId);
   const nearPlaces = [].concat(offers.slice(0, offerId), offers.slice(offerId + 1));
 
@@ -191,10 +200,11 @@ const PlaceDetails = (props) => {
               </section>
             </div>
           </div>
+          {/* {renderMap(city, mapClassName, nearPlaces)} */}
           <Map
             city={city}
-            className={mapClassName}
-            offers={nearPlaces}
+            mapClassName={mapClassName}
+            offers={offers}
           />
         </section>
         <div className="container">

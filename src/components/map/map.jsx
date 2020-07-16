@@ -12,25 +12,21 @@ class Map extends PureComponent {
     this._map = null;
     this._mapRef = createRef();
     this._markers = [];
-    
-    this.state = {
-      cityPosition: this.props.city.coordinates,
-    };
   }
 
   render() {
-    const {className} = this.props;
+    const {mapClassName} = this.props;
     return (
       <section
         ref={this._mapRef}
-        className={`${className}__map map`}
+        className={`${mapClassName}__map map`}
       />
     );
   }
 
   componentDidMount() {
-    const {cityPosition} = this.state;
-    const {offers} = this.props;
+    const {city, offers} = this.props;
+    const {coordinates: cityPosition} = city;
     const currentMap = this._mapRef.current;
 
     const zoom = 12;
@@ -58,7 +54,9 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate() {
-    const {offers} = this.props;
+    const {offers, city} = this.props;
+
+    this._map.setView(city.coordinates, 12);
 
     this._markers.forEach((marker) => {
       this._map.removeLayer(marker);
@@ -88,7 +86,7 @@ class Map extends PureComponent {
 Map.propTypes = {
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  className: PropTypes.string.isRequired,
+  mapClassName: PropTypes.string.isRequired,
 };
 
 export default Map;

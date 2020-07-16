@@ -4,15 +4,15 @@ const cities = [
   {
     name: `Paris`,
     isActive: true,
-    coordinates: [48.8589507,2.2770201],
+    coordinates: [48.85, 2.34],
   }, {
     name: `Cologne`,
     isActive: false,
-    coordinates: [50.9578353,6.8272391],
+    coordinates: [50.93, 6.95],
   }, {
     name: `Brussels`,
     isActive: false,
-    coordinates: [50.8550625,4.3053502],
+    coordinates: [50.84, 4.35],
   }, {
     name: `Amsterdam`,
     isActive: false,
@@ -20,11 +20,11 @@ const cities = [
   }, {
     name: `Hamburg`,
     isActive: false,
-    coordinates: [53.5586526,9.6476419],
+    coordinates: [53.55, 9.99],
   }, {
     name: `Dusseldorf`,
     isActive: false,
-    coordinates: [51.2385861,6.674267],
+    coordinates: [51.22, 6.77],
   }
 ];
 

@@ -9,7 +9,10 @@ import {MapClassNames} from "../../common/const.js";
 import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
+import withMap from "../../hocs/with-map/with-map.js";
 
+const MainWrapped = withMap(Main);
+const PlaceDetailsWrapped = withMap(PlaceDetails);
 
 class App extends PureComponent {
   _renderMainPage() {

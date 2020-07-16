@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
-import Map from "../map/map.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import CitiesList from "../cities-list/cities-list.jsx";
+import Map from "../map/map.jsx";
 
 
 const Main = (props) => {
   const {
+    renderMap,
     city,
     offers,
     mapClassName,
@@ -77,9 +78,10 @@ const Main = (props) => {
 
             </section>
             <div className="cities__right-section">
+              {/* {renderMap(city, mapClassName, offers)} */}
               <Map
                 city={city}
-                className={mapClassName}
+                mapClassName={mapClassName}
                 offers={offers}
               />
             </div>
