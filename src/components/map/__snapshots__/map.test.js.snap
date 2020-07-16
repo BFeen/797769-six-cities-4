@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Map snapshot testing Map rendering correctly 1`] = `
+exports[`Map snapshot testing Map with classname 'cities' rendering correctly 1`] = `
 <section
   className="cities__map map"
+/>
+`;
+
+exports[`Map snapshot testing Map with classname 'property' rendering correctly 1`] = `
+<section
+  className="property__map map"
 />
 `;

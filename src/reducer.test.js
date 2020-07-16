@@ -75,16 +75,16 @@ const offerMock = {
 const citiesMock = [
   {
     name: `Paris`,
-    coordinates: [],
     isActive: true,
+    coordinates: [48.85, 2.34],
   }, {
     name: `Amsterdam`,
-    coordinates: [],
     isActive: false,
+    coordinates: [52.38333, 4.9],
   }, {
-    name: `Moscow`,
-    coordinates: [],
+    name: `Dusseldorf`,
     isActive: false,
+    coordinates: [51.22, 6.77],
   }
 ];
 

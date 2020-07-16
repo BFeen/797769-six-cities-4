@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import PlaceDetails from "./place-details.jsx";
 
 
-const offers = [
+const offersMock = [
   {
     id: 0,
     city: `Amsterdam`,
@@ -59,7 +59,7 @@ const offers = [
   }
 ];
 
-const reviews = [
+const reviewsMock = [
   {
     offerId: 0,
     userName: `Max`,
@@ -91,14 +91,21 @@ const reviews = [
   }
 ];
 
+const cityMock = {
+  name: `Amsterdam`,
+  isActive: false,
+  coordinates: [52.38333, 4.9],
+};
+
 describe(`PlaceDetails snapshot test`, () => {
   it(`PlaceDetails rendering`, () => {
     const tree = renderer.create(
         <PlaceDetails
+          city={cityMock}
           mapClassName={`cities`}
           offerId={1}
-          offers={offers}
-          reviews={reviews}
+          offers={offersMock}
+          reviews={reviewsMock}
           onCardTitleClick={() => {}}
         />, {
           createNodeMock: () => document.createElement(`div`)

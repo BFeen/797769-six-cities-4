@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
 
-const offers = [
+const offersMock = [
   {
     id: 0,
     city: `Amsterdam`,
@@ -61,15 +61,15 @@ const offers = [
 
 const cityMock = {
   name: `Amsterdam`,
-  coordinates: [],
-  isActive: true,
+  isActive: false,
+  coordinates: [52.38333, 4.9],
 };
 
 describe(`Main component tests:`, () => {
   it(`Render Main.`, () => {
     const tree = renderer
       .create(<Main
-        offers={offers}
+        offers={offersMock}
         city={cityMock}
         mapClassName={`cities`}
         onCardTitleClick={() => {}}
