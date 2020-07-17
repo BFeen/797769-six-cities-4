@@ -5,6 +5,7 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import CitiesList from "../cities-list/cities-list.jsx";
 import Map from "../map/map.jsx";
+import MainEmpty from "../main-empty/main-empty.jsx";
 
 
 const Main = (props) => {
@@ -56,35 +57,41 @@ const Main = (props) => {
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in {city.name}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <select className="places__sorting-type" id="places-sorting" defaultValue="popular">
-                  <option className="places__option" value="popular">Popular</option>
-                  <option className="places__option" value="to-high">Price: low to high</option>
-                  <option className="places__option" value="to-low">Price: high to low</option>
-                  <option className="places__option" value="top-rated">Top rated first</option>
-                </select>
-              </form>
 
-              <PlaceCardList
-                offers={offers}
-                onCardTitleClick={onCardTitleClick}
-                isMain={true}
-              />
+          {placesCount === 0
+            ? <MainEmpty />
+            : <div className="cities__places-container container">
+                <section className="cities__places places">
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found">{placesCount} places to stay in {city.name}</b>
+                  <form className="places__sorting" action="#" method="get">
+                    <span className="places__sorting-caption">Sort by</span>
+                    <select className="places__sorting-type" id="places-sorting" defaultValue="popular">
+                      <option className="places__option" value="popular">Popular</option>
+                      <option className="places__option" value="to-high">Price: low to high</option>
+                      <option className="places__option" value="to-low">Price: high to low</option>
+                      <option className="places__option" value="top-rated">Top rated first</option>
+                    </select>
+                  </form>
 
-            </section>
-            <div className="cities__right-section">
-              <Map
-                city={city}
-                mapClassName={mapClassName}
-                offers={offers}
-              />
-            </div>
-          </div>
+                  <PlaceCardList
+                    offers={offers}
+                    onCardTitleClick={onCardTitleClick}
+                    isMain={true}
+                  />
+
+                </section>
+                <div className="cities__right-section">
+                  <Map
+                    city={city}
+                    mapClassName={mapClassName}
+                    offers={offers}
+                  />
+                </div>
+              </div>
+          }
+
+          
         </div>
       </main>
     </div>
