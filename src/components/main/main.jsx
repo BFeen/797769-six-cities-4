@@ -49,7 +49,7 @@ const Main = (props) => {
           <section className="locations container">
 
             <CitiesList
-              offers={offers}
+              currentCity={city}
               onCityChange={onCityChange}
             />
 
@@ -78,7 +78,6 @@ const Main = (props) => {
 
             </section>
             <div className="cities__right-section">
-              {/* {renderMap(city, mapClassName, offers)} */}
               <Map
                 city={city}
                 mapClassName={mapClassName}

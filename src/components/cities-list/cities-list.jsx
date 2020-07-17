@@ -1,20 +1,19 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {cities} from "../../common/const.js";
-import offerPropTypes from "../../prop-types/offer-prop-types.js"
+import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 class CitiesList extends PureComponent {
   render() {
-    const {offers, onCityChange} = this.props;
-    // const availableCities = cities.filter((city) => offers.find((offer) => offer.city === city.name));
+    const {currentCity, onCityChange} = this.props;
     
     return (
       <ul className="locations__list tabs__list">
         {Object.values(cities).map((city, index) => {
-          let className = `locations__item-link tabs__item`;
+          let className = `locations__item-link tabs__item `;
 
-          if (city.isActive) {
-            className += ` tabs__item--active`;
+          if (currentCity === city) {
+            className += `tabs__item--active`;
           }
 
           return (
@@ -22,7 +21,6 @@ class CitiesList extends PureComponent {
               key={city.name + index}
               className="locations__item"
               onClick={() => {
-                this._onViewChange(city.name);
                 onCityChange(city);
               }}
             >
@@ -35,20 +33,10 @@ class CitiesList extends PureComponent {
       </ul>
     );
   }
-
-  _onViewChange(cityName) {
-    cities.forEach((item) => {
-      if (item.name !== cityName) {
-        item.isActive = false;
-      } else {
-        item.isActive = true;
-      }
-    });
-  }
 };
 
 CitiesList.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  currentCity: cityPropTypes,
   onCityChange: PropTypes.func.isRequired,
 };
 

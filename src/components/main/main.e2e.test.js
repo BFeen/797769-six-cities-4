@@ -91,25 +91,4 @@ describe(`Main e2e testing`, () => {
     expect(handleCardTitleClick).toHaveBeenCalledTimes(1);
     expect(handleCardTitleClick).toHaveBeenCalledWith(offersMock[0].id);
   });
-
-// Этот тест для CitiesList
-  // it(`Should adding class by clicking on element`, () => {
-  //   const handleCityChange = jest.fn();
-
-  //   const main = mount(
-  //       <Main
-  //         offers={offersMock}
-  //         city={cityMock}
-  //         mapClassName={`cities`}
-  //         onCardTitleClick={() => {}}
-  //         onCityChange={handleCityChange}
-  //       />
-  //   );
-
-  //   const cityElement = main.find(`li.locations__item`).at(1);
-
-  //   cityElement.simulate(`click`);
-
-  //   expect(handleCityChange).toHaveBeenCalledTimes(1);
-  // });
 });

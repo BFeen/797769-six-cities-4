@@ -1,18 +1,14 @@
-import {BrowserRouter, Switch, Route} from "react-router-dom";
 import React, {PureComponent} from "react";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import {MapClassNames} from "../../common/const.js";
 import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
-import withMap from "../../hocs/with-map/with-map.js";
-
-const MainWrapped = withMap(Main);
-const PlaceDetailsWrapped = withMap(PlaceDetails);
+import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import reviewPropTypes from "../../prop-types/review-prop-types.js";
 
 class App extends PureComponent {
   _renderMainPage() {
