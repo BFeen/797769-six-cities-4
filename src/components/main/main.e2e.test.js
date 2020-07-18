@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 
 
 const offersMock = [
@@ -62,7 +62,6 @@ const offersMock = [
 
 const cityMock = {
   name: `Amsterdam`,
-  isActive: false,
   coordinates: [52.38333, 4.9],
 };
 
@@ -80,7 +79,7 @@ describe(`Main e2e testing`, () => {
           city={cityMock}
           mapClassName={`cities`}
           onCardTitleClick={handleCardTitleClick}
-          onCityChange={() => {}}
+          handleCityChange={() => {}}
         />
     );
 

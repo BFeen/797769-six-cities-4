@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
-
+import {Main} from "./main.jsx";
 
 const offersMock = [
   {
@@ -61,22 +60,38 @@ const offersMock = [
 
 const cityMock = {
   name: `Amsterdam`,
-  isActive: false,
   coordinates: [52.38333, 4.9],
 };
 
 describe(`Main component tests:`, () => {
   it(`Render Main.`, () => {
-    const tree = renderer
-      .create(<Main
-        offers={offersMock}
-        city={cityMock}
-        mapClassName={`cities`}
-        onCardTitleClick={() => {}}
-        onCityChange={() => {}}
-      />, {
-        createNodeMock: () => document.createElement(`div`)
-      }).toJSON();
+    const tree = renderer.create(
+        <Main
+          offers={offersMock}
+          city={cityMock}
+          mapClassName={`cities`}
+          onCardTitleClick={() => {}}
+          handleCityChange={() => {}}
+        />, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render Main with no offers`, () => {
+    const tree = renderer.create(
+        <Main
+          offers={[]}
+          city={cityMock}
+          mapClassName={`cities`}
+          onCardTitleClick={() => {}}
+          handleCityChange={() => {}}
+        />, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

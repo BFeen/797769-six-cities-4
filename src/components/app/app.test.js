@@ -1,7 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 import {App} from "./app.jsx";
 
+const mockStore = configureStore([]);
 
 const offersMock = [
   {
@@ -93,41 +96,50 @@ const reviews = [
 
 const cityMock = {
   name: `Amsterdam`,
-  isActive: false,
   coordinates: [52.38333, 4.9],
 };
 
 describe(`App snapshot test`, () => {
   it(`Main screen rendering`, () => {
-    const tree = renderer
-      .create(
-        <App
-          offerId={-1}
-          offers={offersMock}
-          city={cityMock}
-          reviews={reviews}
-          handleCardTitleClick={() => {}}
-          handleCityChange={() => {}}
-        />, {
-        createNodeMock: () => document.createElement(`div`)
-      }).toJSON();
+    const store = mockStore({
+      handleCityChange: () => {},
+    });
+
+    const tree = renderer.create(
+        <Provider store={store}>
+          <App
+            offerId={-1}
+            offers={offersMock}
+            city={cityMock}
+            reviews={reviews}
+            handleCardTitleClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`Details screen rendering`, () => {
-    const tree = renderer
-      .create(
-        <App
-          offerId={0}
-          offers={offersMock}
-          city={cityMock}
-          reviews={reviews}
-          handleCardTitleClick={() => {}}
-          handleCityChange={() => {}}
-        />, {
-        createNodeMock: () => document.createElement(`div`)
-      }).toJSON();
+    const store = mockStore({
+      handleCityChange: () => {},
+    });
+
+    const tree = renderer.create(
+        <Provider store={store}>
+          <App
+            offerId={0}
+            offers={offersMock}
+            city={cityMock}
+            reviews={reviews}
+            handleCardTitleClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

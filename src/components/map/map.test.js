@@ -61,7 +61,6 @@ const offers = [
 
 const cityMock = {
   name: `Amsterdam`,
-  isActive: false,
   coordinates: [52.38333, 4.9],
 };
 

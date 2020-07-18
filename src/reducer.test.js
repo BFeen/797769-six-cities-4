@@ -75,15 +75,12 @@ const offerMock = {
 const citiesMock = [
   {
     name: `Paris`,
-    isActive: true,
     coordinates: [48.85, 2.34],
   }, {
     name: `Amsterdam`,
-    isActive: false,
     coordinates: [52.38333, 4.9],
   }, {
     name: `Dusseldorf`,
-    isActive: false,
     coordinates: [51.22, 6.77],
   }
 ];
@@ -96,7 +93,7 @@ describe(`Reducer testing`, () => {
       offers: [],
     });
   });
-  
+
   it(`Reducer should assign given value`, () => {
     expect(reducer({
       offerId: -1,
@@ -123,7 +120,7 @@ describe(`Reducer testing`, () => {
       city: citiesMock[2],
       offers: [],
     });
-    
+
     expect(reducer({
       offerId: -1,
       city: citiesMock[1],
@@ -158,6 +155,6 @@ describe(`ActionCreator testing`, () => {
     expect(ActionCreator.getOffers(citiesMock[1].name)).toEqual({
       type: ActionType.GET_OFFERS,
       payload: offersMock,
-    })
+    });
   });
 });

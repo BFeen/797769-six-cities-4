@@ -6,15 +6,11 @@ import cityPropTypes from "../../prop-types/city-prop-types.js";
 class CitiesList extends PureComponent {
   render() {
     const {currentCity, onCityChange} = this.props;
-    
+
     return (
       <ul className="locations__list tabs__list">
         {Object.values(cities).map((city, index) => {
-          let className = `locations__item-link tabs__item `;
-
-          if (currentCity === city) {
-            className += `tabs__item--active`;
-          }
+          const activeClassName = `tabs__item--active`;
 
           return (
             <li
@@ -24,7 +20,10 @@ class CitiesList extends PureComponent {
                 onCityChange(city);
               }}
             >
-              <a className={className} href="#">
+              <a
+                className={`locations__item-link tabs__item ${currentCity === city ? activeClassName : ``}`}
+                href="#"
+              >
                 <span>{city.name}</span>
               </a>
             </li>
@@ -33,7 +32,7 @@ class CitiesList extends PureComponent {
       </ul>
     );
   }
-};
+}
 
 CitiesList.propTypes = {
   currentCity: cityPropTypes,

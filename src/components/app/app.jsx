@@ -16,14 +16,12 @@ class App extends PureComponent {
     const offer = offers.find((item) => item.id === offerId);
 
     if (!offer) {
-      const {handleCityChange} = this.props;
       return (
         <Main
           city={city}
           offers={offers}
           mapClassName={MapClassNames.CITIES}
           onCardTitleClick={handleCardTitleClick}
-          onCityChange={handleCityChange}
         />
       );
     } else {
@@ -71,7 +69,6 @@ App.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   handleCardTitleClick: PropTypes.func.isRequired,
-  handleCityChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -81,11 +78,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleCityChange(city) {
-    dispatch(ActionCreator.changeCity(city));
-    dispatch(ActionCreator.getOffers(city.name));
-  },
-
   handleCardTitleClick(offerId) {
     dispatch(ActionCreator.selectOffer(offerId));
   }

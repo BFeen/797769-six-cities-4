@@ -6,16 +6,17 @@ import cityPropTypes from "../../prop-types/city-prop-types.js";
 import CitiesList from "../cities-list/cities-list.jsx";
 import Map from "../map/map.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 
 
 const Main = (props) => {
   const {
-    renderMap,
     city,
     offers,
     mapClassName,
     onCardTitleClick,
-    onCityChange,
+    handleCityChange,
   } = props;
 
   const placesCount = offers.length;
@@ -51,7 +52,7 @@ const Main = (props) => {
 
             <CitiesList
               currentCity={city}
-              onCityChange={onCityChange}
+              onCityChange={handleCityChange}
             />
 
           </section>
@@ -61,49 +62,56 @@ const Main = (props) => {
           {placesCount === 0
             ? <MainEmpty />
             : <div className="cities__places-container container">
-                <section className="cities__places places">
-                  <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">{placesCount} places to stay in {city.name}</b>
-                  <form className="places__sorting" action="#" method="get">
-                    <span className="places__sorting-caption">Sort by</span>
-                    <select className="places__sorting-type" id="places-sorting" defaultValue="popular">
-                      <option className="places__option" value="popular">Popular</option>
-                      <option className="places__option" value="to-high">Price: low to high</option>
-                      <option className="places__option" value="to-low">Price: high to low</option>
-                      <option className="places__option" value="top-rated">Top rated first</option>
-                    </select>
-                  </form>
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{placesCount} places to stay in {city.name}</b>
+                <form className="places__sorting" action="#" method="get">
+                  <span className="places__sorting-caption">Sort by</span>
+                  <select className="places__sorting-type" id="places-sorting" defaultValue="popular">
+                    <option className="places__option" value="popular">Popular</option>
+                    <option className="places__option" value="to-high">Price: low to high</option>
+                    <option className="places__option" value="to-low">Price: high to low</option>
+                    <option className="places__option" value="top-rated">Top rated first</option>
+                  </select>
+                </form>
 
-                  <PlaceCardList
-                    offers={offers}
-                    onCardTitleClick={onCardTitleClick}
-                    isMain={true}
-                  />
+                <PlaceCardList
+                  offers={offers}
+                  onCardTitleClick={onCardTitleClick}
+                  isMain={true}
+                />
 
-                </section>
-                <div className="cities__right-section">
-                  <Map
-                    city={city}
-                    mapClassName={mapClassName}
-                    offers={offers}
-                  />
-                </div>
+              </section>
+              <div className="cities__right-section">
+                <Map
+                  city={city}
+                  mapClassName={mapClassName}
+                  offers={offers}
+                />
               </div>
+            </div>
           }
 
-          
         </div>
       </main>
     </div>
   );
-}
+};
 
 Main.propTypes = {
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   mapClassName: PropTypes.string.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
-  onCityChange: PropTypes.func.isRequired,
+  handleCityChange: PropTypes.func.isRequired,
 };
 
-export default Main;
+const mapDispatchToPtops = (dispatch) => ({
+  handleCityChange(city) {
+    dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.getOffers(city.name));
+  },
+});
+
+export {Main};
+export default connect(null, mapDispatchToPtops)(Main);
