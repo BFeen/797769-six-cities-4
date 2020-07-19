@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import cityPropTypes from "../../prop-types/city-prop-types.js";
 import CitiesList from "../cities-list/cities-list.jsx";
 import Map from "../map/map.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
+import Sorting from "../sorting/sorting.jsx";
+import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 
@@ -67,12 +68,11 @@ const Main = (props) => {
                 <b className="places__found">{placesCount} places to stay in {city.name}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
-                  <select className="places__sorting-type" id="places-sorting" defaultValue="popular">
-                    <option className="places__option" value="popular">Popular</option>
-                    <option className="places__option" value="to-high">Price: low to high</option>
-                    <option className="places__option" value="to-low">Price: high to low</option>
-                    <option className="places__option" value="top-rated">Top rated first</option>
-                  </select>
+                  
+                  <Sorting
+                    onSortTypeChange={handleSortTypeChange}
+                  />
+
                 </form>
 
                 <PlaceCardList
@@ -104,6 +104,7 @@ Main.propTypes = {
   mapClassName: PropTypes.string.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
   handleCityChange: PropTypes.func.isRequired,
+  handleSortTypeChange: PropTypes.func.isRequired,
 };
 
 const mapDispatchToPtops = (dispatch) => ({
