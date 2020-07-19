@@ -1,15 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReviewItemList from "../review-item-list/review-item-list.jsx";
-import Map from "../map/map.jsx";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
+import Map from "../map/map.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
+import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {offersDetails} from "../../mocks/offers.js";
 
 
 const PlaceDetails = (props) => {
-  const {offers, offerId, mapClassName, reviews, onCardTitleClick} = props;
+  const {
+    city,
+    offers,
+    offerId,
+    mapClassName,
+    reviews,
+    onCardTitleClick
+  } = props;
+
   const currentOffer = offers.find((item) => item.id === offerId);
   const nearPlaces = [].concat(offers.slice(0, offerId), offers.slice(offerId + 1));
 
@@ -191,8 +200,9 @@ const PlaceDetails = (props) => {
             </div>
           </div>
           <Map
-            className={mapClassName}
-            offers={nearPlaces}
+            city={city}
+            mapClassName={mapClassName}
+            offers={offers}
           />
         </section>
         <div className="container">
@@ -213,9 +223,10 @@ const PlaceDetails = (props) => {
 };
 
 PlaceDetails.propTypes = {
-  mapClassName: PropTypes.string.isRequired,
+  city: cityPropTypes,
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  mapClassName: PropTypes.string.isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };

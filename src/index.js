@@ -1,16 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-import {CITIES} from "./const.js";
-import {offers} from "./mocks/offers.js";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 import reviews from "./mocks/reviews.js";
+import {reducer} from "./reducer.js";
+
+
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
 
 ReactDOM.render(
-    <App
-      cities={CITIES}
-      placesCount={offers.length}
-      offers={offers}
-      reviews={reviews}
-    />,
+    <Provider store={store}>
+      <App
+        reviews={reviews}
+      />
+    </Provider>,
     document.querySelector(`#root`)
 );

@@ -1,9 +1,10 @@
-import {AVATAR_URL} from "../const.js";
+import {AVATAR_URL} from "../common/const.js";
 
 
 const offers = [
   {
     id: 0,
+    city: `Amsterdam`,
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     isPremium: true,
@@ -16,6 +17,7 @@ const offers = [
     ],
   }, {
     id: 1,
+    city: `Amsterdam`,
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     isPremium: true,
@@ -28,6 +30,7 @@ const offers = [
     ]
   }, {
     id: 2,
+    city: `Amsterdam`,
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
@@ -40,6 +43,7 @@ const offers = [
     ]
   }, {
     id: 3,
+    city: `Amsterdam`,
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,

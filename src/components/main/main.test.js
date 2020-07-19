@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 
-
-const offers = [
+const offersMock = [
   {
     id: 0,
+    city: `Amsterdam`,
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     isPremium: true,
@@ -18,6 +18,7 @@ const offers = [
     ],
   }, {
     id: 1,
+    city: `Amsterdam`,
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     isPremium: true,
@@ -30,6 +31,7 @@ const offers = [
     ]
   }, {
     id: 2,
+    city: `Amsterdam`,
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
@@ -42,6 +44,7 @@ const offers = [
     ]
   }, {
     id: 3,
+    city: `Amsterdam`,
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
@@ -55,18 +58,40 @@ const offers = [
   }
 ];
 
+const cityMock = {
+  name: `Amsterdam`,
+  coordinates: [52.38333, 4.9],
+};
+
 describe(`Main component tests:`, () => {
   it(`Render Main.`, () => {
-    const tree = renderer
-      .create(<Main
-        cities={[`Moscow`, `St-Petersburg`]}
-        placesCount={4}
-        offers={offers}
-        mapClassName={`cities`}
-        onCardTitleClick={() => {}}
-      />, {
-        createNodeMock: () => document.createElement(`div`)
-      }).toJSON();
+    const tree = renderer.create(
+        <Main
+          offers={offersMock}
+          city={cityMock}
+          mapClassName={`cities`}
+          onCardTitleClick={() => {}}
+          handleCityChange={() => {}}
+        />, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render Main with no offers`, () => {
+    const tree = renderer.create(
+        <Main
+          offers={[]}
+          city={cityMock}
+          mapClassName={`cities`}
+          onCardTitleClick={() => {}}
+          handleCityChange={() => {}}
+        />, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

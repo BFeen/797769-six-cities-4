@@ -1,4 +1,4 @@
-import {AVATAR_URL} from "../const.js";
+import {AVATAR_URL} from "../common/const.js";
 
 
 export default [

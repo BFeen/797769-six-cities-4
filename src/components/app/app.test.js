@@ -1,11 +1,15 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {App} from "./app.jsx";
 
+const mockStore = configureStore([]);
 
-const offers = [
+const offersMock = [
   {
     id: 0,
+    city: `Amsterdam`,
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     isPremium: true,
@@ -18,6 +22,7 @@ const offers = [
     ],
   }, {
     id: 1,
+    city: `Amsterdam`,
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     isPremium: true,
@@ -30,6 +35,7 @@ const offers = [
     ]
   }, {
     id: 2,
+    city: `Amsterdam`,
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
@@ -42,6 +48,7 @@ const offers = [
     ]
   }, {
     id: 3,
+    city: `Amsterdam`,
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
@@ -87,17 +94,52 @@ const reviews = [
   }
 ];
 
+const cityMock = {
+  name: `Amsterdam`,
+  coordinates: [52.38333, 4.9],
+};
+
 describe(`App snapshot test`, () => {
-  it(`App rendering`, () => {
-    const tree = renderer
-      .create(<App
-        cities={[`Moscow`, `St-Petersburg`]}
-        placesCount={offers.length}
-        offers={offers}
-        reviews={reviews}
-      />, {
-        createNodeMock: () => document.createElement(`div`)
-      }).toJSON();
+  it(`Main screen rendering`, () => {
+    const store = mockStore({
+      handleCityChange: () => {},
+    });
+
+    const tree = renderer.create(
+        <Provider store={store}>
+          <App
+            offerId={-1}
+            offers={offersMock}
+            city={cityMock}
+            reviews={reviews}
+            handleCardTitleClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Details screen rendering`, () => {
+    const store = mockStore({
+      handleCityChange: () => {},
+    });
+
+    const tree = renderer.create(
+        <Provider store={store}>
+          <App
+            offerId={0}
+            offers={offersMock}
+            city={cityMock}
+            reviews={reviews}
+            handleCardTitleClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

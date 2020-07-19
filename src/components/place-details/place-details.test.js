@@ -3,9 +3,10 @@ import renderer from "react-test-renderer";
 import PlaceDetails from "./place-details.jsx";
 
 
-const offers = [
+const offersMock = [
   {
     id: 0,
+    city: `Amsterdam`,
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     isPremium: true,
@@ -18,6 +19,7 @@ const offers = [
     ],
   }, {
     id: 1,
+    city: `Amsterdam`,
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     isPremium: true,
@@ -30,6 +32,7 @@ const offers = [
     ]
   }, {
     id: 2,
+    city: `Amsterdam`,
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
@@ -42,6 +45,7 @@ const offers = [
     ]
   }, {
     id: 3,
+    city: `Amsterdam`,
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
@@ -55,7 +59,7 @@ const offers = [
   }
 ];
 
-const reviews = [
+const reviewsMock = [
   {
     offerId: 0,
     userName: `Max`,
@@ -87,14 +91,21 @@ const reviews = [
   }
 ];
 
+const cityMock = {
+  name: `Amsterdam`,
+  isActive: false,
+  coordinates: [52.38333, 4.9],
+};
+
 describe(`PlaceDetails snapshot test`, () => {
   it(`PlaceDetails rendering`, () => {
     const tree = renderer.create(
         <PlaceDetails
+          city={cityMock}
           mapClassName={`cities`}
           offerId={1}
-          offers={offers}
-          reviews={reviews}
+          offers={offersMock}
+          reviews={reviewsMock}
           onCardTitleClick={() => {}}
         />, {
           createNodeMock: () => document.createElement(`div`)
