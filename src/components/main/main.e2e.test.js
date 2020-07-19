@@ -77,9 +77,11 @@ describe(`Main e2e testing`, () => {
         <Main
           offers={offersMock}
           city={cityMock}
+          sortType={`popular`}
           mapClassName={`cities`}
           onCardTitleClick={handleCardTitleClick}
           handleCityChange={() => {}}
+          handleSortTypeChange={() => {}}
         />
     );
 

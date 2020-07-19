@@ -14,10 +14,10 @@ const Sorting = (props) => {
         onSortTypeChange(evt.target.value);
       }}
     >
-      {Object.values(SortType).map((type) => {
+      {Object.values(SortType).map((type, index) => {
         return (
           <option
-            key={type.value}
+            key={type.value + index}
             className="places__option"
             value={type.value}
           >

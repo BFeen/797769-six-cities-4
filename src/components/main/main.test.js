@@ -69,9 +69,11 @@ describe(`Main component tests:`, () => {
         <Main
           offers={offersMock}
           city={cityMock}
+          sortType={`popular`}
           mapClassName={`cities`}
           onCardTitleClick={() => {}}
           handleCityChange={() => {}}
+          handleSortTypeChange={() => {}}
         />, {
           createNodeMock: () => document.createElement(`div`)
         }
@@ -85,9 +87,11 @@ describe(`Main component tests:`, () => {
         <Main
           offers={[]}
           city={cityMock}
+          sortType={`popular`}
           mapClassName={`cities`}
           onCardTitleClick={() => {}}
           handleCityChange={() => {}}
+          handleSortTypeChange={() => {}}
         />, {
           createNodeMock: () => document.createElement(`div`)
         }
