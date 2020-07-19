@@ -27,4 +27,23 @@ const MapClassNames = {
   PROPERTY: `property`,
 };
 
-export {cities, MapClassNames, AVATAR_URL};
+const SortType = {
+  POPULAR: {
+    value: `popular`,
+    name: `Popular`,
+  },
+  LOW_TO_HIGH: {
+    value: `to-high`,
+    name: `Price: low to high`,
+  },
+  HIGH_TO_LOW: {
+    value: `to-low`,
+    name: `Price: high to low`,
+  },
+  RATING: {
+    value: `top-rated`,
+    name: `Top rated first`, 
+  },
+};
+
+export {cities, MapClassNames, AVATAR_URL, SortType};

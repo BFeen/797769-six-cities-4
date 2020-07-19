@@ -9,18 +9,22 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
+import {getSortedOffers} from "../../common/utils.js";
 
 
 const Main = (props) => {
   const {
+    sortType,
     city,
     offers,
     mapClassName,
     onCardTitleClick,
     handleCityChange,
+    handleSortTypeChange,
   } = props;
 
   const placesCount = offers.length;
+  const sortedOffers = getSortedOffers(offers, sortType);
 
   return (
     <div className="page page--gray page--main">
@@ -76,7 +80,7 @@ const Main = (props) => {
                 </form>
 
                 <PlaceCardList
-                  offers={offers}
+                  offers={sortedOffers}
                   onCardTitleClick={onCardTitleClick}
                   isMain={true}
                 />
@@ -101,18 +105,27 @@ const Main = (props) => {
 Main.propTypes = {
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  sortType: PropTypes.string.isRequired,
   mapClassName: PropTypes.string.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
   handleCityChange: PropTypes.func.isRequired,
   handleSortTypeChange: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  sortType: state.sortType,
+});
+
 const mapDispatchToPtops = (dispatch) => ({
   handleCityChange(city) {
     dispatch(ActionCreator.changeCity(city));
     dispatch(ActionCreator.getOffers(city.name));
   },
+
+  handleSortTypeChange(sortType) {
+    dispatch(ActionCreator.changeSortType(sortType));
+  },
 });
 
 export {Main};
-export default connect(null, mapDispatchToPtops)(Main);
+export default connect(mapStateToProps, mapDispatchToPtops)(Main);
