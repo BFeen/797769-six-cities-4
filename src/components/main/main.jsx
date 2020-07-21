@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
 import Map from "../map/map.jsx";
@@ -7,10 +8,12 @@ import MainEmpty from "../main-empty/main-empty.jsx";
 import Sorting from "../sorting/sorting.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
-import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 import {getSortedOffers} from "../../common/utils.js";
+import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 
+
+const MapWrapped = withActiveCard(Map);
 
 const Main = (props) => {
   const {
@@ -87,7 +90,7 @@ const Main = (props) => {
 
               </section>
               <div className="cities__right-section">
-                <Map
+                <MapWrapped
                   city={city}
                   mapClassName={mapClassName}
                   offers={offers}

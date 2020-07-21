@@ -1,43 +1,31 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 
 
-class PlaceCardList extends PureComponent {
-  constructor(props) {
-    super(props);
+const PlaceCardWrapped = withActiveCard(PlaceCard);
 
-    this.state = {
-      activeCard: {},
-    };
-  }
+const PlaceCardList = (props) => {
+  const {offers, onCardTitleClick, isMain} = props;
+  const listClassName = isMain ? `cities__places-list tabs__content` : `near-places__list`;
+  const cardClassName = isMain ? `cities__place-card` : `near-places__card`;
 
-  render() {
-    const {offers, onCardTitleClick, isMain} = this.props;
-    const listClassName = isMain ? `cities__places-list tabs__content` : `near-places__list`;
-    const cardClassName = isMain ? `cities__place-card` : `near-places__card`;
-
-    return (
-      <div className={`places__list ${listClassName}`}>
-        {offers.map((offer) => {
-          return (
-            <PlaceCard
-              key={`${offer.id}`}
-              offer={offer}
-              className={cardClassName}
-              onCardMouseEnter={(currentOffer) => {
-                this.setState({
-                  activeCard: currentOffer,
-                });
-              }}
-              onCardTitleClick={onCardTitleClick}
-            />
-          );
-        })}
-      </div>
-    );
-  }
+  return (
+    <div className={`places__list ${listClassName}`}>
+      {offers.map((offer) => {
+        return (
+          <PlaceCardWrapped
+            key={`${offer.id}`}
+            offer={offer}
+            className={cardClassName}
+            onCardTitleClick={onCardTitleClick}
+          />
+        );
+      })}
+    </div>
+  );
 }
 
 PlaceCardList.propTypes = {
