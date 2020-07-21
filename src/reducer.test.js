@@ -91,6 +91,7 @@ describe(`Reducer testing`, () => {
       offerId: -1,
       city: citiesMock[0],
       offers: [],
+      sortType: `popular`,
     });
   });
 

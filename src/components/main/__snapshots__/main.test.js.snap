@@ -376,6 +376,7 @@ exports[`Main component tests: Render Main. 1`] = `
               className="places__sorting-type"
               defaultValue="popular"
               id="places-sorting"
+              onChange={[Function]}
             >
               <option
                 className="places__option"

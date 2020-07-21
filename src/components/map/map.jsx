@@ -25,9 +25,12 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {city, offers} = this.props;
+    const {city, offers, activeCard} = this.props;
     const {coordinates: cityPosition} = city;
     const currentMap = this._mapRef.current;
+
+    
+    console.log(`hovered card: `, activeCard)
 
     const zoom = 12;
     this._map = leaflet.map(currentMap, {
@@ -44,7 +47,16 @@ class Map extends PureComponent {
       })
       .addTo(this._map);
 
-    offers.forEach((offer) => this._createMarker(offer));
+    offers.forEach((offer) => this._createMarker(offer, false));
+    
+    // this._markers.forEach((item) => {
+    //   const cords = item._latlng;
+    //   console.log(cords)  
+    //   console.log(offers[0].coordinates)  
+      // if (cords === offers[0].coordinates) {
+      //   console.log(`YOHOOO`)
+      // }
+    // })
   }
 
   componentWillUnmount() {
@@ -53,26 +65,31 @@ class Map extends PureComponent {
     this._markers = [];
   }
 
-  componentDidUpdate() {
-    const {offers, city} = this.props;
+  componentDidUpdate(prevProps) {
+    if (this.props.offers !== prevProps.offers 
+        || this.props.activeCard !== prevProps.activeCard) {
+      const {offers, city, activeCard} = this.props;
+      
+      console.log(`hovered card: `, activeCard)
 
-    this._map.setView(city.coordinates, 12);
+      this._map.setView(city.coordinates, 12);
 
-    this._markers.forEach((marker) => {
-      this._map.removeLayer(marker);
-    });
+      this._markers.forEach((marker) => {
+        this._map.removeLayer(marker);
+      });
 
-    this._markers = [];
+      this._markers = [];
 
-    offers.forEach((offer) => this._createMarker(offer));
+      offers.forEach((offer) => {
+        let isHovered = offer === activeCard;
+        this._createMarker(offer, isHovered);
+      });
+    }
   }
 
-  _createMarker(offer) {
+  _createMarker(offer, isHovered) {
     const {coordinates, title} = offer;
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [27, 39],
-    });
+    const icon = this._getIcon(isHovered);
 
     this._markers.push(
         leaflet
@@ -81,12 +98,21 @@ class Map extends PureComponent {
           .addTo(this._map)
     );
   }
+
+  _getIcon(isHovered) {
+    const path = isHovered ? `img/pin-active.svg` : `img/pin.svg`;
+    return leaflet.icon({
+      iconUrl: path,
+      iconSize: [27, 39],
+    });
+  }
 }
 
 Map.propTypes = {
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   mapClassName: PropTypes.string.isRequired,
+  activeCard: PropTypes.object.isRequired,
 };
 
 export default Map;

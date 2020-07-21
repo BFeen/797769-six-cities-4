@@ -7,7 +7,11 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {offersDetails} from "../../mocks/offers.js";
+import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 
+
+
+const MapWrapped = withActiveCard(Map);
 
 const PlaceDetails = (props) => {
   const {
@@ -199,10 +203,10 @@ const PlaceDetails = (props) => {
               </section>
             </div>
           </div>
-          <Map
+          <MapWrapped
             city={city}
             mapClassName={mapClassName}
-            offers={offers}
+            offers={nearPlaces}
           />
         </section>
         <div className="container">
