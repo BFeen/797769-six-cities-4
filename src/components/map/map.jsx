@@ -29,9 +29,6 @@ class Map extends PureComponent {
     const {coordinates: cityPosition} = city;
     const currentMap = this._mapRef.current;
 
-    
-    console.log(`hovered card: `, activeCard)
-
     const zoom = 12;
     this._map = leaflet.map(currentMap, {
       center: cityPosition,
@@ -48,15 +45,6 @@ class Map extends PureComponent {
       .addTo(this._map);
 
     offers.forEach((offer) => this._createMarker(offer, false));
-    
-    // this._markers.forEach((item) => {
-    //   const cords = item._latlng;
-    //   console.log(cords)  
-    //   console.log(offers[0].coordinates)  
-      // if (cords === offers[0].coordinates) {
-      //   console.log(`YOHOOO`)
-      // }
-    // })
   }
 
   componentWillUnmount() {
@@ -66,13 +54,27 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.city !== prevProps.city) {
+      this._map.setView(this.props.city.coordinates, 12);
+    }
+
+    if (this.props.activeCard !== prevProps.activeCard) {
+      // код по оптимизации редактирования и отрисовки только одного маркера
+      
+    // this._markers.forEach((item) => {
+    //   const cords = item._latlng;
+    //   console.log(cords)  
+    //   console.log(offers[0].coordinates)  
+      // if (cords === offers[0].coordinates) {
+      //   console.log(`YOHOOO`)
+      // }
+    // })
+    }
+
     if (this.props.offers !== prevProps.offers 
         || this.props.activeCard !== prevProps.activeCard) {
-      const {offers, city, activeCard} = this.props;
-      
-      console.log(`hovered card: `, activeCard)
+      const {offers, activeCard} = this.props;
 
-      this._map.setView(city.coordinates, 12);
 
       this._markers.forEach((marker) => {
         this._map.removeLayer(marker);
