@@ -235,6 +235,9 @@ PlaceDetails.propTypes = {
   mapClassName: PropTypes.string.isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired,
+  activeCard: PropTypes.object.isRequired,
 };
 
 export default PlaceDetails;

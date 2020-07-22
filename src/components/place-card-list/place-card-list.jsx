@@ -37,6 +37,8 @@ PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
   isMain: PropTypes.bool.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired,
 };
 
 export default PlaceCardList;

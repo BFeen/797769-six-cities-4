@@ -19,7 +19,7 @@ describe(`Sorting e2e testing`, () => {
     );
 
     const selectedSortType = `to-high`;
-    const select = sorting.find(`select`).simulate(`change`, {target: {value: selectedSortType}});
+    sorting.find(`select`).simulate(`change`, {target: {value: selectedSortType}});
 
     expect(handleSortTypeChange).toHaveBeenCalledTimes(1);
     expect(handleSortTypeChange).toHaveBeenCalledWith(selectedSortType);

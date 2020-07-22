@@ -74,6 +74,9 @@ describe(`Main component tests:`, () => {
           onCardTitleClick={() => {}}
           handleCityChange={() => {}}
           handleSortTypeChange={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          activeCard={{}}
         />, {
           createNodeMock: () => document.createElement(`div`)
         }
@@ -92,6 +95,9 @@ describe(`Main component tests:`, () => {
           onCardTitleClick={() => {}}
           handleCityChange={() => {}}
           handleSortTypeChange={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          activeCard={{}}
         />, {
           createNodeMock: () => document.createElement(`div`)
         }

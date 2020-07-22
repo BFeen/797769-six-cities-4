@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import PlaceCard from "./place-card.jsx";
 
 
-const offer = {
+const offerMock = {
   id: 0,
   city: `Amsterdam`,
   title: `Beautiful & luxurious apartment at great location`,
@@ -24,22 +24,42 @@ Enzyme.configure({
 });
 
 describe(`PlaceCard e2e tests`, () => {
-  it(`Should PlaceCard mouse enter handler calles with correct mock`, () => {
+  it(`Should PlaceCard mouse enter handler calls with correct arguments`, () => {
     const handleCardMouseEnter = jest.fn();
 
     const placeCard = shallow(
         <PlaceCard
-          offer={offer}
+          offer={offerMock}
           className={`cities__place-card`}
-          onCardMouseEnter={handleCardMouseEnter}
           onCardTitleClick={() => {}}
+          onCardMouseEnter={handleCardMouseEnter}
+          onCardMouseLeave={() => {}}
         />
     );
 
     const article = placeCard.find(`article`);
-    article.simulate(`mouseenter`, {target: offer});
+    article.simulate(`mouseenter`, {target: offerMock});
 
     expect(handleCardMouseEnter).toHaveBeenCalledTimes(1);
-    expect(handleCardMouseEnter).toHaveBeenCalledWith(offer);
+    expect(handleCardMouseEnter).toHaveBeenCalledWith(offerMock);
+  });
+
+  it(`Should PlaceCard mouse leave handler calls`, () => {
+    const handleCardMouseLeave = jest.fn();
+
+    const placeCard = shallow(
+        <PlaceCard
+          offer={offerMock}
+          className={`cities__place-card`}
+          onCardTitleClick={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={handleCardMouseLeave}
+        />
+    );
+
+    const article = placeCard.find(`article`);
+    article.simulate(`mouseleave`);
+
+    expect(handleCardMouseLeave).toHaveBeenCalledTimes(1);
   });
 });

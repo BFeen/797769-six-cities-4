@@ -410,6 +410,7 @@ exports[`Main component tests: Render Main. 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -514,6 +515,7 @@ exports[`Main component tests: Render Main. 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -618,6 +620,7 @@ exports[`Main component tests: Render Main. 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="cities__place-card__image-wrapper place-card__image-wrapper"
@@ -715,6 +718,7 @@ exports[`Main component tests: Render Main. 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="cities__place-card__image-wrapper place-card__image-wrapper"

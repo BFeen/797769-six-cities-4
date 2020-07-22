@@ -116,6 +116,9 @@ Main.propTypes = {
   onCardTitleClick: PropTypes.func.isRequired,
   handleCityChange: PropTypes.func.isRequired,
   handleSortTypeChange: PropTypes.func.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired,
+  activeCard: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

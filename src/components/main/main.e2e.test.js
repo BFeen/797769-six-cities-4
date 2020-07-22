@@ -82,6 +82,9 @@ describe(`Main e2e testing`, () => {
           onCardTitleClick={handleCardTitleClick}
           handleCityChange={() => {}}
           handleSortTypeChange={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          activeCard={{}}
         />
     );
 

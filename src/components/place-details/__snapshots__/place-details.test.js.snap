@@ -561,6 +561,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
           <article
             className="near-places__card place-card"
             onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <div
               className="place-card__mark"
@@ -665,6 +666,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
           <article
             className="near-places__card place-card"
             onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <div
               className="near-places__card__image-wrapper place-card__image-wrapper"
@@ -762,6 +764,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
           <article
             className="near-places__card place-card"
             onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <div
               className="near-places__card__image-wrapper place-card__image-wrapper"
