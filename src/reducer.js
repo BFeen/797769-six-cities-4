@@ -37,7 +37,7 @@ const ActionCreator = {
 
   getOffers: (cityName) => ({
     type: ActionType.GET_OFFERS,
-    payload: getOffersByCity(cityName), 
+    payload: getOffersByCity(cityName),
   }),
 
   changeSortType: (sortType) => ({

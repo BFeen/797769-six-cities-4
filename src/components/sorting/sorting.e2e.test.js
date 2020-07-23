@@ -13,9 +13,9 @@ describe(`Sorting e2e testing`, () => {
     const handleSortTypeChange = jest.fn();
 
     const sorting = shallow(
-      <Sorting
-        onSortTypeChange={handleSortTypeChange}
-      />
+        <Sorting
+          onSortTypeChange={handleSortTypeChange}
+        />
     );
 
     const selectedSortType = `to-high`;

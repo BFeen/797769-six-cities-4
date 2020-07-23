@@ -25,7 +25,7 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {city, offers, activeCard} = this.props;
+    const {city, offers} = this.props;
     const {coordinates: cityPosition} = city;
     const currentMap = this._mapRef.current;
 
@@ -58,20 +58,7 @@ class Map extends PureComponent {
       this._map.setView(this.props.city.coordinates, 12);
     }
 
-    if (this.props.activeCard !== prevProps.activeCard) {
-      // код по оптимизации редактирования и отрисовки только одного маркера
-      
-    // this._markers.forEach((item) => {
-    //   const cords = item._latlng;
-    //   console.log(cords)  
-    //   console.log(offers[0].coordinates)  
-      // if (cords === offers[0].coordinates) {
-      //   console.log(`YOHOOO`)
-      // }
-    // })
-    }
-
-    if (this.props.offers !== prevProps.offers 
+    if (this.props.offers !== prevProps.offers
         || this.props.activeCard !== prevProps.activeCard) {
       const {offers, activeCard} = this.props;
 
@@ -83,7 +70,7 @@ class Map extends PureComponent {
       this._markers = [];
 
       offers.forEach((offer) => {
-        let isHovered = offer === activeCard;
+        const isHovered = offer === activeCard;
         this._createMarker(offer, isHovered);
       });
     }
@@ -114,7 +101,10 @@ Map.propTypes = {
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   mapClassName: PropTypes.string.isRequired,
-  activeCard: PropTypes.object.isRequired,
+  activeCard: PropTypes.oneOfType([
+    offerPropTypes,
+    PropTypes.object,
+  ]).isRequired,
 };
 
 export default Map;

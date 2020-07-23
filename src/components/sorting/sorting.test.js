@@ -6,9 +6,9 @@ import Sorting from "./sorting.jsx";
 describe(`Sorting component snapshot testing`, () => {
   it(`Sorting renderinng correctly`, () => {
     const tree = renderer.create(
-      <Sorting
-        onSortTypeChange={() => {}}
-      />
+        <Sorting
+          onSortTypeChange={() => {}}
+        />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

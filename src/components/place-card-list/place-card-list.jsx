@@ -31,7 +31,7 @@ const PlaceCardList = (props) => {
       })}
     </div>
   );
-}
+};
 
 PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
