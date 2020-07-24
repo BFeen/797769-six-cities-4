@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Map snapshot testing Map with activeCard rendering correctly 1`] = `
+<section
+  className="cities__map map"
+/>
+`;
+
 exports[`Map snapshot testing Map with classname 'cities' rendering correctly 1`] = `
 <section
   className="cities__map map"

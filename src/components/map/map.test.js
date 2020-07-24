@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import Map from "./map.jsx";
 
 
-const offers = [
+const offersMock = [
   {
     id: 0,
     city: `Amsterdam`,
@@ -64,13 +64,29 @@ const cityMock = {
   coordinates: [52.38333, 4.9],
 };
 
+const activeCardMock = {
+  id: 0,
+  city: `Amsterdam`,
+  title: `Beautiful & luxurious apartment at great location`,
+  picture: `img/apartment-01.jpg`,
+  isPremium: true,
+  price: 200,
+  type: `Apartment`,
+  rating: 4,
+  coordinates: [
+    52.3909553943508,
+    4.85309666406198
+  ],
+};
+
 describe(`Map snapshot testing`, () => {
   it(`Map with classname 'cities' rendering correctly`, () => {
     const tree = renderer.create(
         <Map
           city={cityMock}
           mapClassName={`cities`}
-          offers={offers}
+          offers={offersMock}
+          activeCard={{}}
         />, {
           createNodeMock: () => document.createElement(`div`)
         }
@@ -84,7 +100,23 @@ describe(`Map snapshot testing`, () => {
         <Map
           city={cityMock}
           mapClassName={`property`}
-          offers={offers}
+          offers={offersMock}
+          activeCard={{}}
+        />, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Map with activeCard rendering correctly`, () => {
+    const tree = renderer.create(
+        <Map
+          city={cityMock}
+          mapClassName={`cities`}
+          offers={offersMock}
+          activeCard={activeCardMock}
         />, {
           createNodeMock: () => document.createElement(`div`)
         }

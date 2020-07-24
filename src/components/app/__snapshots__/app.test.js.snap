@@ -593,6 +593,7 @@ exports[`App snapshot test Details screen rendering 1`] = `
           <article
             className="near-places__card place-card"
             onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <div
               className="place-card__mark"
@@ -697,6 +698,7 @@ exports[`App snapshot test Details screen rendering 1`] = `
           <article
             className="near-places__card place-card"
             onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <div
               className="near-places__card__image-wrapper place-card__image-wrapper"
@@ -794,6 +796,7 @@ exports[`App snapshot test Details screen rendering 1`] = `
           <article
             className="near-places__card place-card"
             onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             <div
               className="near-places__card__image-wrapper place-card__image-wrapper"
@@ -1118,6 +1121,7 @@ exports[`App snapshot test Main screen rendering 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -1222,6 +1226,7 @@ exports[`App snapshot test Main screen rendering 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -1326,6 +1331,7 @@ exports[`App snapshot test Main screen rendering 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="cities__place-card__image-wrapper place-card__image-wrapper"
@@ -1423,6 +1429,7 @@ exports[`App snapshot test Main screen rendering 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="cities__place-card__image-wrapper place-card__image-wrapper"

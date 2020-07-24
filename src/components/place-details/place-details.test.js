@@ -107,6 +107,9 @@ describe(`PlaceDetails snapshot test`, () => {
           offers={offersMock}
           reviews={reviewsMock}
           onCardTitleClick={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          activeCard={{}}
         />, {
           createNodeMock: () => document.createElement(`div`)
         }).toJSON();

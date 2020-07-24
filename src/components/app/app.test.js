@@ -4,6 +4,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {App} from "./app.jsx";
 
+
 const mockStore = configureStore([]);
 
 const offersMock = [
@@ -102,15 +103,16 @@ const cityMock = {
 describe(`App snapshot test`, () => {
   it(`Main screen rendering`, () => {
     const store = mockStore({
+      sortType: `popular`,
       handleCityChange: () => {},
     });
 
     const tree = renderer.create(
         <Provider store={store}>
           <App
-            offerId={-1}
             offers={offersMock}
             city={cityMock}
+            offerId={-1}
             reviews={reviews}
             handleCardTitleClick={() => {}}
           />

@@ -13,13 +13,13 @@ describe(`Sorting e2e testing`, () => {
     const handleSortTypeChange = jest.fn();
 
     const sorting = shallow(
-      <Sorting
-        onSortTypeChange={handleSortTypeChange}
-      />
+        <Sorting
+          onSortTypeChange={handleSortTypeChange}
+        />
     );
 
     const selectedSortType = `to-high`;
-    const select = sorting.find(`select`).simulate(`change`, {target: {value: selectedSortType}});
+    sorting.find(`select`).simulate(`change`, {target: {value: selectedSortType}});
 
     expect(handleSortTypeChange).toHaveBeenCalledTimes(1);
     expect(handleSortTypeChange).toHaveBeenCalledWith(selectedSortType);

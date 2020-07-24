@@ -7,11 +7,7 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {offersDetails} from "../../mocks/offers.js";
-import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 
-
-
-const MapWrapped = withActiveCard(Map);
 
 const PlaceDetails = (props) => {
   const {
@@ -20,7 +16,10 @@ const PlaceDetails = (props) => {
     offerId,
     mapClassName,
     reviews,
-    onCardTitleClick
+    onCardTitleClick,
+    onCardMouseEnter,
+    onCardMouseLeave,
+    activeCard,
   } = props;
 
   const currentOffer = offers.find((item) => item.id === offerId);
@@ -203,10 +202,11 @@ const PlaceDetails = (props) => {
               </section>
             </div>
           </div>
-          <MapWrapped
+          <Map
             city={city}
             mapClassName={mapClassName}
             offers={nearPlaces}
+            activeCard={activeCard}
           />
         </section>
         <div className="container">
@@ -217,6 +217,8 @@ const PlaceDetails = (props) => {
               offers={nearPlaces}
               onCardTitleClick={onCardTitleClick}
               isMain={false}
+              onCardMouseEnter={onCardMouseEnter}
+              onCardMouseLeave={onCardMouseLeave}
             />
 
           </section>
@@ -233,6 +235,9 @@ PlaceDetails.propTypes = {
   mapClassName: PropTypes.string.isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired,
+  activeCard: PropTypes.object.isRequired,
 };
 
 export default PlaceDetails;

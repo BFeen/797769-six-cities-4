@@ -6,9 +6,9 @@ const Sorting = (props) => {
   const {onSortTypeChange} = props;
 
   return (
-    <select 
-      className="places__sorting-type" 
-      id="places-sorting" 
+    <select
+      className="places__sorting-type"
+      id="places-sorting"
       defaultValue="popular"
       onChange={(evt) => {
         onSortTypeChange(evt.target.value);

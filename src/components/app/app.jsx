@@ -9,6 +9,11 @@ import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
+import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
+
+
+const MainWrapped = withActiveCard(Main);
+const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 
 class App extends PureComponent {
   _renderMainPage() {
@@ -17,7 +22,7 @@ class App extends PureComponent {
 
     if (!offer) {
       return (
-        <Main
+        <MainWrapped
           city={city}
           offers={offers}
           mapClassName={MapClassNames.CITIES}
@@ -27,7 +32,7 @@ class App extends PureComponent {
     } else {
       const {reviews} = this.props;
       return (
-        <PlaceDetails
+        <PlaceDetailsWrapped
           city={city}
           offerId={offerId}
           offers={offers}
@@ -48,7 +53,7 @@ class App extends PureComponent {
             {this._renderMainPage()}
           </Route>
           <Route exact path="/details">
-            <PlaceDetails
+            <PlaceDetailsWrapped
               city={city}
               offerId={0}
               offers={offers}

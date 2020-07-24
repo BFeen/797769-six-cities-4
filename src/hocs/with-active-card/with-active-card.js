@@ -8,7 +8,7 @@ const withActiveCard = (Component) => {
 
       this.state = {
         activeCard: {},
-      }
+      };
 
       this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
       this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);

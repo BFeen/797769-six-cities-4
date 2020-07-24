@@ -10,10 +10,7 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {ActionCreator} from "../../reducer.js";
 import {getSortedOffers} from "../../common/utils.js";
-import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 
-
-const MapWrapped = withActiveCard(Map);
 
 const Main = (props) => {
   const {
@@ -24,6 +21,9 @@ const Main = (props) => {
     onCardTitleClick,
     handleCityChange,
     handleSortTypeChange,
+    onCardMouseEnter,
+    onCardMouseLeave,
+    activeCard,
   } = props;
 
   const placesCount = offers.length;
@@ -75,7 +75,7 @@ const Main = (props) => {
                 <b className="places__found">{placesCount} places to stay in {city.name}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
-                  
+
                   <Sorting
                     onSortTypeChange={handleSortTypeChange}
                   />
@@ -86,14 +86,17 @@ const Main = (props) => {
                   offers={sortedOffers}
                   onCardTitleClick={onCardTitleClick}
                   isMain={true}
+                  onCardMouseEnter={onCardMouseEnter}
+                  onCardMouseLeave={onCardMouseLeave}
                 />
 
               </section>
               <div className="cities__right-section">
-                <MapWrapped
+                <Map
                   city={city}
                   mapClassName={mapClassName}
                   offers={offers}
+                  activeCard={activeCard}
                 />
               </div>
             </div>
@@ -113,6 +116,9 @@ Main.propTypes = {
   onCardTitleClick: PropTypes.func.isRequired,
   handleCityChange: PropTypes.func.isRequired,
   handleSortTypeChange: PropTypes.func.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired,
+  activeCard: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

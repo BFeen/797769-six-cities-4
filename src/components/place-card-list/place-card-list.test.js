@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import PlaceCardList from "./place-card-list.jsx";
 
 
-const offers = [
+const offersMock = [
   {
     id: 0,
     city: `Amsterdam`,
@@ -63,9 +63,11 @@ describe(`PlaceCardList snapshot checking`, () => {
   it(`PlaceCardList rendering`, () => {
     const tree = renderer.create(
         <PlaceCardList
-          offers={offers}
+          offers={offersMock}
           onCardTitleClick={() => {}}
           isMain={true}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
         />
     ).toJSON();
 

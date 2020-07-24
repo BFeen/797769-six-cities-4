@@ -42,7 +42,7 @@ const SortType = {
   },
   RATING: {
     value: `top-rated`,
-    name: `Top rated first`, 
+    name: `Top rated first`,
   },
 };
 
