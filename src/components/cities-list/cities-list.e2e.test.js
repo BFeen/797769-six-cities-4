@@ -18,8 +18,8 @@ const citiesMock = [{
 
 describe(`CitiesList e2e testing`, () => {
   it(`Should adding class by clicking on element`, () => {
-    const handleCityChange = jest.fn(() => {
-      citiesList.setProps({currentCity: citiesMock[1]});
+    const handleCityChange = jest.fn((newCity) => {
+      citiesList.setProps({currentCity: newCity});
     });
 
     const citiesList = shallow(
@@ -35,5 +35,9 @@ describe(`CitiesList e2e testing`, () => {
 
     expect(handleCityChange).toHaveBeenCalledTimes(1);
     expect(handleCityChange).toHaveBeenCalledWith(citiesMock[1]);
+
+    const updatedCityElement = citiesList.find(`li.locations__item a`).at(1);
+
+    expect(updatedCityElement.hasClass(`tabs__item--active`)).toEqual(true);
   });
 });
