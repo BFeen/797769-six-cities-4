@@ -10,7 +10,11 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {ActionCreator} from "../../reducer.js";
 import {getSortedOffers} from "../../common/utils.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
+
+const PlaceCardListWrapped = withActiveItem(PlaceCardList);
+const CitiesListWrapped =  withActiveItem(CitiesList);
 
 const Main = (props) => {
   const {
@@ -58,9 +62,9 @@ const Main = (props) => {
         <div className="tabs">
           <section className="locations container">
 
-            <CitiesList
+            <CitiesListWrapped
               currentCity={city}
-              onCityChange={handleCityChange}
+              onItemClick={handleCityChange}
             />
 
           </section>
@@ -84,7 +88,7 @@ const Main = (props) => {
 
                 <PlaceCardList
                   offers={sortedOffers}
-                  onCardTitleClick={onCardTitleClick}
+                  onItemClick={onCardTitleClick}
                   isMain={true}
                   onCardMouseEnter={onCardMouseEnter}
                   onCardMouseLeave={onCardMouseLeave}

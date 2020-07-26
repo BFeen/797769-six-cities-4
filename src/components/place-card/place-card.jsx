@@ -9,7 +9,7 @@ const PlaceCard = (props) => {
     className,
     onCardMouseEnter,
     onCardMouseLeave,
-    onCardTitleClick,
+    onItemClick,
   } = props;
 
   return (
@@ -53,7 +53,7 @@ const PlaceCard = (props) => {
         <h2
           className="place-card__name"
           onClick={() => {
-            onCardTitleClick(offer.id);
+            onItemClick(offer.id);
           }}
         >
           <a href="#">{offer.title}</a>
@@ -69,7 +69,7 @@ PlaceCard.propTypes = {
   className: PropTypes.string.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
+  onItemClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;

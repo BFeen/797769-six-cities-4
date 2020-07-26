@@ -7,7 +7,7 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 const PlaceCardList = (props) => {
   const {
     offers,
-    onCardTitleClick,
+    onItemClick,
     isMain,
     onCardMouseEnter,
     onCardMouseLeave,
@@ -23,7 +23,7 @@ const PlaceCardList = (props) => {
             key={`${offer.id}`}
             offer={offer}
             className={cardClassName}
-            onCardTitleClick={onCardTitleClick}
+            onItemClick={onItemClick}
             onCardMouseEnter={onCardMouseEnter}
             onCardMouseLeave={onCardMouseLeave}
           />
@@ -35,7 +35,7 @@ const PlaceCardList = (props) => {
 
 PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
+  onItemClick: PropTypes.func.isRequired,
   isMain: PropTypes.bool.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,

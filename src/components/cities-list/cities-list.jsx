@@ -5,7 +5,7 @@ import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 class CitiesList extends PureComponent {
   render() {
-    const {currentCity, onCityChange} = this.props;
+    const {currentCity, onItemClick} = this.props;
 
     return (
       <ul className="locations__list tabs__list">
@@ -17,7 +17,7 @@ class CitiesList extends PureComponent {
               key={city.name + index}
               className="locations__item"
               onClick={() => {
-                onCityChange(city);
+                onItemClick(city);
               }}
             >
               <a
@@ -36,7 +36,7 @@ class CitiesList extends PureComponent {
 
 CitiesList.propTypes = {
   currentCity: cityPropTypes,
-  onCityChange: PropTypes.func.isRequired,
+  onItemClick: PropTypes.func.isRequired,
 };
 
 export default CitiesList;

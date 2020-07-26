@@ -7,7 +7,10 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {offersDetails} from "../../mocks/offers.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
+
+const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 
 const PlaceDetails = (props) => {
   const {
@@ -213,9 +216,9 @@ const PlaceDetails = (props) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            <PlaceCardList
+            <PlaceCardListWrapped
               offers={nearPlaces}
-              onCardTitleClick={onCardTitleClick}
+              onItemClick={onCardTitleClick}
               isMain={false}
               onCardMouseEnter={onCardMouseEnter}
               onCardMouseLeave={onCardMouseLeave}
