@@ -64,7 +64,7 @@ describe(`PlaceCardList snapshot checking`, () => {
     const tree = renderer.create(
         <PlaceCardList
           offers={offersMock}
-          onCardTitleClick={() => {}}
+          onItemClick={() => {}}
           isMain={true}
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}

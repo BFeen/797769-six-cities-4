@@ -25,7 +25,7 @@ describe(`CitiesList e2e testing`, () => {
     const citiesList = shallow(
         <CitiesList
           currentCity={citiesMock[0]}
-          onCityChange={handleCityChange}
+          onItemClick={handleCityChange}
         />
     );
 

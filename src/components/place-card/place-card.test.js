@@ -26,7 +26,7 @@ describe(`PlaceCard snapshot testing`, () => {
           className={`cities__place-card`}
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
-          onCardTitleClick={() => {}}
+          onItemClick={() => {}}
         />
     ).toJSON();
 

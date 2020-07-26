@@ -31,7 +31,7 @@ describe(`PlaceCard e2e tests`, () => {
         <PlaceCard
           offer={offerMock}
           className={`cities__place-card`}
-          onCardTitleClick={() => {}}
+          onItemClick={() => {}}
           onCardMouseEnter={handleCardMouseEnter}
           onCardMouseLeave={() => {}}
         />
@@ -51,7 +51,7 @@ describe(`PlaceCard e2e tests`, () => {
         <PlaceCard
           offer={offerMock}
           className={`cities__place-card`}
-          onCardTitleClick={() => {}}
+          onItemClick={() => {}}
           onCardMouseEnter={() => {}}
           onCardMouseLeave={handleCardMouseLeave}
         />

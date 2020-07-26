@@ -13,7 +13,7 @@ describe(`CitiesList snapshot testing`, () => {
     const tree = renderer.create(
         <CitiesList
           currentCity={cityMock}
-          onCityChange={() => {}}
+          onItemClick={() => {}}
         />
     ).toJSON();
 
