@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {SortType} from "../../common/const.js";
 
@@ -28,7 +28,7 @@ class Sorting extends PureComponent {
         })}
       </select>
     );
-  };
+  }
 }
 
 Sorting.propTypes = {

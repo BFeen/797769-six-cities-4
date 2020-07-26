@@ -14,7 +14,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
-const CitiesListWrapped =  withActiveItem(CitiesList);
+const CitiesListWrapped = withActiveItem(CitiesList);
 
 const Main = (props) => {
   const {
@@ -86,7 +86,7 @@ const Main = (props) => {
 
                 </form>
 
-                <PlaceCardList
+                <PlaceCardListWrapped
                   offers={sortedOffers}
                   onItemClick={onCardTitleClick}
                   isMain={true}
