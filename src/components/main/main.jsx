@@ -31,6 +31,7 @@ const Main = (props) => {
   } = props;
 
   const placesCount = offers.length;
+  const isEmpty = placesCount === 0;
   const sortedOffers = getSortedOffers(offers, sortType);
 
   return (
@@ -57,7 +58,7 @@ const Main = (props) => {
           </div>
         </div>
       </header>
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${isEmpty ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -71,7 +72,7 @@ const Main = (props) => {
         </div>
         <div className="cities">
 
-          {placesCount === 0
+          {isEmpty
             ? <MainEmpty />
             : <div className="cities__places-container container">
               <section className="cities__places places">

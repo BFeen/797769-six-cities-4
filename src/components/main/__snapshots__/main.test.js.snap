@@ -57,7 +57,7 @@ exports[`Main component tests: Render Main with no offers 1`] = `
     </div>
   </header>
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--index page__main--index-empty"
   >
     <h1
       className="visually-hidden"
@@ -244,7 +244,7 @@ exports[`Main component tests: Render Main. 1`] = `
     </div>
   </header>
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--index "
   >
     <h1
       className="visually-hidden"
