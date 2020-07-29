@@ -1,5 +1,9 @@
 const AVATAR_URL = `https://api.adorable.io/avatars/128`;
 
+const getOffersByCity = (cityName) => {
+  return offers.filter((offer) => offer.city === cityName);
+};
+
 const cities = [
   {
     name: `Paris`,
@@ -46,4 +50,4 @@ const SortType = {
   },
 };
 
-export {cities, MapClassNames, AVATAR_URL, SortType};
+export {cities, MapClassNames, AVATAR_URL, SortType, getOffersByCity};

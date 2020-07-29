@@ -1,4 +1,5 @@
-import {reducer, ActionType, ActionCreator} from "./reducer.js";
+import {reducer, ActionType, ActionCreator} from "./app.js";
+import {SortType} from "../../common/const.js";
 
 
 const offersMock = [
@@ -89,7 +90,7 @@ describe(`Reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       offerId: -1,
-      city: citiesMock[0],
+      currentCity: citiesMock[0],
       offers: [],
       sortType: `popular`,
     });
@@ -98,41 +99,31 @@ describe(`Reducer testing`, () => {
   it(`Reducer should assign given value`, () => {
     expect(reducer({
       offerId: -1,
-      city: citiesMock[1],
-      offers: offersMock,
     }, {
       type: ActionType.SELECT_OFFER,
       payload: 2,
     })).toEqual({
       offerId: 2,
-      city: citiesMock[1],
-      offers: offersMock,
     });
 
     expect(reducer({
-      offerId: -1,
-      city: citiesMock[1],
+      currentCity: citiesMock[1],
       offers: offersMock,
     }, {
       type: ActionType.CHANGE_CITY,
       payload: citiesMock[2],
     })).toEqual({
-      offerId: -1,
-      city: citiesMock[2],
+      currentCity: citiesMock[2],
       offers: [],
     });
 
     expect(reducer({
-      offerId: -1,
-      city: citiesMock[1],
-      offers: offersMock,
+      sortType: SortType.POPULAR.value
     }, {
-      type: ActionType.GET_OFFERS,
-      payload: offerMock,
+      type: ActionType.CHANGE_SORT_TYPE,
+      payload: SortType.RATING.value,
     })).toEqual({
-      offerId: -1,
-      city: citiesMock[1],
-      offers: offerMock,
+      sortType: SortType.RATING.value,
     });
   });
 });
@@ -152,10 +143,10 @@ describe(`ActionCreator testing`, () => {
     });
   });
 
-  it(`ActionCreator for getting offers returns correct action`, () => {
-    expect(ActionCreator.getOffers(citiesMock[1].name)).toEqual({
-      type: ActionType.GET_OFFERS,
-      payload: offersMock,
+  it(`ActionCreator for changing sortType should returns correct action`, () => {
+    expect(ActionCreator.changeSortType(SortType.HIGH_TO_LOW.value)).toEqual({
+      type: ActionType.CHANGE_SORT_TYPE,
+      payload: SortType.HIGH_TO_LOW.value,
     });
   });
 });
