@@ -5,7 +5,7 @@ import MockAdapter from "axios-mock-adapter";
 
 const api = createAPI(() => {});
 
-describe(`user reducer testing`, () => {
+describe(`User reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -50,7 +50,7 @@ describe(`user reducer testing`, () => {
     });
   });
 
-  describe(`ActionCreator works correctly`, () => {
+  describe(`User ActionCreator works correctly`, () => {
     it(`ActionCreator for require authorization returns correct action`, () => {
       expect(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)).toEqual({
         type: ActionType.REQUIRED_AUTHORIZATION,

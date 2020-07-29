@@ -1,4 +1,4 @@
-import extend from "../../common/utils.js";
+import {extend} from "../../common/utils.js";
 
 
 const AuthorizationStatus = {

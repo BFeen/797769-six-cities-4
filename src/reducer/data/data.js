@@ -8,9 +8,9 @@ const initialState = {
 };
 
 const ActionType = {
-  LOAD_OFFERS: `GET_OFFERS`,
+  LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_NEARBY: `LOAD_NEARBY`,
-  LOAD_REVIEWS: `GET_REVIEWS`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
 };
 
 const ActionCreator = {
@@ -20,17 +20,17 @@ const ActionCreator = {
       payload: offers,
     };
   },
-  loadReviews: (reviews) => {
-    return {
-      type: ActionType.LOAD_REVIEWS,
-      payload: reviews,
-    };
-  },
   loadNearby: (nearbyOffers) => {
     return {
       type: ActionType.LOAD_NEARBY,
       payload: nearbyOffers,
     }
+  },
+  loadReviews: (reviews) => {
+    return {
+      type: ActionType.LOAD_REVIEWS,
+      payload: reviews,
+    };
   },
 };
 
@@ -43,19 +43,20 @@ const Operation = {
       // catch ?
   },
 
+  loadNearby: (offerId) => (dispatch, getState, api) => {
+    return api.get(`/hotels/${offerId}/nearby`)
+      .then((response) => {
+        dispatch(ActionCreator.loadNearby(response.data));
+      });
+      // catch ?
+  },
+
   loadReviews: (offerId) => (dispatch, getState, api) => {
     return api.get(`/comments/${offerId}`)
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
       });
       // catch ?
-  },
-
-  loadNearby: (offerId) => (dispatch, getState, api) => {
-    return api.get(`/hotels/${offerId}/nearby`)
-      .then((response) => {
-        dispatch(ActionCreator.loadNearby(response.data));
-      });
   },
 };
 
@@ -68,6 +69,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_REVIEWS:
       return extend(state, {
         reviews: action.payload,
+      });
+    case ActionType.LOAD_NEARBY:
+      return extend(state, {
+        nearbyOffers: action.payload,
       });
   }
 

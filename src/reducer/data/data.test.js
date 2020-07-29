@@ -58,7 +58,7 @@ const offersMock = [
   }
 ];
 
-const nearbyOffersMock = offersMock.slice(3);
+const nearbyOffersMock = offersMock.slice(0, 3);
 
 const reviewsMock = [
   {
@@ -71,21 +71,21 @@ const reviewsMock = [
   }, {
     offerId: 1,
     userName: `John`,
-    userAvatar: `${AVATAR_URL}/3`,
+    userAvatar: `https://api.adorable.io/avatars/128/3`,
     rating: 5,
     description: `Best place of the world!`,
     dateTime: `December 2012`
   }, {
     offerId: 2,
     userName: `Mr. X`,
-    userAvatar: `${AVATAR_URL}/4`,
+    userAvatar: `https://api.adorable.io/avatars/128/4`,
     rating: 1,
     description: `The worst place of the world!`,
     dateTime: `June 2020`
   }, {
     offerId: 3,
     userName: `Leela Turanga`,
-    userAvatar: `${AVATAR_URL}/5`,
+    userAvatar: `https://api.adorable.io/avatars/128/5`,
     rating: 3,
     description: `Nice. But too many roaches.`,
     dateTime: `May 3001`
@@ -110,7 +110,7 @@ describe(`Data reducer testing`, () => {
       type: ActionType.LOAD_OFFERS,
       payload: offersMock,
     })).toEqual({
-      offersMock,
+      offers: offersMock,
     });
   });
 
@@ -121,7 +121,7 @@ describe(`Data reducer testing`, () => {
       type: ActionType.LOAD_REVIEWS,
       payload: reviewsMock,
     })).toEqual({
-      reviewsMock,
+      reviews: reviewsMock,
     });
   });
 
@@ -138,9 +138,9 @@ describe(`Data reducer testing`, () => {
 });
 
 describe(`Data Operation work correctly`, () => {
-  const apiMock = new MockAdapter(api);
-  const dispatch = jest.fn();
   it(`Should make a correct API call to '/hotels'`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
     const offersLoader = Operation.loadOffers();
 
     apiMock
@@ -157,28 +157,14 @@ describe(`Data Operation work correctly`, () => {
       });
   });
 
-  it(`Should make a correct API call to '/comments/:hotel-id'`, () => {
-    const reviewsLoader = Operation.loadReviews();
-
-    apiMock
-      .onGet(`/comments/1`)
-      .reply(200, [{fake: true}]);
-
-    return reviewsLoader(dispatch, () => {}, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.LOAD_REVIEWS,
-          payload: [{fake: true}],
-        });
-      });
-  });
-
   it(`Should make a correct API call to '/hotels/:hotel-id/nearby'`, () => {
-    const nearbyOffersLoader = Operation.loadNearby();
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offerId = 1;
+    const nearbyOffersLoader = Operation.loadNearby(offerId);
 
     apiMock
-      .onGet(`/hotels/1/nearby`)
+      .onGet(`/hotels/${offerId}/nearby`)
       .reply(200, [{fake: true}]);
 
     return nearbyOffersLoader(dispatch, () => {}, api)
@@ -186,6 +172,26 @@ describe(`Data Operation work correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_NEARBY,
+          payload: [{fake: true}],
+        });
+      });
+  });
+
+  it(`Should make a correct API call to '/comments/:hotel-id'`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offerId = 1;
+    const reviewsLoader = Operation.loadReviews(offerId);
+
+    apiMock
+      .onGet(`/comments/${offerId}`)
+      .reply(200, [{fake: true}]);
+
+    return reviewsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEWS,
           payload: [{fake: true}],
         });
       });
