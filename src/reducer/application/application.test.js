@@ -1,4 +1,4 @@
-import {reducer, ActionType, ActionCreator} from "./app.js";
+import {reducer, ActionType, ActionCreator} from "./application.js";
 import {SortType} from "../../common/const.js";
 
 
@@ -15,7 +15,7 @@ const citiesMock = [
   }
 ];
 
-describe(`App Reducer testing`, () => {
+describe(`Application Reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       offerId: -1,
@@ -54,7 +54,7 @@ describe(`App Reducer testing`, () => {
   });
 });
 
-describe(`App ActionCreator testing`, () => {
+describe(`Application ActionCreator testing`, () => {
   it(`ActionCreator returns correct action when offerId is changed`, () => {
     expect(ActionCreator.selectOffer(2)).toEqual({
       type: ActionType.SELECT_OFFER,

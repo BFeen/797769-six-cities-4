@@ -1,9 +1,5 @@
 const AVATAR_URL = `https://api.adorable.io/avatars/128`;
 
-const getOffersByCity = (offersList, cityName) => {
-  return offersList.filter((offer) => offer.city === cityName);
-};
-
 const cities = [
   {
     name: `Paris`,

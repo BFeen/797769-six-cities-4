@@ -1,4 +1,4 @@
-import {cities, SortType, getOffersByCity} from "../../common/const.js";
+import {cities, SortType} from "../../common/const.js";
 import {extend} from "../../common/utils.js";
 
 
@@ -40,7 +40,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return extend(state, {
         currentCity: action.payload,
-        // offers: getOffersByCity(action.payload.name) Фильтрация списка предложений по городу
       });
     case ActionType.CHANGE_SORT_TYPE:
       return extend(state, {
