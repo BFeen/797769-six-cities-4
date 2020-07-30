@@ -8,10 +8,9 @@ import {ActionCreator} from "../../reducer/application/application.js";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import reviewPropTypes from "../../prop-types/review-prop-types.js";
+import {getOffersByCity} from "../../reducer/data/selectors.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 import {getCurrentCity, getOfferId} from "../../reducer/application/selectors.js";
-import {getOffersByCity} from "../../reducer/data/selectors.js";
 
 
 const MainWrapped = withActiveCard(Main);
@@ -32,13 +31,11 @@ class App extends PureComponent {
         />
       );
     } else {
-      const {reviews} = this.props;
       return (
         <PlaceDetailsWrapped
           city={currentCity}
           offerId={offerId}
           offers={offers}
-          reviews={reviews}
           mapClassName={MapClassNames.PROPERTY}
           onCardTitleClick={handleCardTitleClick}
         />
@@ -47,7 +44,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {currentCity, offers, reviews, handleCardTitleClick} = this.props;
+    const {currentCity, offers, handleCardTitleClick} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -59,7 +56,6 @@ class App extends PureComponent {
               city={currentCity}
               offerId={0}
               offers={offers}
-              reviews={reviews}
               mapClassName={MapClassNames.PROPERTY}
               onCardTitleClick={handleCardTitleClick}
             />
@@ -74,7 +70,6 @@ App.propTypes = {
   currentCity: cityPropTypes,
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   handleCardTitleClick: PropTypes.func.isRequired,
 };
 

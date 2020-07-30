@@ -6,8 +6,9 @@ import Map from "../map/map.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
-import {offersDetails} from "../../mocks/offers.js";
+import {connect} from "react-redux";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {getReviews, getNearbyOffers} from "../../reducer/data/selectors.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
@@ -17,6 +18,7 @@ const PlaceDetails = (props) => {
     city,
     offers,
     offerId,
+    nearbyOffers,
     mapClassName,
     reviews,
     onCardTitleClick,
@@ -26,14 +28,8 @@ const PlaceDetails = (props) => {
   } = props;
 
   const currentOffer = offers.find((item) => item.id === offerId);
-  const nearPlaces = [].concat(offers.slice(0, offerId), offers.slice(offerId + 1));
-
-  const details = offersDetails.reduce((obj, item) => {
-    if (item.id === offerId) {
-      obj = Object.assign({}, item.details);
-    }
-    return obj;
-  }, {});
+  const {details} = currentOffer;
+  const {host} = details;
 
   return (
     <div className="page">
@@ -67,7 +63,7 @@ const PlaceDetails = (props) => {
               {details.pictures.map((picture, index) => {
                 return (
                   <div key={`${picture + index}`} className="property__image-wrapper">
-                    <img className="property__image" src={picture} alt="Photo studio" />
+                    <img className="property__image" src={picture} alt={`Photo ${currentOffer.type}`} />
                   </div>
                 );
               })}
@@ -95,7 +91,7 @@ const PlaceDetails = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span className={{width: `80%`}}></span>
+                  <span style={{width: `80%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{currentOffer.rating}</span>
@@ -131,22 +127,16 @@ const PlaceDetails = (props) => {
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src={details.host.avatar} width="74" height="74" alt="Host avatar" />
+                    <img className="property__avatar user__avatar" src={host.avatar} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    {details.host.name}
+                    {host.name}
                   </span>
                 </div>
                 <div className="property__description">
-
-                  {details.description.map((desc, index) => {
-                    return (
-                      <p key={`${offerId + index}`} className="property__text">
-                        {desc}
-                      </p>
-                    );
-                  })}
-
+                  <p className="property__text">
+                    {details.description}
+                  </p>
                 </div>
               </div>
               <section className="property__reviews reviews">
@@ -208,7 +198,7 @@ const PlaceDetails = (props) => {
           <Map
             city={city}
             mapClassName={mapClassName}
-            offers={nearPlaces}
+            offers={nearbyOffers}
             activeCard={activeCard}
           />
         </section>
@@ -217,7 +207,7 @@ const PlaceDetails = (props) => {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
             <PlaceCardListWrapped
-              offers={nearPlaces}
+              offers={nearbyOffers}
               onItemClick={onCardTitleClick}
               isMain={false}
               onCardMouseEnter={onCardMouseEnter}
@@ -235,6 +225,7 @@ PlaceDetails.propTypes = {
   city: cityPropTypes,
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  nearbyOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   mapClassName: PropTypes.string.isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
@@ -243,4 +234,10 @@ PlaceDetails.propTypes = {
   activeCard: PropTypes.object.isRequired,
 };
 
-export default PlaceDetails;
+const mapStateToProps = (state) => ({
+  reviews: getReviews(state),
+  nearbyOffers: getNearbyOffers(state),
+});
+
+export {PlaceDetails};
+export default connect(mapStateToProps)(PlaceDetails);
