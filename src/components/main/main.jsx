@@ -8,9 +8,10 @@ import MainEmpty from "../main-empty/main-empty.jsx";
 import Sorting from "../sorting/sorting.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/application/application.js";
 import {getSortedOffers} from "../../common/utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {getSortType} from "../../reducer/application/selectors.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
@@ -127,13 +128,13 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  sortType: state.sortType,
+  sortType: getSortType(state),
 });
 
 const mapDispatchToPtops = (dispatch) => ({
   handleCityChange(city) {
     dispatch(ActionCreator.changeCity(city));
-    dispatch(ActionCreator.getOffers(city.name));
+    // dispatch(ActionCreator.getOffers(city.name));
   },
 
   handleSortTypeChange(sortType) {

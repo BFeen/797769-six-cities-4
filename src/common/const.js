@@ -46,4 +46,4 @@ const SortType = {
   },
 };
 
-export {cities, MapClassNames, AVATAR_URL, SortType, getOffersByCity};
+export {cities, MapClassNames, AVATAR_URL, SortType};

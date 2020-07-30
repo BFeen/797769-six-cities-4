@@ -38,6 +38,7 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
+        console.log(response.data);
         dispatch(ActionCreator.loadOffers(response.data));
       });
       // catch ?

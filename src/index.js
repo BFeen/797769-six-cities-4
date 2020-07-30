@@ -6,9 +6,9 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import {Provider} from "react-redux";
 import reviews from "./mocks/reviews.js";
-import {reducer} from "./reducer.js";
+import reducer from "./reducer/reducer.js";
 import {createAPI} from "./api.js";
-
+import {Operation as DataOperation} from "./reducer/data/data.js";
 
 const onUnauthorized = () => {};
 
@@ -20,6 +20,8 @@ const store = createStore(
         applyMiddleware(thunk.withExtraArgument(api))
     )
 );
+
+store.dispatch(DataOperation.loadOffers());
 
 ReactDOM.render(
     <Provider store={store}>
