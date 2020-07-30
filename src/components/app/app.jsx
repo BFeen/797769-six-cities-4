@@ -11,6 +11,7 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import {getOffersByCity} from "../../reducer/data/selectors.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 import {getCurrentCity, getOfferId} from "../../reducer/application/selectors.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 
 
 const MainWrapped = withActiveCard(Main);
@@ -20,6 +21,7 @@ class App extends PureComponent {
   _renderMainPage() {
     const {currentCity, offers, offerId, handleCardTitleClick} = this.props;
     const offer = offers.find((item) => item.id === offerId);
+    // console.log(offers)
 
     if (!offer) {
       return (
@@ -82,6 +84,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleCardTitleClick(offerId) {
     dispatch(ActionCreator.selectOffer(offerId));
+    dispatch(DataOperation.loadNearby(offerId));
+    dispatch(DataOperation.loadReviews(offerId));
+    console.log(offerId)
   }
 });
 

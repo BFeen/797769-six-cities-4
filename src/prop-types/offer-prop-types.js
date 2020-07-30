@@ -2,12 +2,26 @@ import PropTypes from "prop-types";
 
 export default PropTypes.shape({
   id: PropTypes.number.isRequired,
+  type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`]).isRequired,
   city: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
-  isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
-  type: PropTypes.oneOf([`Apartment`, `Room`, `House`, `Hotel`]).isRequired,
+  isPremium: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   rating: PropTypes.number.isRequired,
   coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  details: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    bedroomsCount: PropTypes.number.isRequired,
+    pictures: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    maxGuests: PropTypes.number.isRequired,
+    insideItems: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    }).isRequired,
+  }).isRequired,
 }).isRequired;

@@ -5,22 +5,20 @@ import reviewPropTypes from "../../prop-types/review-prop-types.js";
 
 
 const ReviewItemList = (props) => {
-  const {offerId, reviews} = props;
+  const {reviews} = props;
+  const reviewsAmount = reviews.length;
 
   return (
     <Fragment>
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsAmount}</span></h2>
       <ul className="reviews__list">
         {reviews.map((item, index) => {
-          if (item.offerId === offerId) {
-            return (
-              <ReviewItem
-                key={`${item.offerId}${index}`}
-                review={item}
-              />
-            );
-          }
-          return null;
+          return (
+            <ReviewItem
+              key={`${item.id}${index}`}
+              review={item}
+            />
+          );
         })}
       </ul>
     </Fragment>
@@ -28,7 +26,6 @@ const ReviewItemList = (props) => {
 };
 
 ReviewItemList.propTypes = {
-  offerId: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
 };
 

@@ -4,15 +4,22 @@ import reviewPropTypes from "../../prop-types/review-prop-types.js";
 
 const ReviewItem = (props) => {
   const {review} = props;
+  const {user} = review;
+  const slicedDate = review.dateTime.slice(0,10);
 
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={review.userAvatar} width="54" height="54" alt={review.userName} />
+          <img
+            className="reviews__avatar user__avatar"
+            src={user.avatar}
+            width="54" height="54"
+            alt={`Photo ${user.name}`}
+          />
         </div>
         <span className="reviews__user-name">
-          {review.userName}
+          {user.name}
         </span>
       </div>
       <div className="reviews__info">
@@ -25,7 +32,10 @@ const ReviewItem = (props) => {
         <p className="reviews__text">
           {review.description}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{review.dateTime}</time>
+        <time
+          className="reviews__time"
+          dateTime={slicedDate}
+        >{review.dateTime}</time>
       </div>
     </li>
   );

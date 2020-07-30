@@ -12,18 +12,18 @@ const offerAdapter = (offer) => {
     isPremium: offer['is_premium'],
     isFavorite: offer['is_favorite'],
     rating: offer['rating'],
-    location: offerLocation,
+    coordinates: offerLocation,
     details: {
-      description: offer['description'], // был массив, теперь строка
-      bedroomsCount: offer['bedrooms'], // number
-      pictures: offer['images'], // array: string
-      maxGuests: offer['max_adults'], // number
-      insideItems: offer['goods'], // array: string
+      description: offer['description'],
+      bedroomsCount: offer['bedrooms'],
+      pictures: offer['images'],
+      maxGuests: offer['max_adults'],
+      insideItems: offer['goods'],
       host: {
         id: host['id'],
         avatar: host['avatar_url'],
         name: host['name'],
-        isSuper: host['is_pro'],
+        isPro: host['is_pro'],
       }
     }
   }
@@ -37,7 +37,6 @@ const reviewAdapter = (review) => {
     comment: review['comment'],
     dateTime: review['date'],
     rating: review['rating'],
-    // следующие данные изменены
     user: {
       id: user['id'],
       name: user['name'],

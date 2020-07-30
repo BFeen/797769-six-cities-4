@@ -142,7 +142,6 @@ const PlaceDetails = (props) => {
               <section className="property__reviews reviews">
 
                 <ReviewItemList
-                  offerId={offerId}
                   reviews={reviews}
                 />
 

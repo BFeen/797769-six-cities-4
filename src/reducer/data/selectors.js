@@ -11,7 +11,7 @@ export const getOffersByCity = createSelector(
   getOffers,
   getCurrentCity,
   (offersList, currentCity) => {
-    return offersList.filter((offer) => offer.city === currentCity);
+    return offersList.filter((offer) => offer.city === currentCity.name);
   }
 );
 

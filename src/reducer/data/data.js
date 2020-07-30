@@ -1,4 +1,5 @@
 import {extend} from "../../common/utils.js";
+import {offerAdapter, reviewAdapter} from "../adapters.js";
 
 
 const initialState = {
@@ -38,26 +39,39 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        console.log(response.data);
-        dispatch(ActionCreator.loadOffers(response.data));
+        return response.data.map((item) => offerAdapter(item));
+      })
+      .then((offers) => {
+        dispatch(ActionCreator.loadOffers(offers));
       });
-      // catch ?
   },
 
   loadNearby: (offerId) => (dispatch, getState, api) => {
+    if (offerId < 0) {
+      return [];
+    }
+
     return api.get(`/hotels/${offerId}/nearby`)
       .then((response) => {
-        dispatch(ActionCreator.loadNearby(response.data));
+        return response.data.map((item) => offerAdapter(item));
+      })
+      .then((nearbyOffers) => {
+        dispatch(ActionCreator.loadNearby(nearbyOffers));
       });
-      // catch ?
   },
 
   loadReviews: (offerId) => (dispatch, getState, api) => {
+    if (offerId < 0) {
+      return [];
+    }
+
     return api.get(`/comments/${offerId}`)
       .then((response) => {
-        dispatch(ActionCreator.loadReviews(response.data));
+        return response.data.map((item) => reviewAdapter(item));
+      })
+      .then((reviews) => {
+        dispatch(ActionCreator.loadReviews(reviews));
       });
-      // catch ?
   },
 };
 
