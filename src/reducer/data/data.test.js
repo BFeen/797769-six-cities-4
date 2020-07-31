@@ -2,59 +2,146 @@ import {reducer, Operation, ActionType} from "./data.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 
+
 const offersMock = [
   {
     id: 0,
+    type: `apartment`,
     city: `Amsterdam`,
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
-    isPremium: true,
     price: 200,
-    type: `Apartment`,
+    isPremium: true,
+    isFavorite: false,
     rating: 4,
     coordinates: [
       52.3909553943508,
       4.85309666406198
     ],
+    details: {
+      description: `A quiet cozy and picturesque that hides behind a a river...`,
+      bedroomsCount: 3,
+      pictures: [
+        `img/apartment-01.jpg`,
+        `img/room.jpg`,
+      ],
+      maxGuests: 4,
+      insideItems: [
+        `Wi-Fi`,
+        `Heating`,
+        `Kitchen`,
+      ],
+      host: {
+        id: 0,
+        avatar: `img/avatar-angelina.jpg`,
+        name: `Angelina`,
+        isPro: true,
+      }
+    }
   }, {
     id: 1,
+    type: `house`,
     city: `Amsterdam`,
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
-    isPremium: true,
     price: 170,
-    type: `House`,
+    isPremium: true,
+    isFavorite: false,
     rating: 5,
     coordinates: [
       52.369553943508,
       4.85309666406198
-    ]
+    ],
+    details: {
+      description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`,
+      bedroomsCount: 3,
+      pictures: [
+        `img/room.jpg`,
+        `img/apartment-02.jpg`,
+      ],
+      maxGuests: 4,
+      insideItems: [
+        `Wi-Fi`,
+        `Heating`,
+        `Kitchen`,
+        `Washing machine`,
+      ],
+      host: {
+        id: 1,
+        avatar: `img/avatar-max.jpg`,
+        name: `Max`,
+        isPro: true,
+      }
+    }
   }, {
     id: 2,
     city: `Amsterdam`,
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
+    isFavorite: true,
     price: 70,
-    type: `Room`,
+    type: `room`,
     rating: 3,
     coordinates: [
       52.3909553943508,
       4.929309666406198
-    ]
+    ],
+    details: {
+      description: `Eligendi repellendus ut optio ad repudiandae`,
+      bedroomsCount: 2,
+      pictures: [
+        `img/apartment-02.jpg`,
+        `img/apartment-03.jpg`,
+      ],
+      maxGuests: 2,
+      insideItems: [
+        `Wi-Fi`,
+        `Kitchen`,
+        `Friddge`,
+      ],
+      host: {
+        id: 2,
+        avatar: `avatar.jpg`,
+        name: `Alessa`,
+        isPro: false,
+      }
+    }
   }, {
     id: 3,
     city: `Amsterdam`,
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
+    isFavorite: true,
     price: 150,
-    type: `Apartment`,
+    type: `apartment`,
     rating: 4,
     coordinates: [
       52.3809553943508,
       4.939309666406198
-    ]
+    ],
+    details: {
+      description: `Quia labore atque nostrum eum repudiandae laboriosam`,
+      bedroomsCount: 1,
+      pictures: [
+        `img/studio-01.jpg`,
+        `img/apartment-01.jpg`,
+      ],
+      maxGuests: 2,
+      insideItems: [
+        `Wi-Fi`,
+        `Kitchen`,
+        `Friddge`,
+        `Cabel TV`,
+      ],
+      host: {
+        id: 3,
+        avatar: `avatar-2.jpg`,
+        name: `Kristian`,
+        isPro: false,
+      }
+    }
   }
 ];
 
@@ -62,35 +149,101 @@ const nearbyOffersMock = offersMock.slice(0, 3);
 
 const reviewsMock = [
   {
-    offerId: 0,
-    userName: `Max`,
-    userAvatar: `img/avatar-max.jpg`,
+    id: 0,
+    comment: `A quiet cozy and picturesque that...`,
+    dateTime: `April 2014`,
     rating: 4,
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    dateTime: `April 2014`
+    user: {
+      id: 0,
+      name: `Max`,
+      avatar: `img/avatar-max.jpg`,
+      isPro: true,
+    }
   }, {
-    offerId: 1,
-    userName: `John`,
-    userAvatar: `https://api.adorable.io/avatars/128/3`,
+    id: 1,
+    comment: `Best place of the world!`,
+    dateTime: `December 2012`,
     rating: 5,
-    description: `Best place of the world!`,
-    dateTime: `December 2012`
+    user: {
+      id: 1,
+      name: `John`,
+      avatar: `https://api.adorable.io/avatars/128/5`,
+      isPro: true,
+    }
   }, {
-    offerId: 2,
-    userName: `Mr. X`,
-    userAvatar: `https://api.adorable.io/avatars/128/4`,
+    id: 2,
+    comment: `The worst place of the world!`,
+    dateTime: `June 2020`,
     rating: 1,
-    description: `The worst place of the world!`,
-    dateTime: `June 2020`
+    user: {
+      id: 2,
+      name: `Mr. X`,
+      avatar: `https://api.adorable.io/avatars/128/6`,
+      isPro: false,
+    }
   }, {
-    offerId: 3,
-    userName: `Leela Turanga`,
-    userAvatar: `https://api.adorable.io/avatars/128/5`,
+    id: 3,
+    comment: `Nice. But too many roaches.`,
+    dateTime: `May 3001`,
     rating: 3,
-    description: `Nice. But too many roaches.`,
-    dateTime: `May 3001`
-  }
+    user: {
+      id: 3,
+      name: `Leela Turanga`,
+      avatar: `https://api.adorable.io/avatars/128/7`,
+      isPro: false,
+    }
+  },
 ];
+
+const offerRaw = [{
+  "bedrooms": 3,
+  "city": {
+    "location": {
+      "latitude": 52.3909553943508,
+      "longitude": 4.85309666406198,
+      "zoom": 10
+    },
+    "name": "Amsterdam"
+  },
+  "description": "A quiet cozy and picturesque that hides behind a a river...",
+  "goods": ["Wi-Fi", "Heating", "Kitchen"],
+  "host": {
+    "avatar_url": "img/avatar-angelina.jpg",
+    "id": 0,
+    "is_pro": true,
+    "name": "Angelina"
+  },
+  "id": 0,
+  "images": [
+    "img/apartment-01.jpg",
+    "img/room.jpg"],
+  "is_favorite": false,
+  "is_premium": true,
+  "location": {
+    "latitude": 52.3909553943508,
+    "longitude": 4.85309666406198,
+    "zoom": 8
+  },
+  "max_adults": 4,
+  "preview_image": "img/apartment-01.jpg",
+  "price": 200,
+  "rating": 4,
+  "title": "Beautiful & luxurious apartment at great location",
+  "type": "apartment"
+}];
+
+const reviewRaw = [{
+  "comment": "A quiet cozy and picturesque that...",
+  "date": "April 2014",
+  "id": 0,
+  "rating": 4,
+  "user": {
+    "avatar_url": "img/avatar-max.jpg",
+    "id": 0,
+    "is_pro": true,
+    "name": "Max"
+  }
+}];
 
 const api = createAPI(() => {});
 
@@ -145,14 +298,14 @@ describe(`Data Operation work correctly`, () => {
 
     apiMock
       .onGet(`/hotels`)
-      .reply(200, [{fake: true}]);
+      .reply(200, offerRaw);
 
     return offersLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_OFFERS,
-          payload: [{fake: true}],
+          payload: [offersMock[0]],
         });
       });
   });
@@ -160,19 +313,19 @@ describe(`Data Operation work correctly`, () => {
   it(`Should make a correct API call to '/hotels/:hotel-id/nearby'`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const offerId = 1;
+    const offerId = 0;
     const nearbyOffersLoader = Operation.loadNearby(offerId);
 
     apiMock
       .onGet(`/hotels/${offerId}/nearby`)
-      .reply(200, [{fake: true}]);
+      .reply(200, offerRaw);
 
     return nearbyOffersLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_NEARBY,
-          payload: [{fake: true}],
+          payload: [offersMock[0]],
         });
       });
   });
@@ -180,19 +333,19 @@ describe(`Data Operation work correctly`, () => {
   it(`Should make a correct API call to '/comments/:hotel-id'`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const offerId = 1;
+    const offerId = 0;
     const reviewsLoader = Operation.loadReviews(offerId);
 
     apiMock
       .onGet(`/comments/${offerId}`)
-      .reply(200, [{fake: true}]);
+      .reply(200, reviewRaw);
 
     return reviewsLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_REVIEWS,
-          payload: [{fake: true}],
+          payload: [reviewsMock[0]],
         });
       });
   });

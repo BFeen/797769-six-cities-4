@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Main component tests: Render Main with no offers 1`] = `
+exports[`Main component snapshot testing Render Main with no offers 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -187,7 +187,7 @@ exports[`Main component tests: Render Main with no offers 1`] = `
 </div>
 `;
 
-exports[`Main component tests: Render Main. 1`] = `
+exports[`Main component snapshot testing Render Main. 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -508,7 +508,7 @@ exports[`Main component tests: Render Main. 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  apartment
                 </p>
               </div>
             </article>
@@ -613,7 +613,7 @@ exports[`Main component tests: Render Main. 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  House
+                  house
                 </p>
               </div>
             </article>
@@ -711,7 +711,7 @@ exports[`Main component tests: Render Main. 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  Room
+                  room
                 </p>
               </div>
             </article>
@@ -809,7 +809,7 @@ exports[`Main component tests: Render Main. 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  apartment
                 </p>
               </div>
             </article>

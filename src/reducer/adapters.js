@@ -44,6 +44,14 @@ const reviewAdapter = (review) => {
       isPro: user['is_pro'],
     }
   }
-}
+};
 
-export {offerAdapter, reviewAdapter};
+const parseOffers = (offers) => {
+  return offers.map((item) => offerAdapter(item));
+};
+
+const parseReviews = (reviews) => {
+  return reviews.map((item) => reviewAdapter(item));
+};
+
+export {offerAdapter, reviewAdapter, parseOffers, parseReviews};

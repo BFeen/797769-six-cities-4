@@ -3,36 +3,52 @@ import renderer from "react-test-renderer";
 import ReviewItemList from "./review-item-list.jsx";
 
 
-const reviews = [
+const reviewsMock = [
   {
-    offerId: 0,
-    userName: `Max`,
-    userAvatar: `img/avatar-max.jpg`,
+    id: 0,
+    comment: `A quiet cozy and picturesque that...`,
+    dateTime: `April 2014`,
     rating: 4,
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    dateTime: `April 2014`
+    user: {
+      id: 0,
+      name: `Max`,
+      avatar: `img/avatar-max.jpg`,
+      isPro: true,
+    }
   }, {
-    offerId: 1,
-    userName: `John`,
-    userAvatar: `https://api.adorable.io/avatars/128/5`,
+    id: 1,
+    comment: `Best place of the world!`,
+    dateTime: `December 2012`,
     rating: 5,
-    description: `Best place of the world!`,
-    dateTime: `December 2012`
+    user: {
+      id: 1,
+      name: `John`,
+      avatar: `https://api.adorable.io/avatars/128/5`,
+      isPro: true,
+    }
   }, {
-    offerId: 2,
-    userName: `Mr. X`,
-    userAvatar: `https://api.adorable.io/avatars/128/6`,
+    id: 2,
+    comment: `The worst place of the world!`,
+    dateTime: `June 2020`,
     rating: 1,
-    description: `The worst place of the world!`,
-    dateTime: `June 2020`
+    user: {
+      id: 2,
+      name: `Mr. X`,
+      avatar: `https://api.adorable.io/avatars/128/6`,
+      isPro: false,
+    }
   }, {
-    offerId: 3,
-    userName: `Leela Turanga`,
-    userAvatar: `https://api.adorable.io/avatars/128/7`,
+    id: 3,
+    comment: `Nice. But too many roaches.`,
+    dateTime: `May 3001`,
     rating: 3,
-    description: `Nice. But too many roaches.`,
-    dateTime: `May 3001`
-  }
+    user: {
+      id: 3,
+      name: `Leela Turanga`,
+      avatar: `https://api.adorable.io/avatars/128/7`,
+      isPro: false,
+    }
+  },
 ];
 
 describe(`ReviewItemList snapshot testing`, () => {
@@ -40,7 +56,7 @@ describe(`ReviewItemList snapshot testing`, () => {
     const tree = renderer.create(
         <ReviewItemList
           offerId={2}
-          reviews={reviews}
+          reviews={reviewsMock}
         />
     ).toJSON();
 

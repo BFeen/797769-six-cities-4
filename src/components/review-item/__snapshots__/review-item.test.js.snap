@@ -11,17 +11,17 @@ exports[`ReviewItem snapshot testing Review item rendering correctly 1`] = `
       className="reviews__avatar-wrapper user__avatar-wrapper"
     >
       <img
-        alt="John"
+        alt="Photo Max"
         className="reviews__avatar user__avatar"
         height="54"
-        src="https://api.adorable.io/avatars/128/5"
+        src="img/avatar-max.jpg"
         width="54"
       />
     </div>
     <span
       className="reviews__user-name"
     >
-      John
+      Max
     </span>
   </div>
   <div
@@ -50,13 +50,13 @@ exports[`ReviewItem snapshot testing Review item rendering correctly 1`] = `
     <p
       className="reviews__text"
     >
-      Best place of the world!
+      A quiet cozy and picturesque that...
     </p>
     <time
       className="reviews__time"
-      dateTime="2019-04-24"
+      dateTime="April 2014"
     >
-      December 2012
+      April 2014
     </time>
   </div>
 </li>

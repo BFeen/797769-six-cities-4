@@ -21,7 +21,6 @@ class App extends PureComponent {
   _renderMainPage() {
     const {currentCity, offers, offerId, handleCardTitleClick} = this.props;
     const offer = offers.find((item) => item.id === offerId);
-    // console.log(offers)
 
     if (!offer) {
       return (
@@ -86,7 +85,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.selectOffer(offerId));
     dispatch(DataOperation.loadNearby(offerId));
     dispatch(DataOperation.loadReviews(offerId));
-    console.log(offerId)
   }
 });
 

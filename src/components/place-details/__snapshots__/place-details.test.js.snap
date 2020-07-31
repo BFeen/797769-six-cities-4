@@ -73,25 +73,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Photo studio"
-              className="property__image"
-              src="img/apartment-03.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="img/apartment-01.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
+              alt="Photo house"
               className="property__image"
               src="img/room.jpg"
             />
@@ -100,27 +82,9 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Photo studio"
+              alt="Photo house"
               className="property__image"
               src="img/apartment-02.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="img/studio-01.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="img/apartment-01.jpg"
             />
           </div>
         </div>
@@ -173,7 +137,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
               className="property__stars rating__stars"
             >
               <span
-                className={
+                style={
                   Object {
                     "width": "80%",
                   }
@@ -197,7 +161,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              House
+              house
             </li>
             <li
               className="property__feature property__feature--bedrooms"
@@ -254,11 +218,6 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
               <li
                 className="property__inside-item"
               >
-                Friddge
-              </li>
-              <li
-                className="property__inside-item"
-              >
                 Washing machine
               </li>
             </ul>
@@ -311,7 +270,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
               <span
                 className="reviews__amount"
               >
-                1
+                4
               </span>
             </h2>
             <ul
@@ -327,7 +286,66 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
                     className="reviews__avatar-wrapper user__avatar-wrapper"
                   >
                     <img
-                      alt="John"
+                      alt="Photo Max"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="img/avatar-max.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    A quiet cozy and picturesque that...
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="April 2014"
+                  >
+                    April 2014
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Photo John"
                       className="reviews__avatar user__avatar"
                       height="54"
                       src="https://api.adorable.io/avatars/128/5"
@@ -370,9 +388,127 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-04-24"
+                    dateTime="December 2"
                   >
                     December 2012
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Photo Mr. X"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="https://api.adorable.io/avatars/128/6"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Mr. X
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    The worst place of the world!
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="June 2020"
+                  >
+                    June 2020
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Photo Leela Turanga"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="https://api.adorable.io/avatars/128/7"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Leela Turanga
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "80%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    Nice. But too many roaches.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="May 3001"
+                  >
+                    May 3001
                   </time>
                 </div>
               </li>
@@ -659,7 +795,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
               <p
                 className="place-card__type"
               >
-                Apartment
+                apartment
               </p>
             </div>
           </article>
@@ -757,7 +893,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
               <p
                 className="place-card__type"
               >
-                Room
+                room
               </p>
             </div>
           </article>
@@ -855,7 +991,7 @@ exports[`PlaceDetails snapshot test PlaceDetails rendering 1`] = `
               <p
                 className="place-card__type"
               >
-                Apartment
+                apartment
               </p>
             </div>
           </article>

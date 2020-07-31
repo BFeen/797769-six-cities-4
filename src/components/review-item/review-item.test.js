@@ -4,12 +4,16 @@ import ReviewItem from "./review-item.jsx";
 
 
 const mockReview = {
-  offerId: 1,
-  userName: `John`,
-  userAvatar: `https://api.adorable.io/avatars/128/5`,
-  rating: 5,
-  description: `Best place of the world!`,
-  dateTime: `December 2012`
+  id: 0,
+  comment: `A quiet cozy and picturesque that...`,
+  dateTime: `April 2014`,
+  rating: 4,
+  user: {
+    id: 0,
+    name: `Max`,
+    avatar: `img/avatar-max.jpg`,
+    isPro: true,
+  }
 };
 
 describe(`ReviewItem snapshot testing`, () => {

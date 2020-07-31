@@ -30,7 +30,7 @@ const ReviewItem = (props) => {
           </div>
         </div>
         <p className="reviews__text">
-          {review.description}
+          {review.comment}
         </p>
         <time
           className="reviews__time"

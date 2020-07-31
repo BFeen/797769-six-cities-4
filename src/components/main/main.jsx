@@ -134,7 +134,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPtops = (dispatch) => ({
   handleCityChange(city) {
     dispatch(ActionCreator.changeCity(city));
-    // dispatch(ActionCreator.getOffers(city.name));
   },
 
   handleSortTypeChange(sortType) {

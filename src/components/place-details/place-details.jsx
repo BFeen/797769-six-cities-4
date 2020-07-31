@@ -101,10 +101,10 @@ const PlaceDetails = (props) => {
                   {currentOffer.type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {details.bedroomsCount}
+                  {`${details.bedroomsCount} bedrooms`}
                 </li>
                 <li className="property__feature property__feature--adults">
-                  {details.maxGuests}
+                  {`Max ${details.maxGuests} adults`}
                 </li>
               </ul>
               <div className="property__price">

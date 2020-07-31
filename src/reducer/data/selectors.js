@@ -1,5 +1,6 @@
 import {createSelector} from "reselect";
 import {getCurrentCity} from "../application/selectors.js";
+import {parseOffers, parseReviews} from "../adapters.js";
 import NameSpace from "../name-space.js";
 
 

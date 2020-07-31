@@ -1,5 +1,5 @@
 import {extend} from "../../common/utils.js";
-import {offerAdapter, reviewAdapter} from "../adapters.js";
+import {parseOffers, parseReviews} from "../adapters.js";
 
 
 const initialState = {
@@ -39,10 +39,7 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        return response.data.map((item) => offerAdapter(item));
-      })
-      .then((offers) => {
-        dispatch(ActionCreator.loadOffers(offers));
+        dispatch(ActionCreator.loadOffers(parseOffers(response.data)));
       });
   },
 
@@ -53,10 +50,7 @@ const Operation = {
 
     return api.get(`/hotels/${offerId}/nearby`)
       .then((response) => {
-        return response.data.map((item) => offerAdapter(item));
-      })
-      .then((nearbyOffers) => {
-        dispatch(ActionCreator.loadNearby(nearbyOffers));
+        dispatch(ActionCreator.loadNearby(parseOffers(response.data)));
       });
   },
 
@@ -67,10 +61,7 @@ const Operation = {
 
     return api.get(`/comments/${offerId}`)
       .then((response) => {
-        return response.data.map((item) => reviewAdapter(item));
-      })
-      .then((reviews) => {
-        dispatch(ActionCreator.loadReviews(reviews));
+        dispatch(ActionCreator.loadReviews(parseReviews(response.data)));
       });
   },
 };
