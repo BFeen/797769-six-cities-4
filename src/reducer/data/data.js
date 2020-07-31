@@ -25,7 +25,7 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_NEARBY,
       payload: nearbyOffers,
-    }
+    };
   },
   loadReviews: (reviews) => {
     return {

@@ -5,7 +5,7 @@ import reviewPropTypes from "../../prop-types/review-prop-types.js";
 const ReviewItem = (props) => {
   const {review} = props;
   const {user} = review;
-  const slicedDate = review.dateTime.slice(0,10);
+  const slicedDate = review.dateTime.slice(0, 10);
 
   return (
     <li className="reviews__item">

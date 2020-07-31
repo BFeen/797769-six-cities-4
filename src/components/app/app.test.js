@@ -183,7 +183,7 @@ describe(`App snapshot test`, () => {
   it(`Details screen rendering`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
-        nearbyOffers: offersMock.slice(1,3),
+        nearbyOffers: offersMock.slice(1, 3),
         reviews: [],
       },
     });

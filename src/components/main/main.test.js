@@ -189,11 +189,11 @@ describe(`Main component snapshot testing`, () => {
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
           activeCard={{}}
-          >
-            {children}
-          </Main>, {
-            createNodeMock: () => document.createElement(`div`)
-          }
+        >
+          {children}
+        </Main>, {
+          createNodeMock: () => document.createElement(`div`)
+        }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -203,20 +203,20 @@ const offerRaw = [{
       "longitude": 4.85309666406198,
       "zoom": 10
     },
-    "name": "Amsterdam"
+    "name": `Amsterdam`
   },
-  "description": "A quiet cozy and picturesque that hides behind a a river...",
-  "goods": ["Wi-Fi", "Heating", "Kitchen"],
+  "description": `A quiet cozy and picturesque that hides behind a a river...`,
+  "goods": [`Wi-Fi`, `Heating`, `Kitchen`],
   "host": {
-    "avatar_url": "img/avatar-angelina.jpg",
+    "avatar_url": `img/avatar-angelina.jpg`,
     "id": 0,
     "is_pro": true,
-    "name": "Angelina"
+    "name": `Angelina`
   },
   "id": 0,
   "images": [
-    "img/apartment-01.jpg",
-    "img/room.jpg"],
+    `img/apartment-01.jpg`,
+    `img/room.jpg`],
   "is_favorite": false,
   "is_premium": true,
   "location": {
@@ -225,23 +225,23 @@ const offerRaw = [{
     "zoom": 8
   },
   "max_adults": 4,
-  "preview_image": "img/apartment-01.jpg",
+  "preview_image": `img/apartment-01.jpg`,
   "price": 200,
   "rating": 4,
-  "title": "Beautiful & luxurious apartment at great location",
-  "type": "apartment"
+  "title": `Beautiful & luxurious apartment at great location`,
+  "type": `apartment`
 }];
 
 const reviewRaw = [{
-  "comment": "A quiet cozy and picturesque that...",
-  "date": "April 2014",
+  "comment": `A quiet cozy and picturesque that...`,
+  "date": `April 2014`,
   "id": 0,
   "rating": 4,
   "user": {
-    "avatar_url": "img/avatar-max.jpg",
+    "avatar_url": `img/avatar-max.jpg`,
     "id": 0,
     "is_pro": true,
-    "name": "Max"
+    "name": `Max`
   }
 }];
 

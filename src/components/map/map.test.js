@@ -3,7 +3,6 @@ import renderer from "react-test-renderer";
 import Map from "./map.jsx";
 
 
-
 const offersMock = [
   {
     id: 0,
