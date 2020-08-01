@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
 import {MapClassNames} from "../../common/const.js";
 import {ActionCreator} from "../../reducer/application/application.js";
 import {connect} from "react-redux";
@@ -59,6 +60,11 @@ class App extends PureComponent {
               offers={offers}
               mapClassName={MapClassNames.PROPERTY}
               onCardTitleClick={handleCardTitleClick}
+            />
+          </Route>
+          <Route exact path="/sign-in">
+            <SignIn
+              onSubmit={() => {}}
             />
           </Route>
         </Switch>
