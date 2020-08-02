@@ -1,20 +1,26 @@
-import {cities, SortType} from "../../common/const.js";
+import {Cities, ScreenMode, SortType} from "../../common/const.js";
 import {extend} from "../../common/utils.js";
 
-
 const initialState = {
+  screenMode: ScreenMode.MAIN,
   offerId: -1,
-  currentCity: cities[0],
+  currentCity: Cities[0],
   sortType: SortType.POPULAR.value,
 };
 
 const ActionType = {
+  CHANGE_SCREEN: `CHANGE_SCREEN`,
   SELECT_OFFER: `SELECT_OFFER`,
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
 };
 
 const ActionCreator = {
+  changeScreen: (screenMode) => ({
+    type: ActionType.CHANGE_SCREEN,
+    payload: screenMode,
+  }),
+
   selectOffer: (offerId) => ({
     type: ActionType.SELECT_OFFER,
     payload: offerId,
@@ -33,6 +39,10 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.CHANGE_SCREEN:
+      return extend(state, {
+        screenMode: action.payload,
+      });
     case ActionType.SELECT_OFFER:
       return extend(state, {
         offerId: action.payload,

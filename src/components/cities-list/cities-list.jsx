@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {cities} from "../../common/const.js";
+import {Cities} from "../../common/const.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 class CitiesList extends PureComponent {
@@ -9,7 +9,7 @@ class CitiesList extends PureComponent {
 
     return (
       <ul className="locations__list tabs__list">
-        {Object.values(cities).map((city, index) => {
+        {Object.values(Cities).map((city, index) => {
           const activeClassName = `tabs__item--active`;
 
           return (

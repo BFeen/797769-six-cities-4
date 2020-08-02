@@ -1,6 +1,11 @@
-const AVATAR_URL = `https://api.adorable.io/avatars/128`;
+const ScreenMode = {
+  MAIN: `MAIN`,
+  DETAILS: `DETAILS`,
+  FAVORITES: `FAVORITES`,
+  SIGN_IN: `SIGN_IN`,
+};
 
-const cities = [
+const Cities = [
   {
     name: `Paris`,
     coordinates: [48.85, 2.34],
@@ -60,4 +65,4 @@ const SortType = {
   },
 };
 
-export {cities, ClassNames, AVATAR_URL, SortType};
+export {Cities, ClassNames, ScreenMode, SortType};
