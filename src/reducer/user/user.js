@@ -14,7 +14,7 @@ const initialState = {
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  USER_DATA: `USER_DATA`,
+  CHANGE_USER_DATA: `CHANGE_USER_DATA`,
 };
 
 const ActionCreator = {
@@ -26,7 +26,7 @@ const ActionCreator = {
   },
   saveUserData: (userData) => {
     return {
-      type: ActionType.USER_DATA,
+      type: ActionType.CHANGE_USER_DATA,
       payload: userData,
     };
   },
@@ -64,7 +64,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         authorizationStatus: action.payload,
       });
-    case ActionType.USER_DATA:
+    case ActionType.CHANGE_USER_DATA:
       return extend(state, {
         user: action.payload,
       });

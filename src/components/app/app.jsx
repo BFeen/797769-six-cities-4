@@ -12,6 +12,7 @@ import {getOffersByCity} from "../../reducer/data/selectors.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 import {getCurrentCity, getOfferId} from "../../reducer/application/selectors.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
 
 
 const MainWrapped = withActiveCard(Main);

@@ -5,14 +5,23 @@ import MockAdapter from "axios-mock-adapter";
 
 const api = createAPI(() => {});
 
+const userDataMock = {
+  id: 0,
+  name: `Max`,
+  avatar: `img/img.png`,
+  isPro: false,
+  email: `max@mail.ru`,
+};
+
 describe(`User reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      user: {},
     });
   });
 
-  it(`Reducer should change authorisationStatus by a given value`, () => {
+  it(`Reducer should change authorizationStatus by a given value`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
     }, {
@@ -47,6 +56,26 @@ describe(`User reducer testing`, () => {
       payload: AuthorizationStatus.NO_AUTH,
     })).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+    });
+  });
+
+  it(`Reducer should change user data by a given value`, () => {
+    expect(reducer({
+      user: {},
+    }, {
+      type: ActionType.CHANGE_USER_DATA,
+      payload: userDataMock,
+    })).toEqual({
+      user: userDataMock,
+    });
+
+    expect(reducer({
+      user: userDataMock,
+    }, {
+      type: ActionType.CHANGE_USER_DATA,
+      payload: {},
+    })).toEqual({
+      user: {}
     });
   });
 
@@ -60,6 +89,13 @@ describe(`User reducer testing`, () => {
       expect(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)).toEqual({
         type: ActionType.REQUIRED_AUTHORIZATION,
         payload: AuthorizationStatus.AUTH,
+      });
+    });
+
+    it(`ActionCreator for require userData returns correct action`, () => {
+      expect(ActionCreator.saveUserData(userDataMock)).toEqual({
+        type: ActionType.CHANGE_USER_DATA,
+        payload: userDataMock,
       });
     });
   });
