@@ -46,6 +46,16 @@ const reviewAdapter = (review) => {
   };
 };
 
+const userDataAdapter = (userData) => {
+  return {
+    id: userData[`id`],
+    avatar: userData[`avatar_url`],
+    email: userData[`email`],
+    isPro: userData[`is_pro`],
+    name: userData[`name`],
+  };
+};
+
 const parseOffers = (offers) => {
   return offers.map((item) => offerAdapter(item));
 };
@@ -54,4 +64,10 @@ const parseReviews = (reviews) => {
   return reviews.map((item) => reviewAdapter(item));
 };
 
-export {offerAdapter, reviewAdapter, parseOffers, parseReviews};
+export {
+  offerAdapter,
+  reviewAdapter,
+  userDataAdapter,
+  parseOffers,
+  parseReviews
+};

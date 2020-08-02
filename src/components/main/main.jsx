@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { oneOfType } from "prop-types";
 import {connect} from "react-redux";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
@@ -12,6 +12,9 @@ import {ActionCreator} from "../../reducer/application/application.js";
 import {getSortedOffers} from "../../common/utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {getSortType} from "../../reducer/application/selectors.js";
+import {getAuthorizationStatus, getUserData} from "../../reducer/user/selectors.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {LoginClassNames} from "../../common/const.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
@@ -29,12 +32,13 @@ const Main = (props) => {
     onCardMouseEnter,
     onCardMouseLeave,
     activeCard,
+    user,
   } = props;
 
   const placesCount = offers.length;
   const isEmpty = placesCount === 0;
   const sortedOffers = getSortedOffers(offers, sortType);
-
+  
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -45,17 +49,22 @@ const Main = (props) => {
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
               </a>
             </div>
+
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    <div className="header__avatar-wrapper user__avatar-wrapper" />
+                    <span
+                      className={user.email ? LoginClassNames.AUTHORIZED : LoginClassNames.NO_AUTHORIZED}
+                    >
+                      {user.email ? user.email : `Sign in`}
+                    </span>
                   </a>
                 </li>
               </ul>
             </nav>
+
           </div>
         </div>
       </header>
@@ -115,6 +124,17 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  user: PropTypes.oneOfType([
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+    }),
+    PropTypes.object,
+  ]).isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   sortType: PropTypes.string.isRequired,
@@ -124,10 +144,15 @@ Main.propTypes = {
   handleSortTypeChange: PropTypes.func.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
-  activeCard: PropTypes.object.isRequired,
+  activeCard: oneOfType([
+    offerPropTypes,
+    PropTypes.object.isRequired,
+  ]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  user: getUserData(state),
   sortType: getSortType(state),
 });
 

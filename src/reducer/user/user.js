@@ -1,4 +1,5 @@
 import {extend} from "../../common/utils.js";
+import {userDataAdapter} from "../adapters.js";
 
 
 const AuthorizationStatus = {
@@ -8,10 +9,12 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  user: {},
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  USER_DATA: `USER_DATA`,
 };
 
 const ActionCreator = {
@@ -21,12 +24,19 @@ const ActionCreator = {
       payload: status,
     };
   },
+  saveUserData: (userData) => {
+    return {
+      type: ActionType.USER_DATA,
+      payload: userData,
+    };
+  },
 };
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
+      .then((response) => {
+        dispatch(ActionCreator.saveUserData(userDataAdapter(response.data)));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       })
       .catch((err) => {
@@ -41,6 +51,9 @@ const Operation = {
     })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 };
@@ -50,6 +63,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.USER_DATA:
+      return extend(state, {
+        user: action.payload,
       });
   }
 

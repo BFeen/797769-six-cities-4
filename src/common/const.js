@@ -27,6 +27,11 @@ const MapClassNames = {
   PROPERTY: `property`,
 };
 
+const LoginClassNames = {
+  AUTHORIZED: `header__user-name user__name`,
+  NO_AUTHORIZED: `header__login`, 
+};
+
 const SortType = {
   POPULAR: {
     value: `popular`,
@@ -46,4 +51,4 @@ const SortType = {
   },
 };
 
-export {cities, MapClassNames, AVATAR_URL, SortType};
+export {cities, MapClassNames, LoginClassNames, AVATAR_URL, SortType};

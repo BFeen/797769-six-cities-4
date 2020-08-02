@@ -20,7 +20,12 @@ const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 
 class App extends PureComponent {
   _renderMainPage() {
-    const {currentCity, offers, offerId, handleCardTitleClick} = this.props;
+    const {
+      currentCity,
+      offers,
+      offerId,
+      handleCardTitleClick,
+    } = this.props;
     const offer = offers.find((item) => item.id === offerId);
 
     if (!offer) {
@@ -46,7 +51,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {currentCity, offers, handleCardTitleClick} = this.props;
+    const {currentCity, offers, handleCardTitleClick, login} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -64,7 +69,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/sign-in">
             <SignIn
-              onSubmit={() => {}}
+              onSubmit={login}
             />
           </Route>
         </Switch>
@@ -74,6 +79,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  login: PropTypes.func.isRequired,
   currentCity: cityPropTypes,
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
@@ -87,6 +93,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
   handleCardTitleClick(offerId) {
     dispatch(ActionCreator.selectOffer(offerId));
     dispatch(DataOperation.loadNearby(offerId));
