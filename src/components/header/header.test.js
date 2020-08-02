@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Header} from "./header.jsx";
+import Header from "./header.jsx";
 
 
 const userDataMock = {
@@ -17,6 +17,8 @@ describe(`Header snapshot testing`, () => {
       <Header
         authorizationStatus={`AUTH`}
         user={userDataMock}
+        handleLogoClick={() => {}}
+        handleSignInClick={() => {}}
       />
     ).toJSON();
   
@@ -28,6 +30,8 @@ describe(`Header snapshot testing`, () => {
       <Header
         authorizationStatus={`NO_AUTH`}
         user={{}}
+        handleLogoClick={() => {}}
+        handleSignInClick={() => {}}
       />
     ).toJSON();
   

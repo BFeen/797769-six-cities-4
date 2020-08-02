@@ -66,7 +66,7 @@ describe(`Application Reducer testing`, () => {
 
 describe(`Application ActionCreator testing`, () => {
   it(`ActionCreator returns correct action when screen mode is changed`, () => {
-    expect(ActionCreator.selectOffer(2)).toEqual({
+    expect(ActionCreator.changeScreen(ScreenMode.SIGN_IN)).toEqual({
       type: ActionType.CHANGE_SCREEN,
       payload: ScreenMode.SIGN_IN,
     });

@@ -36,7 +36,11 @@ const PlaceDetails = (props) => {
   return (
     <div className="page">
       
-      <Header />
+      <Header
+        user={{}}
+        authorizationStatus={``}
+        handleSignInClick={() => {}}
+      />
 
       <main className="page__main page__main--property">
         <section className="property">
