@@ -10,9 +10,10 @@ import cityPropTypes from "../../prop-types/city-prop-types.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import {getOffersByCity} from "../../reducer/data/selectors.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
-import {getCurrentCity, getOfferId} from "../../reducer/application/selectors.js";
+import {getCurrentCity, getOfferId, getScreenMode} from "../../reducer/application/selectors.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {ScreenMode} from "../../common/const.js";
 
 
 const MainWrapped = withActiveCard(Main);
@@ -21,31 +22,42 @@ const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 class App extends PureComponent {
   _renderMainPage() {
     const {
+      screenMode,
       currentCity,
       offers,
       offerId,
       handleCardTitleClick,
+      login
     } = this.props;
-    const offer = offers.find((item) => item.id === offerId);
+    // const offer = offers.find((item) => item.id === offerId);
 
-    if (!offer) {
-      return (
-        <MainWrapped
-          city={currentCity}
-          offers={offers}
-          onCardTitleClick={handleCardTitleClick}
-        />
-      );
-    } else {
-      return (
-        <PlaceDetailsWrapped
-          city={currentCity}
-          offerId={offerId}
-          offers={offers}
-          onCardTitleClick={handleCardTitleClick}
-        />
-      );
+    switch (screenMode) {
+      case ScreenMode.MAIN:
+        return (
+          <MainWrapped
+            city={currentCity}
+            offers={offers}
+            onCardTitleClick={handleCardTitleClick}
+          />
+        );
+      case ScreenMode.DETAILS:
+        return (
+          <PlaceDetailsWrapped
+            city={currentCity}
+            offerId={offerId}
+            offers={offers}
+            onCardTitleClick={handleCardTitleClick}
+          />
+        );
+      case ScreenMode.SIGN_IN:
+        return (
+          <SignIn
+            onSubmit={login}
+          />
+        );
     }
+
+    return null;
   }
 
   render() {
@@ -76,14 +88,16 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  login: PropTypes.func.isRequired,
+  screenMode: PropTypes.string.isRequired,
   currentCity: cityPropTypes,
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   handleCardTitleClick: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  screenMode: getScreenMode(state),
   offerId: getOfferId(state),
   currentCity: getCurrentCity(state),
   offers: getOffersByCity(state),
@@ -92,8 +106,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
+    dispatch(ActionCreator.changeScreen(ScreenMode.MAIN));
   },
   handleCardTitleClick(offerId) {
+    dispatch(ActionCreator.changeScreen(ScreenMode.DETAILS));
     dispatch(ActionCreator.selectOffer(offerId));
     dispatch(DataOperation.loadNearby(offerId));
     dispatch(DataOperation.loadReviews(offerId));
