@@ -70,7 +70,7 @@ Array [
           className="reviews__time"
           dateTime="April 2014"
         >
-          April 2014
+          1 April
         </time>
       </div>
     </li>
@@ -129,7 +129,7 @@ Array [
           className="reviews__time"
           dateTime="December 2"
         >
-          December 2012
+          1 December
         </time>
       </div>
     </li>
@@ -188,7 +188,7 @@ Array [
           className="reviews__time"
           dateTime="June 2020"
         >
-          June 2020
+          1 June
         </time>
       </div>
     </li>
@@ -247,7 +247,7 @@ Array [
           className="reviews__time"
           dateTime="May 3001"
         >
-          May 3001
+          1 May
         </time>
       </div>
     </li>

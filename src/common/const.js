@@ -65,4 +65,19 @@ const SortType = {
   },
 };
 
-export {Cities, ClassNames, ScreenMode, SortType};
+const MONTHS = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`,
+];
+
+export {Cities, ClassNames, ScreenMode, SortType, MONTHS};

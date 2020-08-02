@@ -12,7 +12,7 @@ import {getOffersByCity} from "../../reducer/data/selectors.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 import {getCurrentCity, getOfferId, getScreenMode} from "../../reducer/application/selectors.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {ScreenMode} from "../../common/const.js";
 
 
@@ -50,11 +50,21 @@ class App extends PureComponent {
           />
         );
       case ScreenMode.SIGN_IN:
-        return (
-          <SignIn
-            onSubmit={login}
-          />
-        );
+        if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+          return (
+            <SignIn
+              onSubmit={login}
+            />
+          );
+        } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+          return (
+            <MainWrapped
+              city={currentCity}
+              offers={offers}
+              onCardTitleClick={handleCardTitleClick}
+            />
+          );
+        }
     }
 
     return null;

@@ -56,7 +56,7 @@ exports[`ReviewItem snapshot testing Review item rendering correctly 1`] = `
       className="reviews__time"
       dateTime="April 2014"
     >
-      April 2014
+      1 April
     </time>
   </div>
 </li>

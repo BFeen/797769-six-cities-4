@@ -1,9 +1,17 @@
-import {SortType} from "./const.js";
+import {SortType, MONTHS} from "./const.js";
 
 
 const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
+
+const formatDate = (date) => {
+  const currentDate = new Date(date);
+  const day = currentDate.getDate(); 
+  const month = MONTHS[currentDate.getMonth()];
+
+  return `${day} ${month}`
+}
 
 const getSortedOffers = (unsortedOffers, sortType) => {
   const offers = unsortedOffers.slice();
@@ -23,4 +31,4 @@ const getSortedOffers = (unsortedOffers, sortType) => {
   return offers;
 };
 
-export {extend, getSortedOffers};
+export {extend, getSortedOffers, formatDate};

@@ -1,11 +1,13 @@
 import React from "react";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
+import {formatDate} from "../../common/utils.js";
 
 
 const ReviewItem = (props) => {
   const {review} = props;
   const {user} = review;
   const slicedDate = review.dateTime.slice(0, 10);
+  const dateReview = formatDate(review.dateTime);
 
   return (
     <li className="reviews__item">
@@ -35,7 +37,7 @@ const ReviewItem = (props) => {
         <time
           className="reviews__time"
           dateTime={slicedDate}
-        >{review.dateTime}</time>
+        >{dateReview}</time>
       </div>
     </li>
   );
