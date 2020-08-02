@@ -9,6 +9,7 @@ import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {connect} from "react-redux";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {getReviews, getNearbyOffers} from "../../reducer/data/selectors.js";
+import {ClassNames} from "../../common/const.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
@@ -19,7 +20,6 @@ const PlaceDetails = (props) => {
     offers,
     offerId,
     nearbyOffers,
-    mapClassName,
     reviews,
     onCardTitleClick,
     onCardMouseEnter,
@@ -30,6 +30,7 @@ const PlaceDetails = (props) => {
   const currentOffer = offers.find((item) => item.id === offerId);
   const {details} = currentOffer;
   const {host} = details;
+  const {MapClassNames} = ClassNames;
 
   return (
     <div className="page">
@@ -196,7 +197,7 @@ const PlaceDetails = (props) => {
           </div>
           <Map
             city={city}
-            mapClassName={mapClassName}
+            mapClassName={MapClassNames.PROPERTY}
             offers={nearbyOffers}
             activeCard={activeCard}
           />
@@ -225,7 +226,6 @@ PlaceDetails.propTypes = {
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   nearbyOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  mapClassName: PropTypes.string.isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,

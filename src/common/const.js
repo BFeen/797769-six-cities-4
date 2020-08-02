@@ -22,15 +22,24 @@ const cities = [
   }
 ];
 
-const MapClassNames = {
-  CITIES: `cities`,
-  PROPERTY: `property`,
-};
-
-const LoginClassNames = {
-  AUTHORIZED: `header__user-name user__name`,
-  NO_AUTHORIZED: `header__login`, 
-};
+const ClassNames = {
+  MapClassNames: {
+    CITIES: `cities`,
+    PROPERTY: `property`,
+  },
+  LoginClassNames: {
+    AUTH: `header__user-name user__name`,
+    NO_AUTH: `header__login`,
+  },
+  CitiesListClassNames: {
+    MAIN: `cities__places-list tabs__content`,
+    DETAILS: `near-places__list`,
+  },
+  CardClassNames: {
+    MAIN: `cities__place-card`,
+    DETAILS: `near-places__card`,
+  }
+}
 
 const SortType = {
   POPULAR: {
@@ -51,4 +60,4 @@ const SortType = {
   },
 };
 
-export {cities, MapClassNames, LoginClassNames, AVATAR_URL, SortType};
+export {cities, ClassNames, AVATAR_URL, SortType};

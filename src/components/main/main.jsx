@@ -14,7 +14,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {getSortType} from "../../reducer/application/selectors.js";
 import {getAuthorizationStatus, getUserData} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
-import {LoginClassNames} from "../../common/const.js";
+import {ClassNames} from "../../common/const.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
@@ -25,7 +25,6 @@ const Main = (props) => {
     sortType,
     city,
     offers,
-    mapClassName,
     onCardTitleClick,
     handleCityChange,
     handleSortTypeChange,
@@ -38,6 +37,11 @@ const Main = (props) => {
   const placesCount = offers.length;
   const isEmpty = placesCount === 0;
   const sortedOffers = getSortedOffers(offers, sortType);
+  const {
+    LoginClassNames,
+    CitiesListClassNames,
+    CardClassNames,
+    MapClassNames} = ClassNames;
   
   return (
     <div className="page page--gray page--main">
@@ -56,7 +60,7 @@ const Main = (props) => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper" />
                     <span
-                      className={user.email ? LoginClassNames.AUTHORIZED : LoginClassNames.NO_AUTHORIZED}
+                      className={user.email ? LoginClassNames.AUTH : LoginClassNames.NO_AUTH}
                     >
                       {user.email ? user.email : `Sign in`}
                     </span>
@@ -109,7 +113,7 @@ const Main = (props) => {
               <div className="cities__right-section">
                 <Map
                   city={city}
-                  mapClassName={mapClassName}
+                  mapClassName={MapClassNames.CITIES}
                   offers={offers}
                   activeCard={activeCard}
                 />
@@ -138,7 +142,6 @@ Main.propTypes = {
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   sortType: PropTypes.string.isRequired,
-  mapClassName: PropTypes.string.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
   handleCityChange: PropTypes.func.isRequired,
   handleSortTypeChange: PropTypes.func.isRequired,

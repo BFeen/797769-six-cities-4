@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-import {MapClassNames} from "../../common/const.js";
 import {ActionCreator} from "../../reducer/application/application.js";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
@@ -33,7 +32,6 @@ class App extends PureComponent {
         <MainWrapped
           city={currentCity}
           offers={offers}
-          mapClassName={MapClassNames.CITIES}
           onCardTitleClick={handleCardTitleClick}
         />
       );
@@ -43,7 +41,6 @@ class App extends PureComponent {
           city={currentCity}
           offerId={offerId}
           offers={offers}
-          mapClassName={MapClassNames.PROPERTY}
           onCardTitleClick={handleCardTitleClick}
         />
       );
@@ -63,7 +60,6 @@ class App extends PureComponent {
               city={currentCity}
               offerId={0}
               offers={offers}
-              mapClassName={MapClassNames.PROPERTY}
               onCardTitleClick={handleCardTitleClick}
             />
           </Route>

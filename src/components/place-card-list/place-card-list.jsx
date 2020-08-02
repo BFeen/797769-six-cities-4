@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
+import {ClassNames} from "../../common/const.js"
 
 
 const PlaceCardList = (props) => {
@@ -12,8 +13,10 @@ const PlaceCardList = (props) => {
     onCardMouseEnter,
     onCardMouseLeave,
   } = props;
-  const listClassName = isMain ? `cities__places-list tabs__content` : `near-places__list`;
-  const cardClassName = isMain ? `cities__place-card` : `near-places__card`;
+
+  const {CitiesListClassNames, CardClassNames} = ClassNames;
+  const listClassName = isMain ? CitiesListClassNames.MAIN : CitiesListClassNames.DETAILS;
+  const cardClassName = isMain ? CardClassNames.MAIN : CardClassNames.DETAILS;
 
   return (
     <div className={`places__list ${listClassName}`}>
