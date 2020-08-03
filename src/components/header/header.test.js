@@ -14,27 +14,27 @@ const userDataMock = {
 describe(`Header snapshot testing`, () => {
   it(`Header with userData rendering correctly`, () => {
     const tree = renderer.create(
-      <Header
-        authorizationStatus={`AUTH`}
-        user={userDataMock}
-        handleLogoClick={() => {}}
-        handleSignInClick={() => {}}
-      />
+        <Header
+          authorizationStatus={`AUTH`}
+          user={userDataMock}
+          handleLogoClick={() => {}}
+          handleSignInClick={() => {}}
+        />
     ).toJSON();
-  
+
     expect(tree).toMatchSnapshot();
   });
 
   it(`Header without authorization rendering correctly`, () => {
     const tree = renderer.create(
-      <Header
-        authorizationStatus={`NO_AUTH`}
-        user={{}}
-        handleLogoClick={() => {}}
-        handleSignInClick={() => {}}
-      />
+        <Header
+          authorizationStatus={`NO_AUTH`}
+          user={{}}
+          handleLogoClick={() => {}}
+          handleSignInClick={() => {}}
+        />
     ).toJSON();
-  
+
     expect(tree).toMatchSnapshot();
-  })
+  });
 });

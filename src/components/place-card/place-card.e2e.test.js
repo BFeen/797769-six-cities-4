@@ -83,4 +83,24 @@ describe(`PlaceCard e2e tests`, () => {
 
     expect(handleCardMouseLeave).toHaveBeenCalledTimes(1);
   });
+
+  it(`Should card title clicking and handle it`, () => {
+    const handleCardTitleClick = jest.fn();
+
+    const placeCard = shallow(
+        <PlaceCard
+          offer={offerMock}
+          className={`cities__place-card`}
+          onItemClick={handleCardTitleClick}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+        />
+    );
+
+    const cardTitleElement = placeCard.find(`h2.place-card__name`);
+    cardTitleElement.simulate(`click`);
+
+    expect(handleCardTitleClick).toHaveBeenCalledTimes(1);
+    expect(handleCardTitleClick).toHaveBeenCalledWith(offerMock.id);
+  });
 });

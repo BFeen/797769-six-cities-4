@@ -46,7 +46,7 @@ class SignIn extends PureComponent {
                     name="email"
                     placeholder="Email"
                     required=""
-                    ref={this._loginRef}  
+                    ref={this._loginRef}
                   />
                 </div>
                 <div className="login__input-wrapper form__input-wrapper">
@@ -57,7 +57,7 @@ class SignIn extends PureComponent {
                     name="password"
                     placeholder="Password"
                     required=""
-                    ref={this._passwordRef}  
+                    ref={this._passwordRef}
                   />
                 </div>
                 <button className="login__submit form__submit button" type="submit">Sign in</button>

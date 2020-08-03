@@ -11,6 +11,7 @@ const Header = (props) => {
   const {
     user,
     authorizationStatus,
+    handleLogoClick,
     handleSignInClick,
   } = props;
   const {LoginClassNames} = ClassNames;
@@ -23,6 +24,7 @@ const Header = (props) => {
           <div className="header__left">
             <a
               className="header__logo-link header__logo-link--active"
+              onClick={handleLogoClick}
             >
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </a>
@@ -65,6 +67,7 @@ Header.propTypes = {
     }),
     PropTypes.object,
   ]).isRequired,
+  handleLogoClick: PropTypes.func.isRequired,
   handleSignInClick: PropTypes.func.isRequired,
 };
 
@@ -74,6 +77,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  handleLogoClick: () => {
+    dispatch(ActionCreator.changeScreen(ScreenMode.MAIN));
+  },
   handleSignInClick: () => {
     dispatch(ActionCreator.changeScreen(ScreenMode.SIGN_IN));
   }

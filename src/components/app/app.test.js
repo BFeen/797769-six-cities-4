@@ -4,7 +4,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {App} from "./app.jsx";
 import NameSpace from "../../reducer/name-space.js";
-import { ScreenMode } from "../../common/const.js";
+import {ScreenMode} from "../../common/const.js";
 
 
 const mockStore = configureStore([]);
@@ -157,13 +157,21 @@ const cityMock = {
 };
 
 describe(`App snapshot test`, () => {
-  it(`Main screen rendering`, () => {
-    const store = mockStore({
-      [NameSpace.APPLICATION]: {
-        sortType: `popular`,
-      },
-    });
+  const store = mockStore({
+    [NameSpace.DATA]: {
+      nearbyOffers: offersMock.slice(1, 3),
+      reviews: [],
+    },
+    [NameSpace.APPLICATION]: {
+      sortType: `popular`,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `NO_AUTH`,
+      user: {},
+    }
+  });
 
+  it(`Main screen rendering`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <App
@@ -172,7 +180,6 @@ describe(`App snapshot test`, () => {
             currentCity={cityMock}
             offerId={-1}
             handleCardTitleClick={() => {}}
-            handleCityChange={() => {}}
             login={() => {}}
           />
         </Provider>, {
@@ -184,13 +191,6 @@ describe(`App snapshot test`, () => {
   });
 
   it(`Details screen rendering`, () => {
-    const store = mockStore({
-      [NameSpace.DATA]: {
-        nearbyOffers: offersMock.slice(1, 3),
-        reviews: [],
-      },
-    });
-
     const tree = renderer.create(
         <Provider store={store}>
           <App
@@ -199,7 +199,6 @@ describe(`App snapshot test`, () => {
             currentCity={cityMock}
             offers={offersMock}
             handleCardTitleClick={() => {}}
-            handleCityChange={() => {}}
             login={() => {}}
           />
         </Provider>, {

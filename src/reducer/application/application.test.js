@@ -33,7 +33,7 @@ describe(`Application Reducer testing`, () => {
       payload: ScreenMode.DETAILS,
     })).toEqual({
       screenMode: ScreenMode.DETAILS,
-    })
+    });
 
     expect(reducer({
       offerId: -1,

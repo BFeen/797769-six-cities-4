@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { oneOfType } from "prop-types";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import CitiesList from "../cities-list/cities-list.jsx";
@@ -36,7 +36,7 @@ const Main = (props) => {
   const isEmpty = placesCount === 0;
   const sortedOffers = getSortedOffers(offers, sortType);
   const {MapClassNames} = ClassNames;
-  
+
   return (
     <div className="page page--gray page--main">
 
@@ -106,7 +106,7 @@ Main.propTypes = {
   handleSortTypeChange: PropTypes.func.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
-  activeCard: oneOfType([
+  activeCard: PropTypes.oneOfType([
     offerPropTypes,
     PropTypes.object.isRequired,
   ]).isRequired,

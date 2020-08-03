@@ -7,11 +7,11 @@ const extend = (a, b) => {
 
 const formatDate = (date) => {
   const currentDate = new Date(date);
-  const day = currentDate.getDate(); 
+  const day = currentDate.getDate();
   const month = MONTHS[currentDate.getMonth()];
 
-  return `${day} ${month}`
-}
+  return `${day} ${month}`;
+};
 
 const getSortedOffers = (unsortedOffers, sortType) => {
   const offers = unsortedOffers.slice();
