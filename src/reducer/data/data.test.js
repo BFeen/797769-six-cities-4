@@ -291,7 +291,7 @@ describe(`Data reducer testing`, () => {
 });
 
 describe(`Data Operation work correctly`, () => {
-  it(`Should make a correct API call to '/hotels'`, () => {
+  it(`Should make a correct API call to 'GET: /hotels'`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offersLoader = Operation.loadOffers();
@@ -310,7 +310,7 @@ describe(`Data Operation work correctly`, () => {
       });
   });
 
-  it(`Should make a correct API call to '/hotels/:hotel-id/nearby'`, () => {
+  it(`Should make a correct API call to 'GET: /hotels/:hotel-id/nearby'`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offerId = 0;
@@ -330,7 +330,7 @@ describe(`Data Operation work correctly`, () => {
       });
   });
 
-  it(`Should make a correct API call to '/comments/:hotel-id'`, () => {
+  it(`Should make a correct API call to 'GET: /comments/:hotel-id'`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offerId = 0;
@@ -341,6 +341,31 @@ describe(`Data Operation work correctly`, () => {
       .reply(200, reviewRaw);
 
     return reviewsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEWS,
+          payload: [reviewsMock[0]],
+        });
+      });
+  });
+
+  it(`Should make a correct API call to 'POST: comments/:hotel-id'`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offerId = 0;
+    const userReviewMock = {
+      comment: `A quiet cozy and picturesque that...`,
+      rating: 4,
+    };
+
+    const reviewSender = Operation.postReview(offerId, userReviewMock);
+
+    apiMock
+      .onPost(`/comments/${offerId}`)
+      .reply(200, reviewRaw);
+
+    return reviewSender(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

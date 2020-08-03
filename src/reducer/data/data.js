@@ -32,7 +32,7 @@ const ActionCreator = {
       type: ActionType.LOAD_REVIEWS,
       payload: reviews,
     };
-  },
+  }
 };
 
 const Operation = {
@@ -64,6 +64,16 @@ const Operation = {
         dispatch(ActionCreator.loadReviews(parseReviews(response.data)));
       });
   },
+  
+  postReview: (offerId, review) => (dispatch, getState, api) => {
+    return api.post(`/comments/${offerId}`, {
+      comment: review.comment,
+      rating: review.rating,
+    })
+      .then((response) => {
+        dispatch(ActionCreator.loadReviews(parseReviews(response.data)));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -72,13 +82,13 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         offers: action.payload,
       });
-    case ActionType.LOAD_REVIEWS:
-      return extend(state, {
-        reviews: action.payload,
-      });
     case ActionType.LOAD_NEARBY:
       return extend(state, {
         nearbyOffers: action.payload,
+      });
+    case ActionType.LOAD_REVIEWS:
+      return extend(state, {
+        reviews: action.payload,
       });
   }
 
