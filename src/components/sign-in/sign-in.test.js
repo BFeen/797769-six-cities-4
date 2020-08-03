@@ -1,18 +1,19 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import {Provider} from "react-redux";
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import SignIn from "./sign-in.jsx";
-import configureStore from "redux-mock-store";
-import NameSpace from "../../reducer/name-space.js";
 
+
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 it(`SignIn rendering correctly`, () => {
-
-  const tree = renderer.create(
+  const tree = shallow(
       <SignIn
         onSubmit={() => {}}
       />
-  ).toJSON();
+  );
 
   expect(tree).toMatchSnapshot();
 });

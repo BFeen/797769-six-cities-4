@@ -43,8 +43,13 @@ const ClassNames = {
   CardClassNames: {
     MAIN: `cities__place-card`,
     DETAILS: `near-places__card`,
+  },
+  PageClassNames: {
+    MAIN: `page--gray page--main`,
+    SIGN_IN: `page--gray page--login`,
+    DETAILS: ``,
   }
-}
+};
 
 const SortType = {
   POPULAR: {

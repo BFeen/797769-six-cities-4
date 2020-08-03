@@ -40,11 +40,7 @@ const Main = (props) => {
   return (
     <div className="page page--gray page--main">
 
-      <Header
-        user={{}}
-        authorizationStatus={``}
-        handleSignInClick={() => {}}
-      />
+      <Header />
 
       <main className={`page__main page__main--index ${isEmpty ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>

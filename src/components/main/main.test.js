@@ -1,7 +1,12 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import {Main} from "./main.jsx";
 
+
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const offersMock = [
   {
@@ -150,11 +155,9 @@ const cityMock = {
   coordinates: [52.38333, 4.9],
 };
 
-const children = <div className="children-component" />;
-
 describe(`Main component snapshot testing`, () => {
   it(`Render Main.`, () => {
-    const tree = renderer.create(
+    const tree = shallow(
         <Main
           offers={offersMock}
           city={cityMock}
@@ -166,18 +169,14 @@ describe(`Main component snapshot testing`, () => {
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
           activeCard={{}}
-        >
-          {children}
-        </Main>, {
-          createNodeMock: () => document.createElement(`div`)
-        }
-    ).toJSON();
+        />
+    );
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`Render Main with no offers`, () => {
-    const tree = renderer.create(
+    const tree = shallow(
         <Main
           offers={[]}
           city={cityMock}
@@ -189,12 +188,8 @@ describe(`Main component snapshot testing`, () => {
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
           activeCard={{}}
-        >
-          {children}
-        </Main>, {
-          createNodeMock: () => document.createElement(`div`)
-        }
-    ).toJSON();
+        />
+    );
 
     expect(tree).toMatchSnapshot();
   });

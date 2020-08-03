@@ -1,7 +1,12 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import {PlaceDetails} from "./place-details.jsx";
 
+
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const offersMock = [
   {
@@ -308,7 +313,7 @@ const cityMock = {
 
 describe(`PlaceDetails snapshot test`, () => {
   it(`PlaceDetails rendering`, () => {
-    const tree = renderer.create(
+    const tree = shallow(
         <PlaceDetails
           city={cityMock}
           mapClassName={`cities`}
@@ -320,10 +325,8 @@ describe(`PlaceDetails snapshot test`, () => {
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
           activeCard={{}}
-        />, {
-          createNodeMock: () => document.createElement(`div`)
-        }
-    ).toJSON();
+        />
+    );
 
     expect(tree).toMatchSnapshot();
   });

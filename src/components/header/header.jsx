@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {ClassNames} from "../../common/const.js";
+import {connect} from "react-redux";
+import {ClassNames, ScreenMode} from "../../common/const.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {getAuthorizationStatus, getUserData} from "../../reducer/user/selectors.js";
+import {ActionCreator} from "../../reducer/application/application.js";
 
 
 const Header = (props) => {
@@ -65,4 +68,16 @@ Header.propTypes = {
   handleSignInClick: PropTypes.func.isRequired,
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  user: getUserData(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleSignInClick: () => {
+    dispatch(ActionCreator.changeScreen(ScreenMode.SIGN_IN));
+  }
+});
+
+export {Header};
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

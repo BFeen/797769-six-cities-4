@@ -50,21 +50,11 @@ class App extends PureComponent {
           />
         );
       case ScreenMode.SIGN_IN:
-        if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-          return (
-            <SignIn
-              onSubmit={login}
-            />
-          );
-        } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-          return (
-            <MainWrapped
-              city={currentCity}
-              offers={offers}
-              onCardTitleClick={handleCardTitleClick}
-            />
-          );
-        }
+        return (
+          <SignIn
+            onSubmit={login}
+          />
+        )
     }
 
     return null;
