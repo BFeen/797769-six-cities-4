@@ -70,6 +70,14 @@ const SortType = {
   },
 };
 
+const RatingStarsCount = {
+  FIVE: `perfect`,
+  FOUR: `good`,
+  THREE: `not bad`,
+  TWO: `badly`,
+  ONE: `terribly`,
+}
+
 const MONTHS = [
   `January`,
   `February`,
@@ -85,4 +93,4 @@ const MONTHS = [
   `December`,
 ];
 
-export {Cities, ClassNames, ScreenMode, SortType, MONTHS};
+export {Cities, ClassNames, RatingStarsCount, ScreenMode, SortType, MONTHS};
