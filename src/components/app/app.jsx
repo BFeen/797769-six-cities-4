@@ -11,8 +11,9 @@ import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import {getOffersByCity} from "../../reducer/data/selectors.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 import {getCurrentCity, getOfferId, getScreenMode} from "../../reducer/application/selectors.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {ScreenMode} from "../../common/const.js";
 
 
@@ -27,9 +28,11 @@ class App extends PureComponent {
       offers,
       offerId,
       handleCardTitleClick,
-      login
+      authorizationStatus,
+      login,
     } = this.props;
     // const offer = offers.find((item) => item.id === offerId);
+    const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
     switch (screenMode) {
       case ScreenMode.MAIN:
@@ -47,6 +50,7 @@ class App extends PureComponent {
             offerId={offerId}
             offers={offers}
             onCardTitleClick={handleCardTitleClick}
+            isAuthorized={isAuthorized}
           />
         );
       case ScreenMode.SIGN_IN:
@@ -61,7 +65,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const {currentCity, offers, handleCardTitleClick, login} = this.props;
+    const {currentCity, offerId, offers, handleCardTitleClick, login, authorizationStatus} = this.props;
+    const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -71,9 +77,10 @@ class App extends PureComponent {
           <Route exact path="/details">
             <PlaceDetailsWrapped
               city={currentCity}
-              offerId={0}
+              offerId={offerId}
               offers={offers}
               onCardTitleClick={handleCardTitleClick}
+              isAuthorized={isAuthorized}
             />
           </Route>
           <Route exact path="/sign-in">
@@ -88,6 +95,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   screenMode: PropTypes.string.isRequired,
   currentCity: cityPropTypes,
   offerId: PropTypes.number.isRequired,
@@ -97,6 +105,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   screenMode: getScreenMode(state),
   offerId: getOfferId(state),
   currentCity: getCurrentCity(state),

@@ -29,6 +29,7 @@ const PlaceDetails = (props) => {
     onCardMouseLeave,
     activeCard,
     handleSubmitReviewForm,
+    isAuthorized,
   } = props;
 
   const currentOffer = offers.find((item) => item.id === offerId);
@@ -131,10 +132,11 @@ const PlaceDetails = (props) => {
                   reviews={reviews}
                 />
 
+                {isAuthorized && 
                 <ReviewForm
                   offerId={offerId}
                   onSubmit={handleSubmitReviewForm}
-                />
+                />}
 
               </section>
             </div>
