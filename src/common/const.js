@@ -48,6 +48,10 @@ const ClassNames = {
     MAIN: `page--gray page--main`,
     SIGN_IN: `page--gray page--login`,
     DETAILS: ``,
+  },
+  ButtonClassNames: {
+    SIGN_IN: `login__submit form__submit button`,
+    REVIEW: `reviews__submit form__submit button`,
   }
 };
 

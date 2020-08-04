@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button snapshot testing Button rendering correctly 1`] = `
+<button
+  className="reviews__submit form__submit button"
+  disabled={false}
+  type="submit"
+>
+  Submit
+</button>
+`;
+
+exports[`Button snapshot testing Disabled Button rendering correctly 1`] = `
+<button
+  className="login__submit form__submit button"
+  disabled={false}
+  type="submit"
+>
+  Submit
+</button>
+`;
