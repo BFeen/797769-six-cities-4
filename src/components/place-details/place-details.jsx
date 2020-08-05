@@ -1,21 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import ReviewItemList from "../review-item-list/review-item-list.jsx";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from "../map/map.jsx";
 import Header from "../header/header.jsx";
+import ReviewForm from "../review-form/review-form.jsx";
+import {Operation} from "../../reducer/data/data.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import withReview from "../../hocs/with-review/with-review.js";
+import {getReviews, getNearbyOffers} from "../../reducer/data/selectors.js";
+import {ClassNames} from "../../common/const.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
-import {connect} from "react-redux";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {getReviews, getNearbyOffers} from "../../reducer/data/selectors.js";
-import {ClassNames} from "../../common/const.js";
-import ReviewForm from "../review-form/review-form.jsx";
-import {Operation} from "../../reducer/data/data.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
+const ReviewFormWrapped = withReview(ReviewForm);
 
 const PlaceDetails = (props) => {
   const {
@@ -133,10 +135,7 @@ const PlaceDetails = (props) => {
                 />
 
                 {isAuthorized && 
-                <ReviewForm
-                  offerId={offerId}
-                  onSubmit={handleSubmitReviewForm}
-                />}
+                <ReviewFormWrapped />}
 
               </section>
             </div>
@@ -177,7 +176,6 @@ PlaceDetails.propTypes = {
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
   activeCard: PropTypes.object.isRequired,
-  handleSubmitReviewForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -185,13 +183,5 @@ const mapStateToProps = (state) => ({
   nearbyOffers: getNearbyOffers(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  handleSubmitReviewForm: (offerId, review) => {
-    console.log(offerId)
-    console.log(review)
-    // dispatch(Operation.postReview(offerId, review));
-  }
-});
-
 export {PlaceDetails};
-export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);
+export default connect(mapStateToProps)(PlaceDetails);

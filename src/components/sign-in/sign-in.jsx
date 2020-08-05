@@ -1,6 +1,5 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
-import Button from "../button/button.jsx";
 import Header from "../header/header.jsx";
 import {ClassNames} from "../../common/const.js";
 
@@ -64,12 +63,13 @@ class SignIn extends PureComponent {
                     ref={this._passwordRef}
                   />
                 </div>
-                <Button
+                <button
                   className={ButtonClassNames.SIGN_IN}
                   disabled={false}
+                  type="submit"
                 >
                   Sign in
-                </Button>
+                </button>
               </form>
             </section>
             <section className="locations locations--login locations--current">
