@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getOfferId} from "../../reducer/application/selectors";
+import {Operation} from "../../reducer/data/data.js";
 
 
 const CharsAmount = {
@@ -24,15 +25,30 @@ const withReview = (Component) => {
       this.onSubmit = this.onSubmit.bind(this);
 
       this.state = {
+        isSending: false,
+        isDisabled: true,
         rating: null,
         comment: ``,
-        isDisabled: true,
-        isSending: false,
+        errorMessage: ``,
         buttonText: ButtonText.SUBMIT,
       };
     }
 
+    componentDidUpdate() {
+      if (!this.state.isSending) {
+        const isValid = this._formValidation();
+        this._btnDisabling(isValid);
+      }
+    }
+
     handleCommentChange(review) {
+      const {errorMessage} = this.state;
+      if (errorMessage) {
+        this.setState(({
+          errorMessage: ``,
+        }));
+      }
+
       this.setState(({
         comment: review,
       }));
@@ -42,14 +58,6 @@ const withReview = (Component) => {
       this.setState(({
         rating: count,
       }));
-    }
-
-    componentDidUpdate() {
-      const isValid = this._formValidation();
-
-      if (!this.state.isSending) {
-        this._btnDisabling(isValid);
-      }
     }
     
     onSubmit() {
@@ -66,20 +74,21 @@ const withReview = (Component) => {
         comment,
       };
 
-      handleSubmit(offerId, review)
+      handleSubmit(offerId, review, this.handleError)
         .then(() => {
-          console.log(`данные отправлены`);
           this._clearForm();
         })
-        .catch((err) => {
-          console.log(`сообщение от сервера: ${err}`);
+        .catch(() => {
+          this.setState(({
+            errorMessage: 'Something went wrong. Please try again later.',
+          }));
         })
         .finally(() => {
           this.setState(({
             isSending: false,
             buttonText: ButtonText.SUBMIT,
           }));
-        })
+        });
     }
   
     _btnDisabling(isValid) {
@@ -102,11 +111,18 @@ const withReview = (Component) => {
       this.setState(({
         rating: null,
         comment: ``,
+        errorMessage: ``,
       }));
     }
 
     render() {
-      const {buttonText, isDisabled, rating, comment} = this.state;
+      const {
+        buttonText,
+        isDisabled,
+        rating,
+        comment,
+        errorMessage,
+      } = this.state;
 
       return (
         <Component
@@ -115,6 +131,7 @@ const withReview = (Component) => {
           isDisabled={isDisabled}
           rating={rating}
           comment={comment}
+          errorMessage={errorMessage}
           onSubmit={this.onSubmit}
           onCommentChange={this.handleCommentChange}
           onRatingChange={this.handleRatingChange}
@@ -133,17 +150,7 @@ const withReview = (Component) => {
 
   const mapDispatchToProps = (dispatch) => ({
     handleSubmit: (offerId, review) => {
-      return new Promise((resolve, reject) => {
-        console.log(`Отправляю данные`)
-        console.log(review)
-        setTimeout(() => {
-          if(Math.random() > 0.5) {
-            resolve(`Данные отправлены`)
-          } else {
-            reject(`Произошла ошибка`)
-          }
-        }, 2000);
-      });
+      return dispatch(Operation.postReview(offerId, review));
     }
   });
 

@@ -14,6 +14,7 @@ const ReviewForm = (props) => {
     onSubmit,
     onCommentChange,
     onRatingChange,
+    errorMessage,
   } = props;
 
   return (
@@ -69,12 +70,17 @@ const ReviewForm = (props) => {
         }}
       />
       <div className="reviews__button-wrapper">
-        <p className="reviews__help">
-          To submit review please make sure to set
-          <span className="reviews__star">rating</span>
-          and describe your stay with at least
-          <b className="reviews__text-amount">50 characters</b>.
-        </p>
+
+        {errorMessage
+          ? <p className="reviews__help" style={{color: "red"}}>{errorMessage}</p>
+          : <p className="reviews__help">
+              To submit review please make sure to set
+              <span className="reviews__star">rating</span>
+              and describe your stay with at least
+              <b className="reviews__text-amount">50 characters</b>.
+            </p>
+        }
+        
         <button
           key={ButtonClassNames.REVIEW}
           className={ButtonClassNames.REVIEW}
@@ -96,6 +102,7 @@ ReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCommentChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default ReviewForm;

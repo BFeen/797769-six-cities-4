@@ -5,9 +5,10 @@ import {formatDate} from "../../common/utils.js";
 
 const ReviewItem = (props) => {
   const {review} = props;
-  const {user} = review;
+  const {user, rating} = review;
   const slicedDate = review.dateTime.slice(0, 10);
   const dateReview = formatDate(review.dateTime);
+  const ratingStarsLength = 20 * rating + `%`;
 
   return (
     <li className="reviews__item">
@@ -27,7 +28,7 @@ const ReviewItem = (props) => {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: `80%`}}></span>
+            <span style={{width: ratingStarsLength}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

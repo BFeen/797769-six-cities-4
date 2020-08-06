@@ -6,12 +6,14 @@ const initialState = {
   offers: [],
   nearbyOffers: [],
   reviews: [],
+  errorMessage: ``,
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_NEARBY: `LOAD_NEARBY`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
+  CATCH_ERROR: `CATCH_ERROR`
 };
 
 const ActionCreator = {
@@ -32,7 +34,13 @@ const ActionCreator = {
       type: ActionType.LOAD_REVIEWS,
       payload: reviews,
     };
-  }
+  },
+  catchError: (error) => {
+    return {
+      type: ActionType.CATCH_ERROR,
+      payload: error,
+    };
+  },
 };
 
 const Operation = {
@@ -40,6 +48,9 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreator.loadOffers(parseOffers(response.data)));
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.catchError(err));
       });
   },
 
@@ -72,8 +83,13 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.loadReviews(parseReviews(response.data)));
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.catchError(err));
+  
+        throw err;
       });
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -89,6 +105,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_REVIEWS:
       return extend(state, {
         reviews: action.payload,
+      });
+    case ActionType.CATCH_ERROR:
+      return extend(state, {
+        errorMessage: action.payload,
       });
   }
 

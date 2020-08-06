@@ -22,3 +22,7 @@ export const getNearbyOffers = (state) => {
 export const getReviews = (state) => {
   return state[NameSpace.DATA].reviews;
 };
+
+export const getError = (state) => {
+  return state[NameSpace.DATA].errorMessage;
+};
