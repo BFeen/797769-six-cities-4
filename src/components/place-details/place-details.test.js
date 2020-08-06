@@ -325,6 +325,7 @@ describe(`PlaceDetails snapshot test`, () => {
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
           activeCard={{}}
+          isAuthorized={true}
         />
     );
 

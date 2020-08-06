@@ -44,7 +44,6 @@ describe(`withReview HOC snapshot testing`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <MockComponentWrapped
-            offerId={3}
             handleSubmit={() => {}}
           />
         </Provider>

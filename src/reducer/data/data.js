@@ -75,7 +75,7 @@ const Operation = {
         dispatch(ActionCreator.loadReviews(parseReviews(response.data)));
       });
   },
-  
+
   postReview: (offerId, review) => (dispatch, getState, api) => {
     return api.post(`/comments/${offerId}`, {
       comment: review.comment,
@@ -85,8 +85,6 @@ const Operation = {
         dispatch(ActionCreator.loadReviews(parseReviews(response.data)));
       })
       .catch((err) => {
-        dispatch(ActionCreator.catchError(err));
-  
         throw err;
       });
   },

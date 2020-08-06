@@ -80,7 +80,7 @@ const RatingStarsCount = {
   THREE: `not bad`,
   TWO: `badly`,
   ONE: `terribly`,
-}
+};
 
 const MONTHS = [
   `January`,

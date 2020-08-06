@@ -253,6 +253,7 @@ describe(`Data reducer testing`, () => {
       offers: [],
       nearbyOffers: [],
       reviews: [],
+      errorMessage: ``,
     });
   });
 
@@ -286,6 +287,17 @@ describe(`Data reducer testing`, () => {
       payload: nearbyOffersMock,
     })).toEqual({
       nearbyOffers: nearbyOffersMock,
+    });
+  });
+
+  it(`Reducer should update errorMessage when catching the error`, () => {
+    expect(reducer({
+      errorMessage: ``,
+    }, {
+      type: ActionType.CATCH_ERROR,
+      payload: `Bad request`,
+    })).toEqual({
+      errorMessage: `Bad request`,
     });
   });
 });

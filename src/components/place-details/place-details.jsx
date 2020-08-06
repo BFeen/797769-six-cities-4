@@ -6,7 +6,6 @@ import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from "../map/map.jsx";
 import Header from "../header/header.jsx";
 import ReviewForm from "../review-form/review-form.jsx";
-import {Operation} from "../../reducer/data/data.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withReview from "../../hocs/with-review/with-review.js";
 import {getReviews, getNearbyOffers} from "../../reducer/data/selectors.js";
@@ -30,7 +29,6 @@ const PlaceDetails = (props) => {
     onCardMouseEnter,
     onCardMouseLeave,
     activeCard,
-    handleSubmitReviewForm,
     isAuthorized,
   } = props;
 
@@ -134,7 +132,7 @@ const PlaceDetails = (props) => {
                   reviews={reviews}
                 />
 
-                {isAuthorized && 
+                {isAuthorized &&
                 <ReviewFormWrapped />}
 
               </section>
@@ -176,6 +174,7 @@ PlaceDetails.propTypes = {
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
   activeCard: PropTypes.object.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

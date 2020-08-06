@@ -163,6 +163,7 @@ describe(`App snapshot test`, () => {
       reviews: [],
     },
     [NameSpace.APPLICATION]: {
+      offerId: 3,
       sortType: `popular`,
     },
     [NameSpace.USER]: {
@@ -175,6 +176,7 @@ describe(`App snapshot test`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <App
+            authorizationStatus={`AUTH`}
             screenMode={ScreenMode.MAIN}
             offers={offersMock}
             currentCity={cityMock}
@@ -194,6 +196,7 @@ describe(`App snapshot test`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <App
+            authorizationStatus={`AUTH`}
             screenMode={ScreenMode.DETAILS}
             offerId={0}
             currentCity={cityMock}

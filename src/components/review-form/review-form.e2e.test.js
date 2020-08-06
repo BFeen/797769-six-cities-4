@@ -14,7 +14,7 @@ describe(`Review form e2e testing`, () => {
     const mockEvent = {
       preventDefault() {}
     };
-    
+
     const wrapper = shallow(
         <ReviewForm
           rating={3}
@@ -27,7 +27,7 @@ describe(`Review form e2e testing`, () => {
           errorMessage={``}
         />
     );
-    
+
     const form = wrapper.find(`form`);
 
     form.simulate(`submit`, mockEvent);
@@ -70,16 +70,16 @@ describe(`Review form e2e testing`, () => {
     };
     const handleRatingChange = jest.fn();
     const wrapper = shallow(
-      <ReviewForm
-        rating={3}
-        comment={`Some comment`}
-        buttonText={`Submit`}
-        isDisabled={true}
-        onSubmit={() => {}}
-        onCommentChange={() => {}}
-        onRatingChange={handleRatingChange}
-        errorMessage={``}
-      />
+        <ReviewForm
+          rating={3}
+          comment={`Some comment`}
+          buttonText={`Submit`}
+          isDisabled={true}
+          onSubmit={() => {}}
+          onCommentChange={() => {}}
+          onRatingChange={handleRatingChange}
+          errorMessage={``}
+        />
     );
 
     const ratingInput = wrapper.find(`input.form__rating-input`).at(0);

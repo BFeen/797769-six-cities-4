@@ -59,7 +59,7 @@ const withReview = (Component) => {
         rating: count,
       }));
     }
-    
+
     onSubmit() {
       this.setState(({
         isSending: true,
@@ -80,7 +80,7 @@ const withReview = (Component) => {
         })
         .catch(() => {
           this.setState(({
-            errorMessage: 'Something went wrong. Please try again later.',
+            errorMessage: `Something went wrong. Please try again later.`,
           }));
         })
         .finally(() => {
@@ -90,7 +90,7 @@ const withReview = (Component) => {
           }));
         });
     }
-  
+
     _btnDisabling(isValid) {
       if (this.state.isDisabled === isValid) {
         this.setState(({
@@ -98,15 +98,15 @@ const withReview = (Component) => {
         }));
       }
     }
-  
+
     _formValidation() {
       const {rating, comment} = this.state;
       const commentLength = comment.length;
       const isTextValid = commentLength >= CharsAmount.MIN && commentLength <= CharsAmount.MAX;
-  
-      return isTextValid && rating !== null;;
+
+      return isTextValid && rating !== null;
     }
-  
+
     _clearForm() {
       this.setState(({
         rating: null,
@@ -142,6 +142,7 @@ const withReview = (Component) => {
 
   WithReview.propTypes = {
     offerId: PropTypes.number.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
   };
 
   const mapStateToProps = (state) => ({

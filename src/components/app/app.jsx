@@ -31,7 +31,6 @@ class App extends PureComponent {
       authorizationStatus,
       login,
     } = this.props;
-    // const offer = offers.find((item) => item.id === offerId);
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
     switch (screenMode) {

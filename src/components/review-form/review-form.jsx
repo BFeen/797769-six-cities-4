@@ -44,7 +44,7 @@ const ReviewForm = (props) => {
                 type="radio"
                 checked={count === rating}
                 onChange={(evt) => {
-                  let value = parseInt(evt.target.value);
+                  let value = parseInt(evt.target.value, 10);
                   onRatingChange(value);
                 }}
               />
@@ -72,15 +72,15 @@ const ReviewForm = (props) => {
       <div className="reviews__button-wrapper">
 
         {errorMessage
-          ? <p className="reviews__help" style={{color: "red"}}>{errorMessage}</p>
+          ? <p className="reviews__help" style={{color: `red`}}>{errorMessage}</p>
           : <p className="reviews__help">
               To submit review please make sure to set
-              <span className="reviews__star">rating</span>
+            <span className="reviews__star">rating</span>
               and describe your stay with at least
-              <b className="reviews__text-amount">50 characters</b>.
-            </p>
+            <b className="reviews__text-amount">50 characters</b>.
+          </p>
         }
-        
+
         <button
           key={ButtonClassNames.REVIEW}
           className={ButtonClassNames.REVIEW}
@@ -92,7 +92,7 @@ const ReviewForm = (props) => {
       </div>
     </form>
   );
-}
+};
 
 ReviewForm.propTypes = {
   rating: PropTypes.any,
