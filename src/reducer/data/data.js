@@ -7,13 +7,15 @@ const initialState = {
   nearbyOffers: [],
   reviews: [],
   errorMessage: ``,
+  favorites: [],
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_NEARBY: `LOAD_NEARBY`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
-  CATCH_ERROR: `CATCH_ERROR`
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
+  CATCH_ERROR: `CATCH_ERROR`,
 };
 
 const ActionCreator = {
@@ -35,6 +37,12 @@ const ActionCreator = {
       payload: reviews,
     };
   },
+  loadFavorites: (favorites) => {
+    return {
+      type: ActionType.LOAD_FAVORITES,
+      payload: favorites,
+    };
+  },
   catchError: (error) => {
     return {
       type: ActionType.CATCH_ERROR,
@@ -53,7 +61,6 @@ const Operation = {
         dispatch(ActionCreator.catchError(err));
       });
   },
-
   loadNearby: (offerId) => (dispatch, getState, api) => {
     if (offerId < 0) {
       return [];
@@ -64,7 +71,6 @@ const Operation = {
         dispatch(ActionCreator.loadNearby(parseOffers(response.data)));
       });
   },
-
   loadReviews: (offerId) => (dispatch, getState, api) => {
     if (offerId < 0) {
       return [];
@@ -75,7 +81,6 @@ const Operation = {
         dispatch(ActionCreator.loadReviews(parseReviews(response.data)));
       });
   },
-
   postReview: (offerId, review) => (dispatch, getState, api) => {
     return api.post(`/comments/${offerId}`, {
       comment: review.comment,
@@ -88,6 +93,18 @@ const Operation = {
         throw err;
       });
   },
+  loadFavorites: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFavorites(parseOffers(response.data)));
+      });
+  },
+  postFavorites: (offerId, status) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${offerId}/${status}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFavorites(parseOffers(response.data)));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -103,6 +120,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_REVIEWS:
       return extend(state, {
         reviews: action.payload,
+      });
+    case ActionType.LOAD_FAVORITES:
+      return extend(state, {
+        favorites: action.payload,
       });
     case ActionType.CATCH_ERROR:
       return extend(state, {

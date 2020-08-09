@@ -11,6 +11,8 @@ const PlaceCard = (props) => {
     onCardMouseLeave,
     onItemClick,
   } = props;
+  const {rating} = offer;
+  const ratingStarsLength = 20 * rating + `%`;
 
   return (
     <article
@@ -26,6 +28,7 @@ const PlaceCard = (props) => {
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
+
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={offer.picture} width="260" height="200" alt={offer.title} />
@@ -46,7 +49,7 @@ const PlaceCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `80%`}}></span>
+            <span style={{width: ratingStarsLength}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

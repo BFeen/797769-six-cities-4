@@ -57,6 +57,11 @@ class App extends PureComponent {
               onSubmit={login}
             />
           </Route>
+          <Route exact path={AppRoute.FAVORITES}>
+            <Favorites
+              onCardTitleClick={handleCardTitleClick}
+            />
+          </Route>
         </Switch>
       </Router>
     );

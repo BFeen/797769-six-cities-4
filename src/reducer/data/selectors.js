@@ -26,3 +26,7 @@ export const getReviews = (state) => {
 export const getError = (state) => {
   return state[NameSpace.DATA].errorMessage;
 };
+
+export const getFavorites = (state) => {
+  return state[NameSpace.DATA].favorites;
+}

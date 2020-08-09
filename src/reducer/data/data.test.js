@@ -1,6 +1,7 @@
 import {reducer, Operation, ActionType} from "./data.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
+import {favoritesPostStatus} from "../../common/const.js";
 
 
 const offersMock = [
@@ -254,6 +255,7 @@ describe(`Data reducer testing`, () => {
       nearbyOffers: [],
       reviews: [],
       errorMessage: ``,
+      favorites: [],
     });
   });
 
@@ -287,6 +289,17 @@ describe(`Data reducer testing`, () => {
       payload: nearbyOffersMock,
     })).toEqual({
       nearbyOffers: nearbyOffersMock,
+    });
+  });
+
+  it(`Reducer should update nearbyOffers by load nearby offers`, () => {
+    expect(reducer({
+      favorites: [],
+    }, {
+      type: ActionType.LOAD_FAVORITES,
+      payload: offersMock.slice(2),
+    })).toEqual({
+      favorites: offersMock.slice(2),
     });
   });
 
@@ -383,6 +396,47 @@ describe(`Data Operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_REVIEWS,
           payload: [reviewsMock[0]],
+        });
+      });
+  });
+
+  it(`Should make a correct API call to 'GET: /favorite'`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const favoriteLoader = Operation.loadFavorites();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, offerRaw);
+
+    return favoriteLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITES,
+          payload: [offersMock[0]],
+        });
+      });
+  });
+
+  it(`Should make a correct API call to 'POST: favorite/:hotel-id/:status'`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offerId = 1;
+    const status = favoritesPostStatus.ADDING;
+
+    const favoriteSender = Operation.postFavorites(offerId, status);
+
+    apiMock
+      .onPost(`/favorite/${offerId}/${status}`)
+      .reply(200, offerRaw);
+
+    return favoriteSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITES,
+          payload: [offersMock[0]],
         });
       });
   });

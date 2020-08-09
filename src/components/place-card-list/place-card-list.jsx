@@ -14,8 +14,8 @@ const PlaceCardList = (props) => {
     onCardMouseLeave,
   } = props;
 
-  const {CitiesListClassNames, CardClassNames} = ClassNames;
-  const listClassName = isMain ? CitiesListClassNames.MAIN : CitiesListClassNames.DETAILS;
+  const {PlacesListClassNames, CardClassNames} = ClassNames;
+  const listClassName = isMain ? PlacesListClassNames.MAIN : PlacesListClassNames.DETAILS;
   const cardClassName = isMain ? CardClassNames.MAIN : CardClassNames.DETAILS;
 
   return (

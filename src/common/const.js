@@ -1,6 +1,7 @@
 const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
+  FAVORITES: `/favorite`,
 };
 
 const Cities = [
@@ -34,7 +35,7 @@ const ClassNames = {
     AUTH: `header__user-name user__name`,
     NO_AUTH: `header__login`,
   },
-  CitiesListClassNames: {
+  PlacesListClassNames: {
     MAIN: `cities__places-list tabs__content`,
     DETAILS: `near-places__list`,
   },
@@ -42,15 +43,15 @@ const ClassNames = {
     MAIN: `cities__place-card`,
     DETAILS: `near-places__card`,
   },
-  PageClassNames: {
-    MAIN: `page--gray page--main`,
-    SIGN_IN: `page--gray page--login`,
-    DETAILS: ``,
-  },
   ButtonClassNames: {
     SIGN_IN: `login__submit form__submit button`,
     REVIEW: `reviews__submit form__submit button`,
-  }
+  },
+  // PageClassNames: {
+  //   MAIN: `page--gray page--main`,
+  //   SIGN_IN: `page--gray page--login`,
+  //   DETAILS: ``,
+  // },
 };
 
 const MONTHS = [
@@ -102,6 +103,11 @@ const SortType = {
   },
 };
 
+const favoritesPostStatus = {
+  DELETE: 0,
+  ADDING: 1,
+};
+
 export {
   AppRoute,
   Cities,
@@ -110,4 +116,5 @@ export {
   RatingStarsCount,
   ScreenMode,
   SortType,
+  favoritesPostStatus,
 };
