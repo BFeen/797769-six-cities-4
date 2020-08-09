@@ -31,4 +31,8 @@ const getSortedOffers = (unsortedOffers, sortType) => {
   return offers;
 };
 
-export {extend, getSortedOffers, formatDate};
+const getSlicedClassName = (str) => {
+  return str.slice(0, str.indexOf(`_`));
+}
+
+export {extend, getSortedOffers, formatDate, getSlicedClassName};

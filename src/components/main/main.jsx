@@ -13,7 +13,7 @@ import {ActionCreator} from "../../reducer/application/application.js";
 import {getSortedOffers} from "../../common/utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {getSortType} from "../../reducer/application/selectors.js";
-import {ClassNames} from "../../common/const.js";
+import {ClassNames, ScreenType} from "../../common/const.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
@@ -73,8 +73,8 @@ const Main = (props) => {
 
                 <PlaceCardListWrapped
                   offers={sortedOffers}
+                  screenType={ScreenType.MAIN}
                   onItemClick={onCardTitleClick}
-                  isMain={true}
                   onCardMouseEnter={onCardMouseEnter}
                   onCardMouseLeave={onCardMouseLeave}
                 />

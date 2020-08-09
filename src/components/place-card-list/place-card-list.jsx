@@ -2,21 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import {ClassNames} from "../../common/const.js";
+import {ClassNames, ScreenType} from "../../common/const.js";
 
 
 const PlaceCardList = (props) => {
   const {
     offers,
     onItemClick,
-    isMain,
+    screenType,
     onCardMouseEnter,
     onCardMouseLeave,
   } = props;
+  
+  const listClassName = ClassNames.PlacesListClassNames[screenType];
+  const cardClassName = ClassNames.CardClassNames[screenType];
+  const isFavoriteScreen = screenType === ScreenType.FAVORITES;
 
-  const {PlacesListClassNames, CardClassNames} = ClassNames;
-  const listClassName = isMain ? PlacesListClassNames.MAIN : PlacesListClassNames.DETAILS;
-  const cardClassName = isMain ? CardClassNames.MAIN : CardClassNames.DETAILS;
 
   return (
     <div className={`places__list ${listClassName}`}>
@@ -26,6 +27,7 @@ const PlaceCardList = (props) => {
             key={`${offer.id}`}
             offer={offer}
             className={cardClassName}
+            isFavoriteScreen={isFavoriteScreen}
             onItemClick={onItemClick}
             onCardMouseEnter={onCardMouseEnter}
             onCardMouseLeave={onCardMouseLeave}
@@ -39,7 +41,7 @@ const PlaceCardList = (props) => {
 PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   onItemClick: PropTypes.func.isRequired,
-  isMain: PropTypes.bool.isRequired,
+  screenType: PropTypes.string.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
 };

@@ -38,20 +38,23 @@ const ClassNames = {
   PlacesListClassNames: {
     MAIN: `cities__places-list tabs__content`,
     DETAILS: `near-places__list`,
+    FAVORITES: `favorites__places`,
   },
   CardClassNames: {
     MAIN: `cities__place-card`,
     DETAILS: `near-places__card`,
+    FAVORITES: `favorites__card`,
   },
   ButtonClassNames: {
     SIGN_IN: `login__submit form__submit button`,
     REVIEW: `reviews__submit form__submit button`,
   },
-  // PageClassNames: {
-  //   MAIN: `page--gray page--main`,
-  //   SIGN_IN: `page--gray page--login`,
-  //   DETAILS: ``,
-  // },
+};
+
+const ScreenType = {
+  MAIN: `MAIN`,
+  DETAILS: `DETAILS`,
+  FAVORITES: `FAVORITES`,
 };
 
 const MONTHS = [
@@ -77,12 +80,7 @@ const RatingStarsCount = {
   ONE: `terribly`,
 };
 
-const ScreenMode = {
-  MAIN: `MAIN`,
-  DETAILS: `DETAILS`,
-  FAVORITES: `FAVORITES`,
-  SIGN_IN: `SIGN_IN`,
-};
+
 
 const SortType = {
   POPULAR: {
@@ -114,7 +112,7 @@ export {
   ClassNames,
   MONTHS,
   RatingStarsCount,
-  ScreenMode,
+  ScreenType,
   SortType,
   favoritesPostStatus,
 };

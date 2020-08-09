@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {ClassNames, ScreenMode, AppRoute} from "../../common/const.js";
+import {ClassNames, AppRoute} from "../../common/const.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {getAuthorizationStatus, getUserData} from "../../reducer/user/selectors.js";
 import {ActionCreator} from "../../reducer/application/application.js";
@@ -80,10 +80,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleLogoClick: () => {
-    dispatch(ActionCreator.changeScreen(ScreenMode.MAIN));
+    // dispatch(ActionCreator.changeScreen(ScreenMode.MAIN));
   },
   handleSignInClick: () => {
-    dispatch(ActionCreator.changeScreen(ScreenMode.SIGN_IN));
+    // dispatch(ActionCreator.changeScreen(ScreenMode.SIGN_IN));
   }
 });
 
