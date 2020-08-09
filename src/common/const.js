@@ -1,8 +1,6 @@
-const ScreenMode = {
-  MAIN: `MAIN`,
-  DETAILS: `DETAILS`,
-  FAVORITES: `FAVORITES`,
-  SIGN_IN: `SIGN_IN`,
+const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
 };
 
 const Cities = [
@@ -55,6 +53,36 @@ const ClassNames = {
   }
 };
 
+const MONTHS = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`,
+];
+
+const RatingStarsCount = {
+  FIVE: `perfect`,
+  FOUR: `good`,
+  THREE: `not bad`,
+  TWO: `badly`,
+  ONE: `terribly`,
+};
+
+const ScreenMode = {
+  MAIN: `MAIN`,
+  DETAILS: `DETAILS`,
+  FAVORITES: `FAVORITES`,
+  SIGN_IN: `SIGN_IN`,
+};
+
 const SortType = {
   POPULAR: {
     value: `popular`,
@@ -74,27 +102,12 @@ const SortType = {
   },
 };
 
-const RatingStarsCount = {
-  FIVE: `perfect`,
-  FOUR: `good`,
-  THREE: `not bad`,
-  TWO: `badly`,
-  ONE: `terribly`,
+export {
+  AppRoute,
+  Cities,
+  ClassNames,
+  MONTHS,
+  RatingStarsCount,
+  ScreenMode,
+  SortType,
 };
-
-const MONTHS = [
-  `January`,
-  `February`,
-  `March`,
-  `April`,
-  `May`,
-  `June`,
-  `July`,
-  `August`,
-  `September`,
-  `October`,
-  `November`,
-  `December`,
-];
-
-export {Cities, ClassNames, RatingStarsCount, ScreenMode, SortType, MONTHS};

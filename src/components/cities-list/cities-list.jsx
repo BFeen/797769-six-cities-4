@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Cities} from "../../common/const.js";
+import {Link} from "react-router-dom";
+import {Cities, AppRoute} from "../../common/const.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 class CitiesList extends PureComponent {
@@ -22,7 +23,6 @@ class CitiesList extends PureComponent {
             >
               <a
                 className={`locations__item-link tabs__item ${currentCity === city ? activeClassName : ``}`}
-                href="#"
               >
                 <span>{city.name}</span>
               </a>

@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
@@ -14,64 +14,34 @@ import {getCurrentCity, getOfferId, getScreenMode} from "../../reducer/applicati
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
-import {ScreenMode} from "../../common/const.js";
+import {AppRoute, ScreenMode} from "../../common/const.js";
+import history from "../../history.js";
 
 
 const MainWrapped = withActiveCard(Main);
 const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 
 class App extends PureComponent {
-  _renderMainPage() {
+  render() {
     const {
-      screenMode,
       currentCity,
-      offers,
       offerId,
+      offers,
       handleCardTitleClick,
-      authorizationStatus,
       login,
+      authorizationStatus
     } = this.props;
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
-    switch (screenMode) {
-      case ScreenMode.MAIN:
-        return (
-          <MainWrapped
-            city={currentCity}
-            offers={offers}
-            onCardTitleClick={handleCardTitleClick}
-          />
-        );
-      case ScreenMode.DETAILS:
-        return (
-          <PlaceDetailsWrapped
-            city={currentCity}
-            offerId={offerId}
-            offers={offers}
-            onCardTitleClick={handleCardTitleClick}
-            isAuthorized={isAuthorized}
-          />
-        );
-      case ScreenMode.SIGN_IN:
-        return (
-          <SignIn
-            onSubmit={login}
-          />
-        );
-    }
-
-    return null;
-  }
-
-  render() {
-    const {currentCity, offerId, offers, handleCardTitleClick, login, authorizationStatus} = this.props;
-    const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
-          <Route exact path="/">
-            {this._renderMainPage()}
+          <Route exact path={AppRoute.ROOT}>
+            <MainWrapped
+              city={currentCity}
+              offers={offers}
+              onCardTitleClick={handleCardTitleClick}
+            />
           </Route>
           <Route exact path="/details">
             <PlaceDetailsWrapped
@@ -82,13 +52,13 @@ class App extends PureComponent {
               isAuthorized={isAuthorized}
             />
           </Route>
-          <Route exact path="/sign-in">
+          <Route exact path={AppRoute.LOGIN}>
             <SignIn
               onSubmit={login}
             />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
