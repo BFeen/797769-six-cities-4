@@ -52,9 +52,11 @@ describe(`PlaceCard e2e tests`, () => {
         <PlaceCard
           offer={offerMock}
           className={`cities__place-card`}
+          isFavoriteScreen={false}
           onItemClick={() => {}}
           onCardMouseEnter={handleCardMouseEnter}
           onCardMouseLeave={() => {}}
+          onBookmarkClick={() => {}}
         />
     );
 
@@ -72,9 +74,11 @@ describe(`PlaceCard e2e tests`, () => {
         <PlaceCard
           offer={offerMock}
           className={`cities__place-card`}
+          isFavoriteScreen={false}
           onItemClick={() => {}}
           onCardMouseEnter={() => {}}
           onCardMouseLeave={handleCardMouseLeave}
+          onBookmarkClick={() => {}}
         />
     );
 
@@ -91,9 +95,11 @@ describe(`PlaceCard e2e tests`, () => {
         <PlaceCard
           offer={offerMock}
           className={`cities__place-card`}
+          isFavoriteScreen={false}
           onItemClick={handleCardTitleClick}
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
+          onBookmarkClick={() => {}}
         />
     );
 
@@ -102,5 +108,27 @@ describe(`PlaceCard e2e tests`, () => {
 
     expect(handleCardTitleClick).toHaveBeenCalledTimes(1);
     expect(handleCardTitleClick).toHaveBeenCalledWith(offerMock.id);
+  });
+
+  it(`Should handle bookmark clicking`, () => {
+    const handleBookmarkClick = jest.fn();
+
+    const placeCard = shallow(
+        <PlaceCard
+          offer={offerMock}
+          className={`cities__place-card`}
+          isFavoriteScreen={false}
+          onItemClick={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          onBookmarkClick={handleBookmarkClick}
+        />
+    );
+
+    const bookmarkBtn = placeCard.find(`button.place-card__bookmark-button`);
+    bookmarkBtn.simulate(`click`);
+
+    expect(handleBookmarkClick).toHaveBeenCalledTimes(1);
+    expect(handleBookmarkClick).toHaveBeenCalledWith(offerMock.id, offerMock.isFavorite);
   });
 });

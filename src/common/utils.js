@@ -35,4 +35,8 @@ const getSlicedClassName = (str) => {
   return str.slice(0, str.indexOf(`_`));
 }
 
-export {extend, getSortedOffers, formatDate, getSlicedClassName};
+const getRatingStars = (rating) => {
+  return Math.floor(rating) * 20 + `%`;
+}
+
+export {extend, formatDate, getSortedOffers, getSlicedClassName, getRatingStars};

@@ -80,8 +80,6 @@ const RatingStarsCount = {
   ONE: `terribly`,
 };
 
-
-
 const SortType = {
   POPULAR: {
     value: `popular`,

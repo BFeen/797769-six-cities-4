@@ -12,6 +12,7 @@ const PlaceCardList = (props) => {
     screenType,
     onCardMouseEnter,
     onCardMouseLeave,
+    onBookmarkClick,
   } = props;
   
   const listClassName = ClassNames.PlacesListClassNames[screenType];
@@ -31,6 +32,7 @@ const PlaceCardList = (props) => {
             onItemClick={onItemClick}
             onCardMouseEnter={onCardMouseEnter}
             onCardMouseLeave={onCardMouseLeave}
+            onBookmarkClick={onBookmarkClick}
           />
         );
       })}
@@ -44,6 +46,7 @@ PlaceCardList.propTypes = {
   screenType: PropTypes.string.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
+  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCardList;

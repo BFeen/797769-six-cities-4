@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import {getSlicedClassName} from "../../common/utils.js";
+import {getSlicedClassName, getRatingStars} from "../../common/utils.js";
 
 
 const PlaceCard = (props) => {
@@ -12,13 +12,14 @@ const PlaceCard = (props) => {
     onCardMouseEnter,
     onCardMouseLeave,
     onItemClick,
+    onBookmarkClick,
   } = props;
   
   const {rating, isFavorite} = offer;
-  const ratingStarsLength = 20 * Math.floor(rating) + `%`;
+  const ratingStarsLength = getRatingStars(rating);
   const slicedClassName = getSlicedClassName(className);
-  const btnBookmarkClass = isFavorite ? `place-card__bookmark-button--active` : ``;
   const infoClassName = isFavoriteScreen ? `favorites__card-info` : ``;
+  const btnBookmarkClass = isFavorite ? `place-card__bookmark-button--active` : ``;
 
   return (
     <article
@@ -50,6 +51,9 @@ const PlaceCard = (props) => {
           <button
             className={`place-card__bookmark-button ${btnBookmarkClass} button`}
             type="button"
+            onClick={() => {
+              onBookmarkClick(offer.id, offer.isFavorite);
+            }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark" />
@@ -85,6 +89,7 @@ PlaceCard.propTypes = {
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,
+  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;

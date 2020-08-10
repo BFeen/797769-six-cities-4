@@ -1,5 +1,6 @@
 import {extend} from "../../common/utils.js";
-import {parseOffers, parseReviews} from "../adapters.js";
+import {offerAdapter, parseOffers, parseReviews} from "../adapters.js";
+import {getOffers} from "./selectors.js";
 
 
 const initialState = {
@@ -15,6 +16,7 @@ const ActionType = {
   LOAD_NEARBY: `LOAD_NEARBY`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
+  CHANGE_FAVORITE_STATUS: `CHANGE_FAVORITE_STATUS`,
   CATCH_ERROR: `CATCH_ERROR`,
 };
 
@@ -41,6 +43,12 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_FAVORITES,
       payload: favorites,
+    };
+  },
+  changeFavoriteStatus: (offerId) => {
+    return {
+      type: ActionType.CHANGE_FAVORITE_STATUS,
+      payload: offerId,
     };
   },
   catchError: (error) => {
@@ -102,7 +110,18 @@ const Operation = {
   postFavorites: (offerId, status) => (dispatch, getState, api) => {
     return api.post(`/favorite/${offerId}/${status}`)
       .then((response) => {
-        dispatch(ActionCreator.loadFavorites(parseOffers(response.data)));
+        return offerAdapter(response.data);
+      })
+      .then(() => {
+        const state = getState();
+        const offers = getOffers(state).slice();
+        const changingOffer = offers.find((item) => item.id === offerId);
+        changingOffer.isFavorite = !changingOffer.isFavorite;
+
+        dispatch(ActionCreator.loadOffers(offers));
+      })
+      .catch((err) => {
+        throw err
       });
   }
 };

@@ -23,6 +23,22 @@ const MainWrapped = withActiveCard(Main);
 const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 
 class App extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this._onBookmarkClick = this._onBookmarkClick.bind(this);
+  }
+  _onBookmarkClick(offerId, isFavorite) {
+    if (this.props.authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      return history.push(AppRoute.LOGIN);
+    }
+
+    const {handleBookmarkClick} = this.props;
+    const status = +!isFavorite;
+
+    handleBookmarkClick(offerId, status);
+  }
+
   _renderSignIn() {
     const {login, authorizationStatus} = this.props;
 
@@ -56,10 +72,12 @@ class App extends PureComponent {
                 city={currentCity}
                 offers={offers}
                 onCardTitleClick={handleCardTitleClick}
+                isAuthorized={isAuthorized}
+                onBookmarkClick={this._onBookmarkClick}
               />
             )}
           />
-          <Route exact path="/details" 
+          {/* <Route exact path="/details" 
             render={() => (
               <PlaceDetailsWrapped
                 city={currentCity}
@@ -67,19 +85,22 @@ class App extends PureComponent {
                 offers={offers}
                 onCardTitleClick={handleCardTitleClick}
                 isAuthorized={isAuthorized}
+                onBookmarkClick={this._onBookmarkClick}
               />
             )}
-          />
+          /> */}
           <Route exact path={AppRoute.LOGIN}
             render={() => (
               this._renderSignIn()
             )}
           />
-          <Route exact path={AppRoute.FAVORITES}>
+          {/* <Route exact path={AppRoute.FAVORITES}>
             <Favorites
+              isAuthorized={isAuthorized}
               onCardTitleClick={handleCardTitleClick}
+              onBookmarkClick={this._onBookmarkClick}
             />
-          </Route>
+          </Route> */}
         </Switch>
       </Router>
     );
@@ -93,6 +114,7 @@ App.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   handleCardTitleClick: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
+  handleBookmarkClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -110,7 +132,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.selectOffer(offerId));
     dispatch(DataOperation.loadNearby(offerId));
     dispatch(DataOperation.loadReviews(offerId));
-  }
+  },
+  handleBookmarkClick: (offerId, status) => {
+    dispatch(DataOperation.postFavorites(offerId, status));
+  },
 });
 
 export {App};

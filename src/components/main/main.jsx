@@ -21,6 +21,7 @@ const CitiesListWrapped = withActiveItem(CitiesList);
 
 const Main = (props) => {
   const {
+    isAuthorized,
     sortType,
     city,
     offers,
@@ -30,6 +31,7 @@ const Main = (props) => {
     onCardMouseEnter,
     onCardMouseLeave,
     activeCard,
+    onBookmarkClick,
   } = props;
 
   const placesCount = offers.length;
@@ -72,11 +74,13 @@ const Main = (props) => {
                 </form>
 
                 <PlaceCardListWrapped
+                  isAuthorized={isAuthorized}
                   offers={sortedOffers}
                   screenType={ScreenType.MAIN}
                   onItemClick={onCardTitleClick}
                   onCardMouseEnter={onCardMouseEnter}
                   onCardMouseLeave={onCardMouseLeave}
+                  onBookmarkClick={onBookmarkClick}
                 />
 
               </section>
@@ -110,6 +114,7 @@ Main.propTypes = {
     offerPropTypes,
     PropTypes.object.isRequired,
   ]).isRequired,
+  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

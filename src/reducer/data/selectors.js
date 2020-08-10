@@ -29,4 +29,4 @@ export const getError = (state) => {
 
 export const getFavorites = (state) => {
   return state[NameSpace.DATA].favorites;
-}
+};

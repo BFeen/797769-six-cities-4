@@ -30,12 +30,16 @@ const PlaceDetails = (props) => {
     onCardMouseLeave,
     activeCard,
     isAuthorized,
+    onBookMarkClick,
   } = props;
 
   const currentOffer = offers.find((item) => item.id === offerId);
-  const {details} = currentOffer;
+  const {details, rating, isFavorite} = currentOffer;
   const {host} = details;
   const {MapClassNames} = ClassNames;
+  const ratingStarsLength = getRatingStars(rating)
+  const bookmarkActiveClass = isFavorite ? `property__bookmark-button--active` : ``;
+
 
   return (
     <div className="page">
@@ -69,7 +73,13 @@ const PlaceDetails = (props) => {
                 <h1 className="property__name">
                   {currentOffer.title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
+                <button
+                  className={`property__bookmark-button ${bookmarkActiveClass} button`}
+                  type="button"
+                  onClick={() => {
+                    onBookMarkClick(currentOffer.id, isFavorite);
+                  }}
+                >
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
@@ -78,7 +88,7 @@ const PlaceDetails = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `80%`}}></span>
+                  <span style={{width: ratingStarsLength}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{currentOffer.rating}</span>
@@ -175,6 +185,7 @@ PlaceDetails.propTypes = {
   onCardMouseLeave: PropTypes.func.isRequired,
   activeCard: PropTypes.object.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
+  onBookMarkClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
