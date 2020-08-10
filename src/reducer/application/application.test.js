@@ -1,5 +1,5 @@
 import {reducer, ActionType, ActionCreator} from "./application.js";
-import {ScreenMode, SortType} from "../../common/const.js";
+import {SortType} from "../../common/const.js";
 
 
 const citiesMock = [

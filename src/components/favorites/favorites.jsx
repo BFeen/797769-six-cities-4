@@ -15,10 +15,10 @@ const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 
 const Favorites = (props) => {
   const {favorites, onCardTitleClick, onBookmarkClick} = props;
-  const citiesList = [... new Set(favorites.map((item) => item.city))];
+  const citiesList = [...new Set(favorites.map((item) => item.city))];
   const isEmpty = favorites.length === 0;
 
-  return(
+  return (
     <div className="page">
 
       <Header />
@@ -26,7 +26,7 @@ const Favorites = (props) => {
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           {isEmpty
-            ? <FavoritesEmpty /> 
+            ? <FavoritesEmpty />
             : <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
@@ -35,10 +35,10 @@ const Favorites = (props) => {
                   const filteredCards = favorites.filter((item) => item.city === city);
 
                   return (
-                    <li className="favorites__locations-items">
+                    <li key={city} className="favorites__locations-items">
                       <div className="favorites__locations locations locations--current">
                         <div className="locations__item">
-                          <a className="locations__item-link" href="#">
+                          <a className="locations__item-link">
                             <span>{city}</span>
                           </a>
                         </div>
@@ -56,11 +56,11 @@ const Favorites = (props) => {
                     </li>
                   );
                 })}
-                
+
               </ul>
             </section>
           }
-          
+
         </div>
       </main>
       <footer className="footer container">

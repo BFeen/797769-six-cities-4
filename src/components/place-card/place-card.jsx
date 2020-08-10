@@ -14,7 +14,7 @@ const PlaceCard = (props) => {
     onItemClick,
     onBookmarkClick,
   } = props;
-  
+
   const {rating, isFavorite} = offer;
   const ratingStarsLength = getRatingStars(rating);
   const slicedClassName = getSlicedClassName(className);

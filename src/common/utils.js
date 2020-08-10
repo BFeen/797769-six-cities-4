@@ -33,10 +33,10 @@ const getSortedOffers = (unsortedOffers, sortType) => {
 
 const getSlicedClassName = (str) => {
   return str.slice(0, str.indexOf(`_`));
-}
+};
 
 const getRatingStars = (rating) => {
   return Math.floor(rating) * 20 + `%`;
-}
+};
 
 export {extend, formatDate, getSortedOffers, getSlicedClassName, getRatingStars};

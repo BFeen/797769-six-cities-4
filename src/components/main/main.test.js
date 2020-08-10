@@ -159,6 +159,7 @@ describe(`Main component snapshot testing`, () => {
   it(`Render Main.`, () => {
     const tree = shallow(
         <Main
+          isAuthorized={true}
           offers={offersMock}
           city={cityMock}
           sortType={`popular`}
@@ -179,6 +180,7 @@ describe(`Main component snapshot testing`, () => {
   it(`Render Main with no offers`, () => {
     const tree = shallow(
         <Main
+          isAuthorized={true}
           offers={[]}
           city={cityMock}
           sortType={`popular`}

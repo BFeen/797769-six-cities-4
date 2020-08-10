@@ -14,7 +14,7 @@ const PlaceCardList = (props) => {
     onCardMouseLeave,
     onBookmarkClick,
   } = props;
-  
+
   const listClassName = ClassNames.PlacesListClassNames[screenType];
   const cardClassName = ClassNames.CardClassNames[screenType];
   const isFavoriteScreen = screenType === ScreenType.FAVORITES;

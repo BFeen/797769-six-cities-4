@@ -38,7 +38,7 @@ const PlaceDetails = (props) => {
   const {details, rating, isFavorite} = currentOffer;
   const {host} = details;
   const {MapClassNames} = ClassNames;
-  const ratingStarsLength = getRatingStars(rating)
+  const ratingStarsLength = getRatingStars(rating);
   const bookmarkActiveClass = isFavorite ? `property__bookmark-button--active` : ``;
 
 

@@ -2,9 +2,9 @@ import React, {PureComponent} from "react";
 import {Router, Switch, Route, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
-import PlaceDetails from "../place-details/place-details.jsx";
+// import PlaceDetails from "../place-details/place-details.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-import Favorites from "../favorites/favorites.jsx";
+// import Favorites from "../favorites/favorites.jsx";
 import {ActionCreator} from "../../reducer/application/application.js";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
@@ -20,7 +20,7 @@ import history from "../../history.js";
 
 
 const MainWrapped = withActiveCard(Main);
-const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
+// const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 
 class App extends PureComponent {
   constructor(props) {
@@ -28,6 +28,7 @@ class App extends PureComponent {
 
     this._onBookmarkClick = this._onBookmarkClick.bind(this);
   }
+
   _onBookmarkClick(offerId, isFavorite) {
     if (this.props.authorizationStatus === AuthorizationStatus.NO_AUTH) {
       return history.push(AppRoute.LOGIN);
@@ -37,13 +38,15 @@ class App extends PureComponent {
     const status = +!isFavorite;
 
     handleBookmarkClick(offerId, status);
+
+    return true;
   }
 
   _renderSignIn() {
     const {login, authorizationStatus} = this.props;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
-      return <Redirect to={AppRoute.FAVORITES}/>
+      return <Redirect to={AppRoute.FAVORITES}/>;
     }
 
     return (
@@ -56,7 +59,7 @@ class App extends PureComponent {
   render() {
     const {
       currentCity,
-      offerId,
+      // offerId,
       offers,
       handleCardTitleClick,
       authorizationStatus
@@ -77,7 +80,7 @@ class App extends PureComponent {
               />
             )}
           />
-          {/* <Route exact path="/details" 
+          {/* <Route exact path="/details"
             render={() => (
               <PlaceDetailsWrapped
                 city={currentCity}

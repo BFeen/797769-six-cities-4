@@ -110,7 +110,7 @@ const Operation = {
         dispatch(ActionCreator.loadOffers(offers));
       })
       .catch((err) => {
-        throw err
+        throw err;
       });
   }
 };

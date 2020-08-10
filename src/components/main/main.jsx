@@ -102,6 +102,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  isAuthorized: PropTypes.bool.isRequired,
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   sortType: PropTypes.string.isRequired,

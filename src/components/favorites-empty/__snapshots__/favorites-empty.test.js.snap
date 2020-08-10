@@ -2,23 +2,23 @@
 
 exports[`FavoritesEmpty snapshot testing 1`] = `
 <section
-  class="favorites favorites--empty"
+  className="favorites favorites--empty"
 >
   <h1
-    class="visually-hidden"
+    className="visually-hidden"
   >
     Favorites (empty)
   </h1>
   <div
-    class="favorites__status-wrapper"
+    className="favorites__status-wrapper"
   >
     <b
-      class="favorites__status"
+      className="favorites__status"
     >
       Nothing yet saved.
     </b>
     <p
-      class="favorites__status-description"
+      className="favorites__status-description"
     >
       Save properties to narrow down search or plan yor future trips.
     </p>

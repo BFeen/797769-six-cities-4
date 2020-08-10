@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
-import {Cities, AppRoute} from "../../common/const.js";
+import {Cities} from "../../common/const.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 class CitiesList extends PureComponent {
