@@ -169,6 +169,7 @@ describe(`Main component snapshot testing`, () => {
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
           activeCard={{}}
+          onBookmarkClick={() => {}}
         />
     );
 
@@ -188,6 +189,7 @@ describe(`Main component snapshot testing`, () => {
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
           activeCard={{}}
+          onBookmarkClick={() => {}}
         />
     );
 

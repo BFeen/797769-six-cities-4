@@ -15,6 +15,7 @@ exports[`Header snapshot testing Header with userData rendering correctly 1`] = 
       >
         <a
           className="header__logo-link header__logo-link--active"
+          href="/"
           onClick={[Function]}
         >
           <img
@@ -37,7 +38,7 @@ exports[`Header snapshot testing Header with userData rendering correctly 1`] = 
           >
             <a
               className="header__nav-link header__nav-link--profile"
-              href="#"
+              href="/login"
               onClick={[Function]}
             >
               <div
@@ -72,6 +73,7 @@ exports[`Header snapshot testing Header without authorization rendering correctl
       >
         <a
           className="header__logo-link header__logo-link--active"
+          href="/"
           onClick={[Function]}
         >
           <img
@@ -94,7 +96,7 @@ exports[`Header snapshot testing Header without authorization rendering correctl
           >
             <a
               className="header__nav-link header__nav-link--profile"
-              href="#"
+              href="/login"
               onClick={[Function]}
             >
               <div

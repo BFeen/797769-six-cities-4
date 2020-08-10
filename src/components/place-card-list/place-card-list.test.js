@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PlaceCardList from "./place-card-list.jsx";
+import {ScreenType} from "../../common/const.js";
 
 
 const offersMock = [
@@ -146,14 +147,45 @@ const offersMock = [
 ];
 
 describe(`PlaceCardList snapshot checking`, () => {
-  it(`PlaceCardList rendering`, () => {
+  it(`PlaceCardList rendering in Main`, () => {
     const tree = renderer.create(
         <PlaceCardList
           offers={offersMock}
+          screenType={ScreenType.MAIN}
           onItemClick={() => {}}
-          isMain={true}
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
+          onBookmarkClick={() => {}}
+        />
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`PlaceCardList rendering in PlaceDetails`, () => {
+    const tree = renderer.create(
+        <PlaceCardList
+          offers={offersMock}
+          screenType={ScreenType.DETAILS}
+          onItemClick={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          onBookmarkClick={() => {}}
+        />
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`PlaceCardList rendering in Favorites`, () => {
+    const tree = renderer.create(
+        <PlaceCardList
+          offers={offersMock}
+          screenType={ScreenType.FAVORITES}
+          onItemClick={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          onBookmarkClick={() => {}}
         />
     ).toJSON();
 

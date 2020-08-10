@@ -18,7 +18,6 @@ const citiesMock = [
 describe(`Application Reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      screenMode: ScreenMode.MAIN,
       offerId: -1,
       currentCity: citiesMock[0],
       sortType: SortType.POPULAR.value,
@@ -26,15 +25,6 @@ describe(`Application Reducer testing`, () => {
   });
 
   it(`Reducer should assign given value`, () => {
-    expect(reducer({
-      screenMode: ScreenMode.MAIN,
-    }, {
-      type: ActionType.CHANGE_SCREEN,
-      payload: ScreenMode.DETAILS,
-    })).toEqual({
-      screenMode: ScreenMode.DETAILS,
-    });
-
     expect(reducer({
       offerId: -1,
     }, {
@@ -65,13 +55,6 @@ describe(`Application Reducer testing`, () => {
 });
 
 describe(`Application ActionCreator testing`, () => {
-  it(`ActionCreator returns correct action when screen mode is changed`, () => {
-    expect(ActionCreator.changeScreen(ScreenMode.SIGN_IN)).toEqual({
-      type: ActionType.CHANGE_SCREEN,
-      payload: ScreenMode.SIGN_IN,
-    });
-  });
-
   it(`ActionCreator returns correct action when offerId is changed`, () => {
     expect(ActionCreator.selectOffer(2)).toEqual({
       type: ActionType.SELECT_OFFER,

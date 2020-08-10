@@ -1,6 +1,6 @@
 import React from "react";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
-import {formatDate} from "../../common/utils.js";
+import {formatDate, getRatingStars} from "../../common/utils.js";
 
 
 const ReviewItem = (props) => {
@@ -8,7 +8,7 @@ const ReviewItem = (props) => {
   const {user, rating} = review;
   const slicedDate = review.dateTime.slice(0, 10);
   const dateReview = formatDate(review.dateTime);
-  const ratingStarsLength = 20 * rating + `%`;
+  const ratingStarsLength = getRatingStars(rating);
 
   return (
     <li className="reviews__item">

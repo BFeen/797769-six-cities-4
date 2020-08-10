@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Router} from "react-router-dom";
 import {Header} from "./header.jsx";
+import history from "../../history.js";
 
 
 const userDataMock = {
@@ -14,12 +16,12 @@ const userDataMock = {
 describe(`Header snapshot testing`, () => {
   it(`Header with userData rendering correctly`, () => {
     const tree = renderer.create(
-        <Header
-          authorizationStatus={`AUTH`}
-          user={userDataMock}
-          handleLogoClick={() => {}}
-          handleSignInClick={() => {}}
-        />
+        <Router history={history}>
+          <Header
+            authorizationStatus={`AUTH`}
+            user={userDataMock}
+          />
+        </Router>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -27,12 +29,12 @@ describe(`Header snapshot testing`, () => {
 
   it(`Header without authorization rendering correctly`, () => {
     const tree = renderer.create(
-        <Header
-          authorizationStatus={`NO_AUTH`}
-          user={{}}
-          handleLogoClick={() => {}}
-          handleSignInClick={() => {}}
-        />
+        <Router history={history}>
+          <Header
+            authorizationStatus={`NO_AUTH`}
+            user={{}}
+          />
+        </Router>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

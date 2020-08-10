@@ -10,6 +10,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withReview from "../../hocs/with-review/with-review.js";
 import {getReviews, getNearbyOffers} from "../../reducer/data/selectors.js";
 import {ClassNames, ScreenType} from "../../common/const.js";
+import {getRatingStars} from "../../common/utils.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
 import cityPropTypes from "../../prop-types/city-prop-types.js";

@@ -1,7 +1,11 @@
 import {reducer, Operation, ActionType} from "./data.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
-import {favoritesPostStatus} from "../../common/const.js";
+import configureStore from "redux-mock-store";
+import NameSpace from "../name-space.js";
+
+
+const mockStore = configureStore([]);
 
 
 const offersMock = [
@@ -420,10 +424,22 @@ describe(`Data Operation work correctly`, () => {
   });
 
   it(`Should make a correct API call to 'POST: favorite/:hotel-id/:status'`, () => {
+    const offerMock = {
+      id: 1,
+      isFavorite: false,
+    };
+
+    const store = mockStore({
+      [NameSpace.DATA]: {
+        offers: [offerMock],
+        favorites: [],
+      },
+    });
+
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offerId = 1;
-    const status = favoritesPostStatus.ADDING;
+    const status = 1;
 
     const favoriteSender = Operation.postFavorites(offerId, status);
 
@@ -431,12 +447,15 @@ describe(`Data Operation work correctly`, () => {
       .onPost(`/favorite/${offerId}/${status}`)
       .reply(200, offerRaw);
 
-    return favoriteSender(dispatch, () => {}, api)
+    return favoriteSender(dispatch, store.getState, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.LOAD_FAVORITES,
-          payload: [offersMock[0]],
+          type: ActionType.LOAD_OFFERS,
+          payload: [{
+            id: 1,
+            isFavorite: true,
+          }],
         });
       });
   });

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import Header from "../header/header.jsx";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
+import FavoritesEmpty from "../favorites-empty/favorites-empty.jsx";
 import {getFavorites} from "../../reducer/data/selectors.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import {AppRoute, ScreenType} from "../../common/const.js";
@@ -13,8 +14,9 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 
 const Favorites = (props) => {
-  const {favorites, onCardTitleClick} = props;
+  const {favorites, onCardTitleClick, onBookmarkClick} = props;
   const citiesList = [... new Set(favorites.map((item) => item.city))];
+  const isEmpty = favorites.length === 0;
 
   return(
     <div className="page">
@@ -23,37 +25,42 @@ const Favorites = (props) => {
 
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
+          {isEmpty
+            ? <FavoritesEmpty /> 
+            : <section className="favorites">
+              <h1 className="favorites__title">Saved listing</h1>
+              <ul className="favorites__list">
 
-              {citiesList.map((city) => {
-                const filteredCards = favorites.filter((item) => item.city === city);
+                {citiesList.map((city) => {
+                  const filteredCards = favorites.filter((item) => item.city === city);
 
-                return (
-                  <li className="favorites__locations-items">
-                    <div className="favorites__locations locations locations--current">
-                      <div className="locations__item">
-                        <a className="locations__item-link" href="#">
-                          <span>{city}</span>
-                        </a>
+                  return (
+                    <li className="favorites__locations-items">
+                      <div className="favorites__locations locations locations--current">
+                        <div className="locations__item">
+                          <a className="locations__item-link" href="#">
+                            <span>{city}</span>
+                          </a>
+                        </div>
                       </div>
-                    </div>
 
-                    <PlaceCardListWrapped
-                      offers={filteredCards}
-                      screenType={ScreenType.FAVORITES}
-                      onItemClick={onCardTitleClick}
-                      onCardMouseEnter={() => {}}
-                      onCardMouseLeave={() => {}}
-                    />
+                      <PlaceCardListWrapped
+                        offers={filteredCards}
+                        screenType={ScreenType.FAVORITES}
+                        onItemClick={onCardTitleClick}
+                        onCardMouseEnter={() => {}}
+                        onCardMouseLeave={() => {}}
+                        onBookMarkClick={onBookmarkClick}
+                      />
 
-                  </li>
-                );
-              })}
-              
-            </ul>
-          </section>
+                    </li>
+                  );
+                })}
+                
+              </ul>
+            </section>
+          }
+          
         </div>
       </main>
       <footer className="footer container">
@@ -74,6 +81,7 @@ Favorites.propTypes = {
     PropTypes.array,
   ]).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
+  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

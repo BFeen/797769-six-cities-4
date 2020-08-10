@@ -42,8 +42,8 @@ const PlaceCardList = (props) => {
 
 PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  onItemClick: PropTypes.func.isRequired,
   screenType: PropTypes.string.isRequired,
+  onItemClick: PropTypes.func.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,

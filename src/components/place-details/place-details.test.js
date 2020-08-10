@@ -326,6 +326,7 @@ describe(`PlaceDetails snapshot test`, () => {
           onCardMouseLeave={() => {}}
           activeCard={{}}
           isAuthorized={true}
+          onBookMarkClick={() => {}}
         />
     );
 

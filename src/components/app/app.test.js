@@ -4,7 +4,6 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {App} from "./app.jsx";
 import NameSpace from "../../reducer/name-space.js";
-import {ScreenMode} from "../../common/const.js";
 
 
 const mockStore = configureStore([]);
@@ -177,12 +176,12 @@ describe(`App snapshot test`, () => {
         <Provider store={store}>
           <App
             authorizationStatus={`AUTH`}
-            screenMode={ScreenMode.MAIN}
             offers={offersMock}
             currentCity={cityMock}
             offerId={-1}
             handleCardTitleClick={() => {}}
             login={() => {}}
+            handleBookmarkClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)
@@ -197,12 +196,12 @@ describe(`App snapshot test`, () => {
         <Provider store={store}>
           <App
             authorizationStatus={`AUTH`}
-            screenMode={ScreenMode.DETAILS}
             offerId={0}
             currentCity={cityMock}
             offers={offersMock}
             handleCardTitleClick={() => {}}
             login={() => {}}
+            handleBookmarkClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)

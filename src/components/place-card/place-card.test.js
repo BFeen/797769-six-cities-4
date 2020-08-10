@@ -10,7 +10,7 @@ const offerMock = {
   picture: `img/apartment-01.jpg`,
   price: 200,
   isPremium: true,
-  isFavorite: false,
+  isFavorite: true,
   rating: 4,
   coordinates: [
     52.3909553943508,
@@ -42,12 +42,29 @@ describe(`PlaceCard snapshot testing`, () => {
   it(`PlaceCard rendering`, () => {
     const tree = renderer.create(
         <PlaceCard
-          key={`${offerMock.id + 0}`}
           offer={offerMock}
           className={`cities__place-card`}
+          isFavoriteScreen={false}
           onCardMouseEnter={() => {}}
           onCardMouseLeave={() => {}}
           onItemClick={() => {}}
+          onBookmarkClick={() => {}}
+        />
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Rendering PlaceCard on the favorite-screen`, () => {
+    const tree = renderer.create(
+        <PlaceCard
+          offer={offerMock}
+          className={`favorites__card`}
+          isFavoriteScreen={true}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          onItemClick={() => {}}
+          onBookmarkClick={() => {}}
         />
     ).toJSON();
 

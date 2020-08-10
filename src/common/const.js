@@ -99,11 +99,6 @@ const SortType = {
   },
 };
 
-const favoritesPostStatus = {
-  DELETE: 0,
-  ADDING: 1,
-};
-
 export {
   AppRoute,
   Cities,
@@ -112,5 +107,4 @@ export {
   RatingStarsCount,
   ScreenType,
   SortType,
-  favoritesPostStatus,
 };
