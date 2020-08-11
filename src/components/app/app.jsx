@@ -1,17 +1,16 @@
 import React, {PureComponent} from "react";
-import {Router, Switch, Route, Redirect} from "react-router-dom";
+import {Router, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
-// import PlaceDetails from "../place-details/place-details.jsx";
+import PlaceDetails from "../place-details/place-details.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 // import Favorites from "../favorites/favorites.jsx";
-import {ActionCreator} from "../../reducer/application/application.js";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import {getOffersByCity} from "../../reducer/data/selectors.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
-import {getCurrentCity, getOfferId} from "../../reducer/application/selectors.js";
+import {getCurrentCity} from "../../reducer/application/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
@@ -20,7 +19,7 @@ import history from "../../history.js";
 
 
 const MainWrapped = withActiveCard(Main);
-// const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
+const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 
 class App extends PureComponent {
   constructor(props) {
@@ -46,7 +45,7 @@ class App extends PureComponent {
     const {login, authorizationStatus} = this.props;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
-      return <Redirect to={AppRoute.FAVORITES}/>;
+      return history.push(AppRoute.FAVORITES);
     }
 
     return (
@@ -56,10 +55,31 @@ class App extends PureComponent {
     );
   }
 
+  _renderDetailsScreen(offerId) {
+    const {
+      offers,
+      currentCity,
+      handleCardTitleClick,
+      authorizationStatus,
+    } = this.props;
+    const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+    const currentOffer = offers.find((item) => item.id === parseInt(offerId, 10));
+    
+
+    return (
+      <PlaceDetailsWrapped
+        city={currentCity}
+        currentOffer={currentOffer}
+        onCardTitleClick={handleCardTitleClick}
+        isAuthorized={isAuthorized}
+        onBookmarkClick={this._onBookmarkClick}
+      />
+    );
+  }
+
   render() {
     const {
       currentCity,
-      // offerId,
       offers,
       handleCardTitleClick,
       authorizationStatus
@@ -80,18 +100,11 @@ class App extends PureComponent {
               />
             )}
           />
-          {/* <Route exact path="/details"
-            render={() => (
-              <PlaceDetailsWrapped
-                city={currentCity}
-                offerId={offerId}
-                offers={offers}
-                onCardTitleClick={handleCardTitleClick}
-                isAuthorized={isAuthorized}
-                onBookmarkClick={this._onBookmarkClick}
-              />
+          <Route exact path={`${AppRoute.DETAILS}/:id`}
+            render={({match}) => (
+              this._renderDetailsScreen(match.params.id)
             )}
-          /> */}
+          />
           <Route exact path={AppRoute.LOGIN}
             render={() => (
               this._renderSignIn()
@@ -112,17 +125,15 @@ class App extends PureComponent {
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  currentCity: cityPropTypes,
-  offerId: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  currentCity: cityPropTypes,
   handleCardTitleClick: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
   handleBookmarkClick: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  offerId: getOfferId(state),
   currentCity: getCurrentCity(state),
   offers: getOffersByCity(state),
 });
@@ -131,10 +142,9 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
   },
-  handleCardTitleClick(offerId) {
-    dispatch(ActionCreator.selectOffer(offerId));
-    dispatch(DataOperation.loadNearby(offerId));
-    dispatch(DataOperation.loadReviews(offerId));
+  handleCardTitleClick(offer) {
+    dispatch(DataOperation.loadNearby(offer.id));
+    dispatch(DataOperation.loadReviews(offer.id));
   },
   handleBookmarkClick: (offerId, status) => {
     dispatch(DataOperation.postFavorites(offerId, status));

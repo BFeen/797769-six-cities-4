@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import {getSlicedClassName, getRatingStars} from "../../common/utils.js";
+import {AppRoute} from "../../common/const.js";
+import { App } from "../app/app.jsx";
 
 
 const PlaceCard = (props) => {
@@ -37,9 +40,9 @@ const PlaceCard = (props) => {
         </div>}
 
       <div className={`${slicedClassName}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={`${AppRoute.DETAILS}/${offer.id}`}>
           <img className="place-card__image" src={offer.picture} width="260" height="200" alt={offer.title} />
-        </a>
+        </Link>
       </div>
       <div className={`place-card__info ${infoClassName}`}>
         <div className="place-card__price-wrapper">
@@ -71,10 +74,12 @@ const PlaceCard = (props) => {
         <h2
           className="place-card__name"
           onClick={() => {
-            onItemClick(offer.id);
+            onItemClick(offer);
           }}
         >
-          <a href="#">{offer.title}</a>
+          <Link to={`${AppRoute.DETAILS}/${offer.id}`}>
+            {offer.title}
+          </Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

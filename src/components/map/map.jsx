@@ -89,7 +89,7 @@ class Map extends PureComponent {
   }
 
   _getIcon(isHovered) {
-    const path = isHovered ? `img/pin-active.svg` : `img/pin.svg`;
+    const path = isHovered ? `/img/pin-active.svg` : `/img/pin.svg`;
     return leaflet.icon({
       iconUrl: path,
       iconSize: [27, 39],

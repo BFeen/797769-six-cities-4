@@ -85,7 +85,7 @@ Favorites.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  favorites: getFavorites(state),
+  favorites: getOffers(state), // реализовать попадание фаворитес офферс в офферс тогда
 });
 
 export {Favorites};

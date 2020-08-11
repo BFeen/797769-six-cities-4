@@ -256,10 +256,8 @@ describe(`Data reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       offers: [],
-      nearbyOffers: [],
       reviews: [],
       errorMessage: ``,
-      favorites: [],
     });
   });
 
@@ -287,23 +285,23 @@ describe(`Data reducer testing`, () => {
 
   it(`Reducer should update nearbyOffers by load nearby offers`, () => {
     expect(reducer({
-      nearbyOffers: [],
+      offers: [],
     }, {
       type: ActionType.LOAD_NEARBY,
       payload: nearbyOffersMock,
     })).toEqual({
-      nearbyOffers: nearbyOffersMock,
+      offers: nearbyOffersMock,
     });
   });
 
   it(`Reducer should update nearbyOffers by load nearby offers`, () => {
     expect(reducer({
-      favorites: [],
+      offers: [],
     }, {
       type: ActionType.LOAD_FAVORITES,
       payload: offersMock.slice(2),
     })).toEqual({
-      favorites: offersMock.slice(2),
+      offers: offersMock.slice(2),
     });
   });
 
@@ -432,7 +430,6 @@ describe(`Data Operation work correctly`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
         offers: [offerMock],
-        favorites: [],
       },
     });
 

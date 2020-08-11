@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getOfferId} from "../../reducer/application/selectors";
 import {Operation} from "../../reducer/data/data.js";
 
 
@@ -141,13 +140,8 @@ const withReview = (Component) => {
   }
 
   WithReview.propTypes = {
-    offerId: PropTypes.number.isRequired,
     handleSubmit: PropTypes.func.isRequired,
   };
-
-  const mapStateToProps = (state) => ({
-    offerId: getOfferId(state),
-  });
 
   const mapDispatchToProps = (dispatch) => ({
     handleSubmit: (offerId, review) => {
@@ -155,7 +149,7 @@ const withReview = (Component) => {
     }
   });
 
-  return connect(mapStateToProps, mapDispatchToProps)(WithReview);
+  return connect(null, mapDispatchToProps)(WithReview);
 };
 
 export default withReview;

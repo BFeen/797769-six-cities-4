@@ -2,6 +2,7 @@ const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorite`,
+  DETAILS: `/offer`,
 };
 
 const Cities = [

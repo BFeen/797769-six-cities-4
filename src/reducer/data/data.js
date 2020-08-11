@@ -5,9 +5,9 @@ import {getOffers} from "./selectors.js";
 const initialState = {
   offers: [],
   nearbyOffers: [],
+  favorites: [],
   reviews: [],
   errorMessage: ``,
-  favorites: [],
 };
 
 const ActionType = {
