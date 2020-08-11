@@ -97,7 +97,10 @@ const Operation = {
     return api.get(`/favorite`)
       .then((response) => {
         dispatch(ActionCreator.loadFavorites(parseOffers(response.data)));
-      });
+      })
+      .catch((err) => {
+        throw err;
+      })
   },
   postFavorites: (offerId, status) => (dispatch, getState, api) => {
     return api.post(`/favorite/${offerId}/${status}`)

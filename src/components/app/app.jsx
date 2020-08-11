@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-// import Favorites from "../favorites/favorites.jsx";
+import Favorites from "../favorites/favorites.jsx";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
@@ -77,6 +77,20 @@ class App extends PureComponent {
     );
   }
 
+  _renderFavorites(isAuthorized) {
+    if (isAuthorized) {
+      this.props.loadFavorites();
+    }
+
+    return (
+      <Favorites
+        isAuthorized={isAuthorized}
+        onCardTitleClick={handleCardTitleClick}
+        onBookmarkClick={this._onBookmarkClick}
+      />
+    );
+  }
+
   render() {
     const {
       currentCity,
@@ -110,13 +124,11 @@ class App extends PureComponent {
               this._renderSignIn()
             )}
           />
-          {/* <Route exact path={AppRoute.FAVORITES}>
-            <Favorites
-              isAuthorized={isAuthorized}
-              onCardTitleClick={handleCardTitleClick}
-              onBookmarkClick={this._onBookmarkClick}
-            />
-          </Route> */}
+          <Route exact path={AppRoute.FAVORITES}
+            render={() => (
+              this._renderFavorites(isAuthorized)
+            )}
+          />
         </Switch>
       </Router>
     );
@@ -129,6 +141,7 @@ App.propTypes = {
   currentCity: cityPropTypes,
   handleCardTitleClick: PropTypes.func.isRequired,
   handleBookmarkClick: PropTypes.func.isRequired,
+  loadFavorites: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
 };
 
@@ -141,6 +154,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
+  },
+  loadFavorites() {
+    dispatch(DataOperation.loadFavorites());
   },
   handleCardTitleClick(offer) {
     dispatch(DataOperation.loadNearby(offer.id));

@@ -18,6 +18,7 @@ const Favorites = (props) => {
   const citiesList = [...new Set(favorites.map((item) => item.city))];
   const isEmpty = favorites.length === 0;
 
+
   return (
     <div className="page">
 
@@ -50,7 +51,7 @@ const Favorites = (props) => {
                         onItemClick={onCardTitleClick}
                         onCardMouseEnter={() => {}}
                         onCardMouseLeave={() => {}}
-                        onBookMarkClick={onBookmarkClick}
+                        onBookmarkClick={onBookmarkClick}
                       />
 
                     </li>
@@ -85,7 +86,7 @@ Favorites.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  favorites: getOffers(state), // реализовать попадание фаворитес офферс в офферс тогда
+  favorites: getFavorites(state),
 });
 
 export {Favorites};
