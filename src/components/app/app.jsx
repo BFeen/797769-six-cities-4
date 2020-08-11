@@ -1,10 +1,11 @@
 import React, {PureComponent} from "react";
-import {Router, Switch, Route} from "react-router-dom";
+import {Router, Switch, Route, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import Favorites from "../favorites/favorites.jsx";
+import PrivateRoute from "../private-route/private-route.jsx";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
@@ -26,69 +27,6 @@ class App extends PureComponent {
     super(props);
 
     this._onBookmarkClick = this._onBookmarkClick.bind(this);
-  }
-
-  _onBookmarkClick(offerId, isFavorite) {
-    if (this.props.authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      return history.push(AppRoute.LOGIN);
-    }
-
-    const {handleBookmarkClick} = this.props;
-    const status = +!isFavorite;
-
-    handleBookmarkClick(offerId, status);
-
-    return true;
-  }
-
-  _renderSignIn() {
-    const {login, authorizationStatus} = this.props;
-
-    if (authorizationStatus === AuthorizationStatus.AUTH) {
-      return history.push(AppRoute.FAVORITES);
-    }
-
-    return (
-      <SignIn
-        onSubmit={login}
-      />
-    );
-  }
-
-  _renderDetailsScreen(offerId) {
-    const {
-      offers,
-      currentCity,
-      handleCardTitleClick,
-      authorizationStatus,
-    } = this.props;
-    const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-    const currentOffer = offers.find((item) => item.id === parseInt(offerId, 10));
-    
-
-    return (
-      <PlaceDetailsWrapped
-        city={currentCity}
-        currentOffer={currentOffer}
-        onCardTitleClick={handleCardTitleClick}
-        isAuthorized={isAuthorized}
-        onBookmarkClick={this._onBookmarkClick}
-      />
-    );
-  }
-
-  _renderFavorites(isAuthorized) {
-    if (isAuthorized) {
-      this.props.loadFavorites();
-    }
-
-    return (
-      <Favorites
-        isAuthorized={isAuthorized}
-        onCardTitleClick={handleCardTitleClick}
-        onBookmarkClick={this._onBookmarkClick}
-      />
-    );
   }
 
   render() {
@@ -124,13 +62,77 @@ class App extends PureComponent {
               this._renderSignIn()
             )}
           />
-          <Route exact path={AppRoute.FAVORITES}
+          <PrivateRoute exact path={AppRoute.FAVORITES}
             render={() => (
-              this._renderFavorites(isAuthorized)
+              <Favorites
+                onCardTitleClick={handleCardTitleClick}
+                onBookmarkClick={this._onBookmarkClick}
+              />
             )}
           />
         </Switch>
       </Router>
+    );
+  }
+
+  _onBookmarkClick(offerId, isFavorite) {
+    if (this.props.authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      return <Redirect to={AppRoute.LOGIN} />;
+    }
+
+    const {handleBookmarkClick} = this.props;
+    const status = +!isFavorite;
+
+    handleBookmarkClick(offerId, status);
+
+    return true;
+  }
+
+  _renderSignIn() {
+    const {login, authorizationStatus} = this.props;
+
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return <Redirect to={AppRoute.FAVORITES} />;
+    }
+
+    return (
+      <SignIn
+        onSubmit={login}
+      />
+    );
+  }
+
+  _renderDetailsScreen(offerId) {
+    const {
+      offers,
+      currentCity,
+      handleCardTitleClick,
+      authorizationStatus,
+    } = this.props;
+    const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+    const currentOffer = offers.find((item) => item.id === parseInt(offerId, 10));
+    
+
+    return (
+      <PlaceDetailsWrapped
+        city={currentCity}
+        currentOffer={currentOffer}
+        onCardTitleClick={handleCardTitleClick}
+        isAuthorized={isAuthorized}
+        onBookmarkClick={this._onBookmarkClick}
+      />
+    );
+  }
+
+  _renderFavorites() {
+    const {handleCardTitleClick, loadFavorites} = this.props;
+    loadFavorites();
+
+    return (
+      <Favorites
+        onCardTitleClick={handleCardTitleClick}
+        onBookmarkClick={this._onBookmarkClick}
+      />
     );
   }
 }
