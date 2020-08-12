@@ -10,7 +10,7 @@ class CitiesList extends PureComponent {
     return (
       <ul className="locations__list tabs__list">
         {Object.values(Cities).map((city, index) => {
-          const activeClassName = `tabs__item--active`;
+          const activeClassName = currentCity === city ? `tabs__item--active` : ``;
 
           return (
             <li
@@ -21,7 +21,7 @@ class CitiesList extends PureComponent {
               }}
             >
               <a
-                className={`locations__item-link tabs__item ${currentCity === city ? activeClassName : ``}`}
+                className={`locations__item-link tabs__item ${activeClassName}`}
               >
                 <span>{city.name}</span>
               </a>

@@ -9,7 +9,7 @@ import PrivateRoute from "../private-route/private-route.jsx";
 import {connect} from "react-redux";
 import cityPropTypes from "../../prop-types/city-prop-types.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import {getOffersByCity} from "../../reducer/data/selectors.js";
+import {getOffersByCity, getOffers} from "../../reducer/data/selectors.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 import {getCurrentCity} from "../../reducer/application/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
@@ -37,7 +37,7 @@ class App extends PureComponent {
       authorizationStatus
     } = this.props;
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-
+    console.log(offers)
     return (
       <Router history={history}>
         <Switch>
@@ -54,6 +54,7 @@ class App extends PureComponent {
           />
           <Route exact path={`${AppRoute.DETAILS}/:id`}
             render={({match}) => (
+              console.log(`route`),
               this._renderDetailsScreen(match.params.id)
             )}
           />
@@ -105,17 +106,16 @@ class App extends PureComponent {
   _renderDetailsScreen(offerId) {
     const {
       offers,
-      currentCity,
       handleCardTitleClick,
       authorizationStatus,
     } = this.props;
+
+    console.log(`при перезагрузке здесь пустой offers`);
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
     const currentOffer = offers.find((item) => item.id === parseInt(offerId, 10));
-    
 
     return (
       <PlaceDetailsWrapped
-        city={currentCity}
         currentOffer={currentOffer}
         onCardTitleClick={handleCardTitleClick}
         isAuthorized={isAuthorized}

@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import {getSlicedClassName, getRatingStars} from "../../common/utils.js";
 import {AppRoute} from "../../common/const.js";
-import { App } from "../app/app.jsx";
 
 
 const PlaceCard = (props) => {

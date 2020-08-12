@@ -16,13 +16,12 @@ const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 
 class Favorites extends PureComponent {
   componentDidMount() {
-    this.props.loadFavorites()
-    console.log(this.props)
+    this.props.loadFavorites();
   }
 
   render() {
     const {favorites, onCardTitleClick, onBookmarkClick} = this.props;
-    const citiesList = [...new Set(favorites.map((item) => item.city))];
+    const citiesList = [...new Set(favorites.map((item) => item.city.name))];
     const isEmpty = favorites.length === 0;
 
 
@@ -40,7 +39,7 @@ class Favorites extends PureComponent {
                 <ul className="favorites__list">
 
                   {citiesList.map((city) => {
-                    const filteredCards = favorites.filter((item) => item.city === city);
+                    const filteredCards = favorites.filter((item) => item.city.name === city);
 
                     return (
                       <li key={city} className="favorites__locations-items">

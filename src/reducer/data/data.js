@@ -59,6 +59,7 @@ const Operation = {
       })
       .catch((err) => {
         dispatch(ActionCreator.catchError(err));
+        throw err;
       });
   },
   loadNearby: (offerId) => (dispatch, getState, api) => {
@@ -111,6 +112,7 @@ const Operation = {
         changingOffer.isFavorite = !changingOffer.isFavorite;
 
         dispatch(ActionCreator.loadOffers(offers));
+        dispatch(Operation.loadFavorites());
       })
       .catch((err) => {
         throw err;

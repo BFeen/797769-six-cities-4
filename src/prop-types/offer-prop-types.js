@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 export default PropTypes.shape({
   id: PropTypes.number.isRequired,
   type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`]).isRequired,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    zoom: PropTypes.number.isRequired,
+  }).isRequired,
   title: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

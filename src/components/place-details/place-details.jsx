@@ -13,16 +13,18 @@ import {ClassNames, ScreenType} from "../../common/const.js";
 import {getRatingStars} from "../../common/utils.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import reviewPropTypes from "../../prop-types/review-prop-types.js";
-import cityPropTypes from "../../prop-types/city-prop-types.js";
 
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 const ReviewFormWrapped = withReview(ReviewForm);
 
 class PlaceDetails extends PureComponent {
+  componentDidMount() {
+    console.log(this.props)
+  }
+
   render() {
     const {
-      city,
       currentOffer,
       nearbyOffers,
       reviews,
@@ -37,10 +39,10 @@ class PlaceDetails extends PureComponent {
     const {details, rating, isFavorite} = currentOffer;
     const {host} = details;
     const {MapClassNames} = ClassNames;
+
     const ratingStarsLength = getRatingStars(rating);
     const bookmarkActiveClass = isFavorite ? `property__bookmark-button--active` : ``;
     const hostProClass = host.isPro ? `property__avatar-wrapper--pro` : ``;
-
 
     return (
       <div className="page">
@@ -152,10 +154,10 @@ class PlaceDetails extends PureComponent {
               </div>
             </div>
             <Map
-              city={city}
-              mapClassName={MapClassNames.PROPERTY}
+              city={currentOffer.city}
               offers={nearbyOffers}
               activeCard={activeCard}
+              mapClassName={MapClassNames.PROPERTY}
             />
           </section>
           <div className="container">
@@ -180,7 +182,6 @@ class PlaceDetails extends PureComponent {
 }
 
 PlaceDetails.propTypes = {
-  city: cityPropTypes,
   currentOffer: offerPropTypes,
   nearbyOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,

@@ -1,11 +1,17 @@
 const offerAdapter = (offer) => {
-  const offerLocation = Object.values(offer[`location`]).slice(0, 2);
   const host = offer[`host`];
+  const city = offer[`city`];
+  const cityLocation = Object.values(city[`location`]).slice(0, 2);
+  const offerLocation = Object.values(offer[`location`]).slice(0, 2);
 
   return {
     id: offer[`id`],
     type: offer[`type`],
-    city: offer[`city`][`name`],
+    city: {
+      name: city[`name`],
+      coordinates: cityLocation,
+      zoom: city[`location`][`zoom`],
+    },
     title: offer[`title`],
     picture: offer[`preview_image`],
     price: offer[`price`],

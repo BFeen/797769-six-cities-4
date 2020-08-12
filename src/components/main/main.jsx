@@ -59,7 +59,7 @@ const Main = (props) => {
         <div className="cities">
 
           {isEmpty
-            ? <MainEmpty />
+            ? <MainEmpty city={city.name}/>
             : <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
