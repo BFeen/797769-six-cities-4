@@ -37,7 +37,7 @@ class App extends PureComponent {
       authorizationStatus
     } = this.props;
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-    console.log(offers)
+    
     return (
       <Router history={history}>
         <Switch>
@@ -54,14 +54,11 @@ class App extends PureComponent {
           />
           <Route exact path={`${AppRoute.DETAILS}/:id`}
             render={({match}) => (
-              console.log(`route`),
               this._renderDetailsScreen(match.params.id)
             )}
           />
           <Route exact path={AppRoute.LOGIN}
-            render={() => (
-              this._renderSignIn()
-            )}
+            render={() => (this._renderSignIn())}
           />
           <PrivateRoute exact path={AppRoute.FAVORITES}
             render={() => (
@@ -104,15 +101,22 @@ class App extends PureComponent {
   }
 
   _renderDetailsScreen(offerId) {
+    const isLoading = this.props.offersAll.length === 0;
+
+    if (isLoading) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
     const {
-      offers,
+      offersAll,
       handleCardTitleClick,
       authorizationStatus,
     } = this.props;
 
-    console.log(`при перезагрузке здесь пустой offers`);
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-    const currentOffer = offers.find((item) => item.id === parseInt(offerId, 10));
+    const currentOffer = offersAll.find((item) => item.id === parseInt(offerId, 10));
 
     return (
       <PlaceDetailsWrapped
@@ -151,6 +155,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   currentCity: getCurrentCity(state),
   offers: getOffersByCity(state),
+  offersAll: getOffers(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

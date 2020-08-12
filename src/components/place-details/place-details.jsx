@@ -9,6 +9,7 @@ import ReviewForm from "../review-form/review-form.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withReview from "../../hocs/with-review/with-review.js";
 import {getReviews, getNearbyOffers, getOffers} from "../../reducer/data/selectors.js";
+import {Operation} from "../../reducer/data/data.js";
 import {ClassNames, ScreenType} from "../../common/const.js";
 import {getRatingStars} from "../../common/utils.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
@@ -20,10 +21,22 @@ const ReviewFormWrapped = withReview(ReviewForm);
 
 class PlaceDetails extends PureComponent {
   componentDidMount() {
-    console.log(this.props)
+    const {currentOffer, loadReviews, loadNearbyOffers} = this.props;
+
+    loadReviews(currentOffer.id);
+    loadNearbyOffers(currentOffer.id);
   }
 
-  render() {
+  // componentDidUpdate(prevProps) {
+  //   const {currentOffer, loadReviews, loadNearbyOffers} = this.props;
+
+  //   if(prevProps.currentOffer.id !== currentOffer.id) {
+  //     loadReviews(currentOffer.id);
+  //     loadNearbyOffers(currentOffer.id);
+  //   }
+  // }
+
+  render() {  
     const {
       currentOffer,
       nearbyOffers,
@@ -199,5 +212,14 @@ const mapStateToProps = (state) => ({
   nearbyOffers: getNearbyOffers(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  loadNearbyOffers: (offerId) => {
+    dispatch(Operation.loadNearby(offerId));
+  },
+  loadReviews: (offerId) => {
+    dispatch(Operation.loadReviews(offerId));
+  }
+});
+
 export {PlaceDetails};
-export default connect(mapStateToProps)(PlaceDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceDetails);

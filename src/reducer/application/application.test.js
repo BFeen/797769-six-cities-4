@@ -18,22 +18,12 @@ const citiesMock = [
 describe(`Application Reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      // currentOffer: {},
       currentCity: citiesMock[0],
       sortType: SortType.POPULAR.value,
     });
   });
 
   it(`Reducer should assign given value`, () => {
-    expect(reducer({
-      offerId: -1,
-    }, {
-      type: ActionType.SELECT_OFFER,
-      payload: 2,
-    })).toEqual({
-      offerId: 2,
-    });
-
     expect(reducer({
       currentCity: citiesMock[1],
     }, {
@@ -55,13 +45,6 @@ describe(`Application Reducer testing`, () => {
 });
 
 describe(`Application ActionCreator testing`, () => {
-  it(`ActionCreator returns correct action when offerId is changed`, () => {
-    expect(ActionCreator.selectOffer(2)).toEqual({
-      type: ActionType.SELECT_OFFER,
-      payload: 2,
-    });
-  });
-
   it(`ActionCreator for changing city should returns correct action`, () => {
     expect(ActionCreator.changeCity(citiesMock[2])).toEqual({
       type: ActionType.CHANGE_CITY,
@@ -73,6 +56,13 @@ describe(`Application ActionCreator testing`, () => {
     expect(ActionCreator.changeSortType(SortType.HIGH_TO_LOW.value)).toEqual({
       type: ActionType.CHANGE_SORT_TYPE,
       payload: SortType.HIGH_TO_LOW.value,
+    });
+  });
+
+  it(`ActionCreator for reset sortType should returns correct action`, () => {
+    expect(ActionCreator.resetSortType()).toEqual({
+      type: ActionType.CHANGE_SORT_TYPE,
+      payload: SortType.POPULAR.value,
     });
   });
 });

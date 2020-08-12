@@ -17,15 +17,15 @@ const getSortedOffers = (unsortedOffers, sortType) => {
   const offers = unsortedOffers.slice();
 
   switch (sortType) {
-    case SortType.LOW_TO_HIGH.value:
+    case SortType.LOW_TO_HIGH:
       return offers
         .sort((a, b) => a.price - b.price);
-    case SortType.HIGH_TO_LOW.value:
+    case SortType.HIGH_TO_LOW:
       return offers
         .sort((a, b) => b.price - a.price);
-    case SortType.RATING.value:
+    case SortType.RATING:
       return offers
-        .sort((a, b) => a.rating - b.rating);
+        .sort((a, b) => b.rating - a.rating);
   }
 
   return offers;

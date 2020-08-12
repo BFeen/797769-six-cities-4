@@ -14,10 +14,6 @@ export const getCurrentCity = (state) => {
 //   }
 // );
 
-// export const getCurrentOffer = (state) => {
-//   return state[NameSpace.APPLICATION].currentOffer;
-// };
-
 export const getSortType = (state) => {
   return state[NameSpace.APPLICATION].sortType;
 };

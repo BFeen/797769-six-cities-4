@@ -12,10 +12,12 @@ import cityPropTypes from "../../prop-types/city-prop-types.js";
 import {ActionCreator} from "../../reducer/application/application.js";
 import {getSortedOffers} from "../../common/utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import withSorting from "../../hocs/with-sorting/with-sorting.js";
 import {getSortType} from "../../reducer/application/selectors.js";
 import {ClassNames, ScreenType} from "../../common/const.js";
 
 
+const SortingWrapped = withSorting(Sorting);
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 const CitiesListWrapped = withActiveItem(CitiesList);
 
@@ -64,14 +66,11 @@ const Main = (props) => {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{placesCount} places to stay in {city.name}</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by</span>
 
-                  <Sorting
-                    onSortTypeChange={handleSortTypeChange}
-                  />
-
-                </form>
+                <SortingWrapped
+                  currentSortType={sortType}
+                  onSortTypeChange={handleSortTypeChange}
+                />
 
                 <PlaceCardListWrapped
                   isAuthorized={isAuthorized}
@@ -125,6 +124,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPtops = (dispatch) => ({
   handleCityChange(city) {
     dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.resetSortType());
   },
 
   handleSortTypeChange(sortType) {

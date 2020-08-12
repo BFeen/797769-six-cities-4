@@ -82,22 +82,10 @@ const RatingStarsCount = {
 };
 
 const SortType = {
-  POPULAR: {
-    value: `popular`,
-    name: `Popular`,
-  },
-  LOW_TO_HIGH: {
-    value: `to-high`,
-    name: `Price: low to high`,
-  },
-  HIGH_TO_LOW: {
-    value: `to-low`,
-    name: `Price: high to low`,
-  },
-  RATING: {
-    value: `top-rated`,
-    name: `Top rated first`,
-  },
+  POPULAR: `Popular`,
+  LOW_TO_HIGH: `Price: low to high`,
+  HIGH_TO_LOW: `Price: high to low`,
+  RATING: `Top rated first`,
 };
 
 export {
