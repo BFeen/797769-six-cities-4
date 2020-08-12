@@ -7,7 +7,7 @@ const MockComponent = () => {
   return (
     <form></form>
   );
-}
+};
 
 MockComponent.propTypes = {};
 
@@ -15,11 +15,12 @@ const MockComponentWrapped = withSorting(MockComponent);
 
 it(`with-sorting HOC snapshot testing`, () => {
   const tree = renderer.create(
-    <MockComponentWrapped
-      isOpened={false}
-      onMenuClick={() => {}}
-      onSelectSortType={() => {}}
-    />
+      <MockComponentWrapped
+        isOpened={false}
+        onMenuClick={() => {}}
+        onSelectSortType={() => {}}
+        onSortTypeChange={() => {}}
+      />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -12,7 +12,11 @@ const offersMock = [
   {
     id: 0,
     type: `apartment`,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     price: 200,
@@ -46,7 +50,11 @@ const offersMock = [
   }, {
     id: 1,
     type: `house`,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     price: 170,
@@ -80,7 +88,11 @@ const offersMock = [
     }
   }, {
     id: 2,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
@@ -114,7 +126,11 @@ const offersMock = [
     }
   }, {
     id: 3,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
@@ -153,6 +169,7 @@ const offersMock = [
 const cityMock = {
   name: `Amsterdam`,
   coordinates: [52.38333, 4.9],
+  zoom: 10,
 };
 
 describe(`Main component snapshot testing`, () => {

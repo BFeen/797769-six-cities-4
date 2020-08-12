@@ -25,7 +25,7 @@ exports[`App snapshot test Details screen rendering 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -182,37 +182,53 @@ exports[`App snapshot test Details screen rendering 1`] = `
             >
               Sort by
             </span>
-            <select
+            <span
               className="places__sorting-type"
-              defaultValue="popular"
-              id="places-sorting"
-              onChange={[Function]}
+              onClick={[Function]}
+              tabIndex="0"
             >
-              <option
-                className="places__option"
-                value="popular"
+              <svg
+                className="places__sorting-arrow"
+                height="4"
+                width="7"
+              >
+                <use
+                  xlinkHref="#icon-arrow-select"
+                />
+              </svg>
+            </span>
+            <ul
+              className="places__options places__options--custom "
+            >
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex="0"
               >
                 Popular
-              </option>
-              <option
-                className="places__option"
-                value="to-high"
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex="0"
               >
                 Price: low to high
-              </option>
-              <option
-                className="places__option"
-                value="to-low"
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex="0"
               >
                 Price: high to low
-              </option>
-              <option
-                className="places__option"
-                value="top-rated"
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex="0"
               >
                 Top rated first
-              </option>
-            </select>
+              </li>
+            </ul>
           </form>
           <div
             className="places__list cities__places-list tabs__content"
@@ -233,7 +249,8 @@ exports[`App snapshot test Details screen rendering 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/0"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Beautiful & luxurious apartment at great location"
@@ -311,7 +328,8 @@ exports[`App snapshot test Details screen rendering 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/0"
+                    onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
                   </a>
@@ -339,7 +357,8 @@ exports[`App snapshot test Details screen rendering 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/1"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Wood and stone place"
@@ -417,7 +436,8 @@ exports[`App snapshot test Details screen rendering 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
+                    onClick={[Function]}
                   >
                     Wood and stone place
                   </a>
@@ -438,7 +458,8 @@ exports[`App snapshot test Details screen rendering 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/2"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Canal view Princengracht"
@@ -516,7 +537,8 @@ exports[`App snapshot test Details screen rendering 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/2"
+                    onClick={[Function]}
                   >
                     Canal view Princengracht
                   </a>
@@ -537,7 +559,8 @@ exports[`App snapshot test Details screen rendering 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/3"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Nice, cozy, warm big bed apartment"
@@ -615,7 +638,8 @@ exports[`App snapshot test Details screen rendering 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/3"
+                    onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
                   </a>
@@ -667,7 +691,7 @@ exports[`App snapshot test Main screen rendering 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -824,37 +848,53 @@ exports[`App snapshot test Main screen rendering 1`] = `
             >
               Sort by
             </span>
-            <select
+            <span
               className="places__sorting-type"
-              defaultValue="popular"
-              id="places-sorting"
-              onChange={[Function]}
+              onClick={[Function]}
+              tabIndex="0"
             >
-              <option
-                className="places__option"
-                value="popular"
+              <svg
+                className="places__sorting-arrow"
+                height="4"
+                width="7"
+              >
+                <use
+                  xlinkHref="#icon-arrow-select"
+                />
+              </svg>
+            </span>
+            <ul
+              className="places__options places__options--custom "
+            >
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex="0"
               >
                 Popular
-              </option>
-              <option
-                className="places__option"
-                value="to-high"
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex="0"
               >
                 Price: low to high
-              </option>
-              <option
-                className="places__option"
-                value="to-low"
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex="0"
               >
                 Price: high to low
-              </option>
-              <option
-                className="places__option"
-                value="top-rated"
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex="0"
               >
                 Top rated first
-              </option>
-            </select>
+              </li>
+            </ul>
           </form>
           <div
             className="places__list cities__places-list tabs__content"
@@ -875,7 +915,8 @@ exports[`App snapshot test Main screen rendering 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/0"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Beautiful & luxurious apartment at great location"
@@ -953,7 +994,8 @@ exports[`App snapshot test Main screen rendering 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/0"
+                    onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
                   </a>
@@ -981,7 +1023,8 @@ exports[`App snapshot test Main screen rendering 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/1"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Wood and stone place"
@@ -1059,7 +1102,8 @@ exports[`App snapshot test Main screen rendering 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
+                    onClick={[Function]}
                   >
                     Wood and stone place
                   </a>
@@ -1080,7 +1124,8 @@ exports[`App snapshot test Main screen rendering 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/2"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Canal view Princengracht"
@@ -1158,7 +1203,8 @@ exports[`App snapshot test Main screen rendering 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/2"
+                    onClick={[Function]}
                   >
                     Canal view Princengracht
                   </a>
@@ -1179,7 +1225,8 @@ exports[`App snapshot test Main screen rendering 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="#"
+                  href="/offer/3"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Nice, cozy, warm big bed apartment"
@@ -1257,7 +1304,8 @@ exports[`App snapshot test Main screen rendering 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/offer/3"
+                    onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
                   </a>

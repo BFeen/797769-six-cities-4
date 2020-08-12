@@ -20,7 +20,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Favorites 1`
       className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/0"
+        onClick={[Function]}
       >
         <img
           alt="Beautiful & luxurious apartment at great location"
@@ -98,7 +99,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Favorites 1`
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/0"
+          onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
         </a>
@@ -126,7 +128,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Favorites 1`
       className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
         <img
           alt="Wood and stone place"
@@ -204,7 +207,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Favorites 1`
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/1"
+          onClick={[Function]}
         >
           Wood and stone place
         </a>
@@ -225,7 +229,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Favorites 1`
       className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/2"
+        onClick={[Function]}
       >
         <img
           alt="Canal view Princengracht"
@@ -303,7 +308,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Favorites 1`
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/2"
+          onClick={[Function]}
         >
           Canal view Princengracht
         </a>
@@ -324,7 +330,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Favorites 1`
       className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/3"
+        onClick={[Function]}
       >
         <img
           alt="Nice, cozy, warm big bed apartment"
@@ -402,7 +409,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Favorites 1`
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/3"
+          onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
         </a>
@@ -437,7 +445,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Main 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/0"
+        onClick={[Function]}
       >
         <img
           alt="Beautiful & luxurious apartment at great location"
@@ -515,7 +524,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Main 1`] = `
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/0"
+          onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
         </a>
@@ -543,7 +553,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Main 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
         <img
           alt="Wood and stone place"
@@ -621,7 +632,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Main 1`] = `
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/1"
+          onClick={[Function]}
         >
           Wood and stone place
         </a>
@@ -642,7 +654,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Main 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/2"
+        onClick={[Function]}
       >
         <img
           alt="Canal view Princengracht"
@@ -720,7 +733,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Main 1`] = `
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/2"
+          onClick={[Function]}
         >
           Canal view Princengracht
         </a>
@@ -741,7 +755,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Main 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/3"
+        onClick={[Function]}
       >
         <img
           alt="Nice, cozy, warm big bed apartment"
@@ -819,7 +834,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in Main 1`] = `
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/3"
+          onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
         </a>
@@ -854,7 +870,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in PlaceDetails
       className="near-places__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/0"
+        onClick={[Function]}
       >
         <img
           alt="Beautiful & luxurious apartment at great location"
@@ -932,7 +949,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in PlaceDetails
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/0"
+          onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
         </a>
@@ -960,7 +978,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in PlaceDetails
       className="near-places__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
         <img
           alt="Wood and stone place"
@@ -1038,7 +1057,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in PlaceDetails
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/1"
+          onClick={[Function]}
         >
           Wood and stone place
         </a>
@@ -1059,7 +1079,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in PlaceDetails
       className="near-places__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/2"
+        onClick={[Function]}
       >
         <img
           alt="Canal view Princengracht"
@@ -1137,7 +1158,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in PlaceDetails
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/2"
+          onClick={[Function]}
         >
           Canal view Princengracht
         </a>
@@ -1158,7 +1180,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in PlaceDetails
       className="near-places__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/offer/3"
+        onClick={[Function]}
       >
         <img
           alt="Nice, cozy, warm big bed apartment"
@@ -1236,7 +1259,8 @@ exports[`PlaceCardList snapshot checking PlaceCardList rendering in PlaceDetails
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/3"
+          onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
         </a>

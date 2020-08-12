@@ -11,9 +11,11 @@ Enzyme.configure({
 const citiesMock = [{
   name: `Paris`,
   coordinates: [48.85, 2.34],
+  zoom: 13,
 }, {
   name: `Cologne`,
   coordinates: [50.93, 6.95],
+  zoom: 13,
 }];
 
 describe(`CitiesList e2e testing`, () => {

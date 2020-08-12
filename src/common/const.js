@@ -9,21 +9,27 @@ const Cities = [
   {
     name: `Paris`,
     coordinates: [48.85, 2.34],
+    zoom: 13,
   }, {
     name: `Cologne`,
     coordinates: [50.93, 6.95],
+    zoom: 13,
   }, {
     name: `Brussels`,
     coordinates: [50.84, 4.35],
+    zoom: 13,
   }, {
     name: `Amsterdam`,
     coordinates: [52.38333, 4.9],
+    zoom: 13,
   }, {
     name: `Hamburg`,
     coordinates: [53.55, 9.99],
+    zoom: 13,
   }, {
     name: `Dusseldorf`,
     coordinates: [51.22, 6.77],
+    zoom: 13,
   }
 ];
 

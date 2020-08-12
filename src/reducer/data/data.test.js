@@ -1,4 +1,4 @@
-import {reducer, Operation, ActionType} from "./data.js";
+import {reducer, Operation, ActionType, ActionCreator} from "./data.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 import configureStore from "redux-mock-store";
@@ -12,7 +12,14 @@ const offersMock = [
   {
     id: 0,
     type: `apartment`,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [
+        52.3909553943508,
+        4.85309666406198,
+      ],
+      zoom: 10
+    },
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     price: 200,
@@ -46,7 +53,11 @@ const offersMock = [
   }, {
     id: 1,
     type: `house`,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     price: 170,
@@ -80,7 +91,11 @@ const offersMock = [
     }
   }, {
     id: 2,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
@@ -114,7 +129,11 @@ const offersMock = [
     }
   }, {
     id: 3,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
@@ -257,6 +276,8 @@ describe(`Data reducer testing`, () => {
     expect(reducer(void 0, {})).toEqual({
       offers: [],
       reviews: [],
+      nearbyOffers: [],
+      favorites: [],
       errorMessage: ``,
     });
   });
@@ -285,23 +306,23 @@ describe(`Data reducer testing`, () => {
 
   it(`Reducer should update nearbyOffers by load nearby offers`, () => {
     expect(reducer({
-      offers: [],
+      nearbyOffers: [],
     }, {
       type: ActionType.LOAD_NEARBY,
       payload: nearbyOffersMock,
     })).toEqual({
-      offers: nearbyOffersMock,
+      nearbyOffers: nearbyOffersMock,
     });
   });
 
   it(`Reducer should update nearbyOffers by load nearby offers`, () => {
     expect(reducer({
-      offers: [],
+      favorites: [],
     }, {
       type: ActionType.LOAD_FAVORITES,
       payload: offersMock.slice(2),
     })).toEqual({
-      offers: offersMock.slice(2),
+      favorites: offersMock.slice(2),
     });
   });
 
@@ -313,6 +334,43 @@ describe(`Data reducer testing`, () => {
       payload: `Bad request`,
     })).toEqual({
       errorMessage: `Bad request`,
+    });
+  });
+});
+
+describe(`Data ActionCreator testing`, () => {
+  it(`ActionCreator for changing city should returns correct action`, () => {
+    expect(ActionCreator.loadOffers(offersMock)).toEqual({
+      type: ActionType.LOAD_OFFERS,
+      payload: offersMock,
+    });
+  });
+
+  it(`ActionCreator for changing sortType should returns correct action`, () => {
+    expect(ActionCreator.loadNearby(offersMock.slice(0, 3))).toEqual({
+      type: ActionType.LOAD_NEARBY,
+      payload: offersMock.slice(0, 3),
+    });
+  });
+
+  it(`ActionCreator for reset sortType should returns correct action`, () => {
+    expect(ActionCreator.loadFavorites(offersMock)).toEqual({
+      type: ActionType.LOAD_FAVORITES,
+      payload: offersMock,
+    });
+  });
+
+  it(`ActionCreator for reset sortType should returns correct action`, () => {
+    expect(ActionCreator.loadReviews(reviewsMock)).toEqual({
+      type: ActionType.LOAD_REVIEWS,
+      payload: reviewsMock,
+    });
+  });
+
+  it(`ActionCreator for reset sortType should returns correct action`, () => {
+    expect(ActionCreator.catchError(`bad request`)).toEqual({
+      type: ActionType.CATCH_ERROR,
+      payload: `bad request`,
     });
   });
 });
@@ -446,7 +504,7 @@ describe(`Data Operation work correctly`, () => {
 
     return favoriteSender(dispatch, store.getState, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_OFFERS,
           payload: [{

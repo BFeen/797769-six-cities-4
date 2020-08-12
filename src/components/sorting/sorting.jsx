@@ -30,7 +30,7 @@ class Sorting extends PureComponent {
         <ul className={`places__options places__options--custom ${openedMenuClass}`}>
 
           {Object.values(SortType).map((type, index) => {
-            const activeOptionClass = type === currentSortType ? `places__option--active` : ``
+            const activeOptionClass = type === currentSortType ? `places__option--active` : ``;
             return (
               <li
                 key={type + index}

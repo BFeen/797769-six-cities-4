@@ -140,6 +140,7 @@ const withReview = (Component) => {
   }
 
   WithReview.propTypes = {
+    offerId: PropTypes.number.isRequired,
     handleSubmit: PropTypes.func.isRequired,
   };
 

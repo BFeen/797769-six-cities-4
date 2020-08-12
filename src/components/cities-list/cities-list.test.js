@@ -6,6 +6,7 @@ import CitiesList from "./cities-list.jsx";
 const cityMock = {
   name: `Paris`,
   coordinates: [48.85, 2.34],
+  zoom: 13,
 };
 
 describe(`CitiesList snapshot testing`, () => {

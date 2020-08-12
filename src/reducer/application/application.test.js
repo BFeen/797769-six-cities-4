@@ -6,12 +6,15 @@ const citiesMock = [
   {
     name: `Paris`,
     coordinates: [48.85, 2.34],
+    zoom: 13,
   }, {
     name: `Amsterdam`,
     coordinates: [52.38333, 4.9],
+    zoom: 13,
   }, {
     name: `Dusseldorf`,
     coordinates: [51.22, 6.77],
+    zoom: 13,
   }
 ];
 
@@ -19,7 +22,7 @@ describe(`Application Reducer testing`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       currentCity: citiesMock[0],
-      sortType: SortType.POPULAR.value,
+      sortType: SortType.POPULAR,
     });
   });
 
@@ -34,12 +37,12 @@ describe(`Application Reducer testing`, () => {
     });
 
     expect(reducer({
-      sortType: SortType.POPULAR.value
+      sortType: SortType.POPULAR
     }, {
       type: ActionType.CHANGE_SORT_TYPE,
-      payload: SortType.RATING.value,
+      payload: SortType.RATING,
     })).toEqual({
-      sortType: SortType.RATING.value,
+      sortType: SortType.RATING,
     });
   });
 });
@@ -53,16 +56,16 @@ describe(`Application ActionCreator testing`, () => {
   });
 
   it(`ActionCreator for changing sortType should returns correct action`, () => {
-    expect(ActionCreator.changeSortType(SortType.HIGH_TO_LOW.value)).toEqual({
+    expect(ActionCreator.changeSortType(SortType.HIGH_TO_LOW)).toEqual({
       type: ActionType.CHANGE_SORT_TYPE,
-      payload: SortType.HIGH_TO_LOW.value,
+      payload: SortType.HIGH_TO_LOW,
     });
   });
 
   it(`ActionCreator for reset sortType should returns correct action`, () => {
     expect(ActionCreator.resetSortType()).toEqual({
       type: ActionType.CHANGE_SORT_TYPE,
-      payload: SortType.POPULAR.value,
+      payload: SortType.POPULAR,
     });
   });
 });

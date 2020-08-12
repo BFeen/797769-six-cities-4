@@ -51,6 +51,6 @@ const withSorting = (Component) => {
   };
 
   return WithSorting;
-}
+};
 
 export default withSorting;

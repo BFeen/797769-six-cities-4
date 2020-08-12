@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import ReviewItemList from "../review-item-list/review-item-list.jsx";
@@ -27,16 +27,7 @@ class PlaceDetails extends PureComponent {
     loadNearbyOffers(currentOffer.id);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const {currentOffer, loadReviews, loadNearbyOffers} = this.props;
-
-  //   if(prevProps.currentOffer.id !== currentOffer.id) {
-  //     loadReviews(currentOffer.id);
-  //     loadNearbyOffers(currentOffer.id);
-  //   }
-  // }
-
-  render() {  
+  render() {
     const {
       currentOffer,
       nearbyOffers,
@@ -204,6 +195,8 @@ PlaceDetails.propTypes = {
   activeCard: PropTypes.object.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
+  loadNearbyOffers: PropTypes.func.isRequired,
+  loadReviews: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

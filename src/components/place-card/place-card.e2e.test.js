@@ -7,7 +7,11 @@ import PlaceCard from "./place-card.jsx";
 const offerMock = {
   id: 0,
   type: `apartment`,
-  city: `Amsterdam`,
+  city: {
+    name: `Amsterdam`,
+    coordinates: [52.38333, 4.9],
+    zoom: 12
+  },
   title: `Beautiful & luxurious apartment at great location`,
   picture: `img/apartment-01.jpg`,
   price: 200,
@@ -107,7 +111,7 @@ describe(`PlaceCard e2e tests`, () => {
     cardTitleElement.simulate(`click`);
 
     expect(handleCardTitleClick).toHaveBeenCalledTimes(1);
-    expect(handleCardTitleClick).toHaveBeenCalledWith(offerMock.id);
+    expect(handleCardTitleClick).toHaveBeenCalledWith(offerMock);
   });
 
   it(`Should handle bookmark clicking`, () => {

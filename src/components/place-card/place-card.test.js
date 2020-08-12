@@ -1,11 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Router} from "react-router-dom";
 import PlaceCard from "./place-card.jsx";
+import history from "../../history.js";
+
 
 const offerMock = {
   id: 0,
   type: `apartment`,
-  city: `Amsterdam`,
+  city: {
+    name: `Amsterdam`,
+    coordinates: [52.38333, 4.9],
+    zoom: 12
+  },
   title: `Beautiful & luxurious apartment at great location`,
   picture: `img/apartment-01.jpg`,
   price: 200,
@@ -41,15 +48,17 @@ const offerMock = {
 describe(`PlaceCard snapshot testing`, () => {
   it(`PlaceCard rendering`, () => {
     const tree = renderer.create(
-        <PlaceCard
-          offer={offerMock}
-          className={`cities__place-card`}
-          isFavoriteScreen={false}
-          onCardMouseEnter={() => {}}
-          onCardMouseLeave={() => {}}
-          onItemClick={() => {}}
-          onBookmarkClick={() => {}}
-        />
+        <Router history={history}>
+          <PlaceCard
+            offer={offerMock}
+            className={`cities__place-card`}
+            isFavoriteScreen={false}
+            onCardMouseEnter={() => {}}
+            onCardMouseLeave={() => {}}
+            onItemClick={() => {}}
+            onBookmarkClick={() => {}}
+          />
+        </Router>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -57,15 +66,17 @@ describe(`PlaceCard snapshot testing`, () => {
 
   it(`Rendering PlaceCard on the favorite-screen`, () => {
     const tree = renderer.create(
-        <PlaceCard
-          offer={offerMock}
-          className={`favorites__card`}
-          isFavoriteScreen={true}
-          onCardMouseEnter={() => {}}
-          onCardMouseLeave={() => {}}
-          onItemClick={() => {}}
-          onBookmarkClick={() => {}}
-        />
+        <Router history={history}>
+          <PlaceCard
+            offer={offerMock}
+            className={`favorites__card`}
+            isFavoriteScreen={true}
+            onCardMouseEnter={() => {}}
+            onCardMouseLeave={() => {}}
+            onItemClick={() => {}}
+            onBookmarkClick={() => {}}
+          />
+        </Router>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

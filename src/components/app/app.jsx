@@ -37,7 +37,7 @@ class App extends PureComponent {
       authorizationStatus
     } = this.props;
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-    
+
     return (
       <Router history={history}>
         <Switch>
@@ -144,6 +144,7 @@ class App extends PureComponent {
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  offersAll: PropTypes.arrayOf(offerPropTypes).isRequired,
   currentCity: cityPropTypes,
   handleCardTitleClick: PropTypes.func.isRequired,
   handleBookmarkClick: PropTypes.func.isRequired,

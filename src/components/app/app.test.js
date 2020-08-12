@@ -12,7 +12,11 @@ const offersMock = [
   {
     id: 0,
     type: `apartment`,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Beautiful & luxurious apartment at great location`,
     picture: `img/apartment-01.jpg`,
     price: 200,
@@ -46,7 +50,11 @@ const offersMock = [
   }, {
     id: 1,
     type: `house`,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Wood and stone place`,
     picture: `img/apartment-03.jpg`,
     price: 170,
@@ -80,7 +88,11 @@ const offersMock = [
     }
   }, {
     id: 2,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Canal view Princengracht`,
     picture: `img/room.jpg`,
     isPremium: false,
@@ -114,7 +126,11 @@ const offersMock = [
     }
   }, {
     id: 3,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.38333, 4.9],
+      zoom: 12
+    },
     title: `Nice, cozy, warm big bed apartment`,
     picture: `img/apartment-02.jpg`,
     isPremium: false,
@@ -153,11 +169,13 @@ const offersMock = [
 const cityMock = {
   name: `Amsterdam`,
   coordinates: [52.38333, 4.9],
+  zoom: 10,
 };
 
 describe(`App snapshot test`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
+      offers: offersMock,
       nearbyOffers: offersMock.slice(1, 3),
       reviews: [],
     },
@@ -177,11 +195,12 @@ describe(`App snapshot test`, () => {
           <App
             authorizationStatus={`AUTH`}
             offers={offersMock}
+            offersAll={offersMock}
             currentCity={cityMock}
-            offerId={-1}
             handleCardTitleClick={() => {}}
             login={() => {}}
             handleBookmarkClick={() => {}}
+            loadFavorites={() => {}}
           />
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)
@@ -196,12 +215,13 @@ describe(`App snapshot test`, () => {
         <Provider store={store}>
           <App
             authorizationStatus={`AUTH`}
-            offerId={0}
             currentCity={cityMock}
+            offersAll={offersMock}
             offers={offersMock}
             handleCardTitleClick={() => {}}
             login={() => {}}
             handleBookmarkClick={() => {}}
+            loadFavorites={() => {}}
           />
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)

@@ -17,7 +17,8 @@ exports[`PlaceCard snapshot testing PlaceCard rendering 1`] = `
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
-      href="#"
+      href="/offer/0"
+      onClick={[Function]}
     >
       <img
         alt="Beautiful & luxurious apartment at great location"
@@ -95,7 +96,8 @@ exports[`PlaceCard snapshot testing PlaceCard rendering 1`] = `
       onClick={[Function]}
     >
       <a
-        href="#"
+        href="/offer/0"
+        onClick={[Function]}
       >
         Beautiful & luxurious apartment at great location
       </a>
@@ -126,7 +128,8 @@ exports[`PlaceCard snapshot testing Rendering PlaceCard on the favorite-screen 1
     className="favorites__image-wrapper place-card__image-wrapper"
   >
     <a
-      href="#"
+      href="/offer/0"
+      onClick={[Function]}
     >
       <img
         alt="Beautiful & luxurious apartment at great location"
@@ -204,7 +207,8 @@ exports[`PlaceCard snapshot testing Rendering PlaceCard on the favorite-screen 1
       onClick={[Function]}
     >
       <a
-        href="#"
+        href="/offer/0"
+        onClick={[Function]}
       >
         Beautiful & luxurious apartment at great location
       </a>

@@ -101,7 +101,7 @@ const Operation = {
       })
       .catch((err) => {
         throw err;
-      })
+      });
   },
   postFavorites: (offerId, status) => (dispatch, getState, api) => {
     return api.post(`/favorite/${offerId}/${status}`)
