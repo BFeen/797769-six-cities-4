@@ -14,16 +14,6 @@ class Map extends PureComponent {
     this._markers = [];
   }
 
-  render() {
-    const {mapClassName} = this.props;
-    return (
-      <section
-        ref={this._mapRef}
-        className={`${mapClassName}__map map`}
-      />
-    );
-  }
-
   componentDidMount() {
     const {city, offers} = this.props;
     const {coordinates: cityPosition} = city;
@@ -45,12 +35,6 @@ class Map extends PureComponent {
       .addTo(this._map);
 
     offers.forEach((offer) => this._createMarker(offer, false));
-  }
-
-  componentWillUnmount() {
-    this._map.remove();
-    this._map = null;
-    this._markers = [];
   }
 
   componentDidUpdate(prevProps) {
@@ -76,6 +60,12 @@ class Map extends PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    this._map.remove();
+    this._map = null;
+    this._markers = [];
+  }
+
   _createMarker(offer, isHovered) {
     const {coordinates, title} = offer;
     const icon = this._getIcon(isHovered);
@@ -94,6 +84,16 @@ class Map extends PureComponent {
       iconUrl: path,
       iconSize: [27, 39],
     });
+  }
+
+  render() {
+    const {mapClassName} = this.props;
+    return (
+      <section
+        ref={this._mapRef}
+        className={`${mapClassName}__map map`}
+      />
+    );
   }
 }
 
