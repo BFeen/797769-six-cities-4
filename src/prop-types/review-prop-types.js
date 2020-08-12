@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export default PropTypes.shape({
   id: PropTypes.number.isRequired,
   comment: PropTypes.string.isRequired,
-  dateTime: PropTypes.string.isRequired,
+  dateTime: PropTypes.object.isRequired,
   rating: PropTypes.number.isRequired,
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,

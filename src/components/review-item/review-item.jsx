@@ -6,7 +6,7 @@ import {formatDate, getRatingStars} from "../../common/utils.js";
 const ReviewItem = (props) => {
   const {review} = props;
   const {user, rating} = review;
-  const slicedDate = review.dateTime.slice(0, 10);
+  const slicedDate = review.dateTime.toISOString().slice(0, 10);
   const dateReview = formatDate(review.dateTime);
   const ratingStarsLength = getRatingStars(rating);
 

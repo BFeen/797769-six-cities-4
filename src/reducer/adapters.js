@@ -45,7 +45,7 @@ const reviewAdapter = (review) => {
   return {
     id: review[`id`],
     comment: review[`comment`],
-    dateTime: review[`date`],
+    dateTime: new Date(review[`date`]),
     rating: review[`rating`],
     user: {
       id: user[`id`],
@@ -75,7 +75,8 @@ const parseOffers = (offers) => {
 };
 
 const parseReviews = (reviews) => {
-  return reviews.map((item) => reviewAdapter(item));
+  const adaptedReviews = reviews.map((item) => reviewAdapter(item));
+  return adaptedReviews.sort((a, b) => b.dateTime - a.dateTime);
 };
 
 export {

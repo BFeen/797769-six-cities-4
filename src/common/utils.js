@@ -7,10 +7,10 @@ const extend = (a, b) => {
 
 const formatDate = (date) => {
   const currentDate = new Date(date);
-  const day = currentDate.getDate();
+  const year = currentDate.getFullYear();
   const month = MONTHS[currentDate.getMonth()];
 
-  return `${day} ${month}`;
+  return `${month} ${year}`;
 };
 
 const getSortedOffers = (unsortedOffers, sortType) => {

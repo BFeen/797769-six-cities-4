@@ -12,7 +12,7 @@ const ReviewItemList = (props) => {
     <Fragment>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsAmount}</span></h2>
       <ul className="reviews__list">
-        {reviews.map((item, index) => {
+        {reviews.slice(0,10).map((item, index) => {
           return (
             <ReviewItem
               key={`${item.id}${index}`}
