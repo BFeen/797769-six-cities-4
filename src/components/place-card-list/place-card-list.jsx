@@ -22,10 +22,10 @@ const PlaceCardList = (props) => {
 
   return (
     <div className={`places__list ${listClassName}`}>
-      {offers.map((offer) => {
+      {offers.map((offer, index) => {
         return (
           <PlaceCard
-            key={`${offer.id}`}
+            key={`${offer.id}${index}`}
             offer={offer}
             className={cardClassName}
             isFavoriteScreen={isFavoriteScreen}

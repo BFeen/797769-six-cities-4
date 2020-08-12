@@ -68,9 +68,9 @@ Array [
         </p>
         <time
           className="reviews__time"
-          dateTime="April 2014"
+          dateTime="2014-03-31"
         >
-          1 April
+          April 2014
         </time>
       </div>
     </li>
@@ -127,9 +127,9 @@ Array [
         </p>
         <time
           className="reviews__time"
-          dateTime="December 2"
+          dateTime="2012-11-30"
         >
-          1 December
+          December 2012
         </time>
       </div>
     </li>
@@ -186,9 +186,9 @@ Array [
         </p>
         <time
           className="reviews__time"
-          dateTime="June 2020"
+          dateTime="2020-05-31"
         >
-          1 June
+          June 2020
         </time>
       </div>
     </li>
@@ -245,9 +245,9 @@ Array [
         </p>
         <time
           className="reviews__time"
-          dateTime="May 3001"
+          dateTime="3001-04-30"
         >
-          1 May
+          May 3001
         </time>
       </div>
     </li>

@@ -94,6 +94,11 @@ const SortType = {
   RATING: `Top rated first`,
 };
 
+const ServerMessage = {
+  [`400`]: `Server is not available`,
+  [`401`]: `User unauthorized`,
+};
+
 export {
   AppRoute,
   Cities,
@@ -102,4 +107,5 @@ export {
   RatingStarsCount,
   ScreenType,
   SortType,
+  ServerMessage,
 };

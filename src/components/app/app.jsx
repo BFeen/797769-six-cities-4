@@ -20,7 +20,7 @@ import history from "../../history.js";
 
 
 const MainWrapped = withActiveCard(Main);
-const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
+// const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 
 class App extends PureComponent {
   constructor(props) {
@@ -119,7 +119,7 @@ class App extends PureComponent {
     const currentOffer = offersAll.find((item) => item.id === parseInt(offerId, 10));
 
     return (
-      <PlaceDetailsWrapped
+      <PlaceDetails
         currentOffer={currentOffer}
         onCardTitleClick={handleCardTitleClick}
         isAuthorized={isAuthorized}

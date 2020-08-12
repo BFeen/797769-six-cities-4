@@ -33,9 +33,6 @@ class PlaceDetails extends PureComponent {
       nearbyOffers,
       reviews,
       onCardTitleClick,
-      onCardMouseEnter,
-      onCardMouseLeave,
-      activeCard,
       isAuthorized,
       onBookmarkClick,
     } = this.props;
@@ -47,6 +44,7 @@ class PlaceDetails extends PureComponent {
     const ratingStarsLength = getRatingStars(rating);
     const bookmarkActiveClass = isFavorite ? `property__bookmark-button--active` : ``;
     const hostProClass = host.isPro ? `property__avatar-wrapper--pro` : ``;
+    const offersOnMap = [].concat(nearbyOffers, currentOffer);
 
     return (
       <div className="page">
@@ -159,8 +157,8 @@ class PlaceDetails extends PureComponent {
             </div>
             <Map
               city={currentOffer.city}
-              offers={nearbyOffers}
-              activeCard={activeCard}
+              offers={offersOnMap}
+              activeCard={currentOffer}
               mapClassName={MapClassNames.PROPERTY}
             />
           </section>
@@ -172,8 +170,8 @@ class PlaceDetails extends PureComponent {
                 offers={nearbyOffers}
                 screenType={ScreenType.DETAILS}
                 onItemClick={onCardTitleClick}
-                onCardMouseEnter={onCardMouseEnter}
-                onCardMouseLeave={onCardMouseLeave}
+                onCardMouseEnter={() => {}}
+                onCardMouseLeave={() => {}}
                 onBookmarkClick={onBookmarkClick}
               />
 
@@ -190,9 +188,6 @@ PlaceDetails.propTypes = {
   nearbyOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired,
-  activeCard: PropTypes.object.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
   onBookmarkClick: PropTypes.func.isRequired,
   loadNearbyOffers: PropTypes.func.isRequired,

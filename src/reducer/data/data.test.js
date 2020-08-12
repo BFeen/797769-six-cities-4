@@ -175,7 +175,7 @@ const reviewsMock = [
   {
     id: 0,
     comment: `A quiet cozy and picturesque that...`,
-    dateTime: `April 2014`,
+    dateTime: new Date(`2014-03-31T20:00:00.000Z`),
     rating: 4,
     user: {
       id: 0,

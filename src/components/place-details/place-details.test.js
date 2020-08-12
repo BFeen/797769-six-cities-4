@@ -289,7 +289,7 @@ const reviewsMock = [
   {
     id: 0,
     comment: `A quiet cozy and picturesque that...`,
-    dateTime: `April 2014`,
+    dateTime: new Date(`April 2020`),
     rating: 4,
     user: {
       id: 0,
@@ -300,7 +300,7 @@ const reviewsMock = [
   }, {
     id: 1,
     comment: `Best place of the world!`,
-    dateTime: `December 2012`,
+    dateTime: new Date(`December 2012`),
     rating: 5,
     user: {
       id: 1,
@@ -311,7 +311,7 @@ const reviewsMock = [
   }, {
     id: 2,
     comment: `The worst place of the world!`,
-    dateTime: `June 2020`,
+    dateTime: new Date(`June 2020`),
     rating: 1,
     user: {
       id: 2,
@@ -322,7 +322,7 @@ const reviewsMock = [
   }, {
     id: 3,
     comment: `Nice. But too many roaches.`,
-    dateTime: `May 3001`,
+    dateTime: new Date(`May 3001`),
     rating: 3,
     user: {
       id: 3,
