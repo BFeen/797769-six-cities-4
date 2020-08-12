@@ -178,6 +178,7 @@ describe(`App snapshot test`, () => {
       offers: offersMock,
       nearbyOffers: offersMock.slice(1, 3),
       reviews: [],
+      errorMessage: ``,
     },
     [NameSpace.APPLICATION]: {
       offerId: 3,
@@ -193,31 +194,11 @@ describe(`App snapshot test`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <App
+            errorMessage={``}
             authorizationStatus={`AUTH`}
             offers={offersMock}
             offersAll={offersMock}
             currentCity={cityMock}
-            handleCardTitleClick={() => {}}
-            login={() => {}}
-            handleBookmarkClick={() => {}}
-            loadFavorites={() => {}}
-          />
-        </Provider>, {
-          createNodeMock: () => document.createElement(`div`)
-        }
-    ).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`Details screen rendering`, () => {
-    const tree = renderer.create(
-        <Provider store={store}>
-          <App
-            authorizationStatus={`AUTH`}
-            currentCity={cityMock}
-            offersAll={offersMock}
-            offers={offersMock}
             handleCardTitleClick={() => {}}
             login={() => {}}
             handleBookmarkClick={() => {}}

@@ -176,6 +176,7 @@ describe(`Main component snapshot testing`, () => {
   it(`Render Main.`, () => {
     const tree = shallow(
         <Main
+          errorMessage={``}
           isAuthorized={true}
           offers={offersMock}
           city={cityMock}
@@ -197,6 +198,29 @@ describe(`Main component snapshot testing`, () => {
   it(`Render Main with no offers`, () => {
     const tree = shallow(
         <Main
+          errorMessage={``}
+          isAuthorized={true}
+          offers={[]}
+          city={cityMock}
+          sortType={`popular`}
+          mapClassName={`cities`}
+          onCardTitleClick={() => {}}
+          handleCityChange={() => {}}
+          handleSortTypeChange={() => {}}
+          onCardMouseEnter={() => {}}
+          onCardMouseLeave={() => {}}
+          activeCard={{}}
+          onBookmarkClick={() => {}}
+        />
+    );
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render Main with error message`, () => {
+    const tree = shallow(
+        <Main
+          errorMessage={`Sorry, server is not avialable now.`}
           isAuthorized={true}
           offers={[]}
           city={cityMock}

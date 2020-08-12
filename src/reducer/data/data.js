@@ -16,6 +16,7 @@ const ActionType = {
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
   CATCH_ERROR: `CATCH_ERROR`,
+  RESET_ERROR: `RESET_ERROR`
 };
 
 const ActionCreator = {
@@ -49,6 +50,12 @@ const ActionCreator = {
       payload: error,
     };
   },
+  resetError: () => {
+    return {
+      type: ActionType.RESET_ERROR,
+      payload: ``,
+    };
+  }
 };
 
 const Operation = {
@@ -56,9 +63,10 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreator.loadOffers(parseOffers(response.data)));
+        dispatch(ActionCreator.resetError());
       })
       .catch((err) => {
-        dispatch(ActionCreator.catchError(err));
+        dispatch(ActionCreator.catchError(err.message));
         throw err;
       });
   },
@@ -139,6 +147,10 @@ const reducer = (state = initialState, action) => {
         favorites: action.payload,
       });
     case ActionType.CATCH_ERROR:
+      return extend(state, {
+        errorMessage: action.payload,
+      });
+    case ActionType.RESET_ERROR:
       return extend(state, {
         errorMessage: action.payload,
       });

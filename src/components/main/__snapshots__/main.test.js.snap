@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Main component snapshot testing Render Main with error message 1`] = `ShallowWrapper {}`;
+
 exports[`Main component snapshot testing Render Main with no offers 1`] = `ShallowWrapper {}`;
 
 exports[`Main component snapshot testing Render Main. 1`] = `ShallowWrapper {}`;

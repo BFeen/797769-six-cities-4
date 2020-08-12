@@ -33,10 +33,10 @@ export const getReviews = (state) => {
   return state[NameSpace.DATA].reviews;
 };
 
-export const getError = (state) => {
-  return state[NameSpace.DATA].errorMessage;
-};
-
 export const getFavorites = (state) => {
   return state[NameSpace.DATA].favorites;
+};
+
+export const getError = (state) => {
+  return state[NameSpace.DATA].errorMessage;
 };

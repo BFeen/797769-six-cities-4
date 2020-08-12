@@ -336,6 +336,17 @@ describe(`Data reducer testing`, () => {
       errorMessage: `Bad request`,
     });
   });
+
+  it(`Reducer should update errorMessage when catching the error`, () => {
+    expect(reducer({
+      errorMessage: `ERROR`,
+    }, {
+      type: ActionType.RESET_ERROR,
+      payload: ``,
+    })).toEqual({
+      errorMessage: ``,
+    });
+  });
 });
 
 describe(`Data ActionCreator testing`, () => {
@@ -373,6 +384,13 @@ describe(`Data ActionCreator testing`, () => {
       payload: `bad request`,
     });
   });
+
+  it(`ActionCreator for reset sortType should returns correct action`, () => {
+    expect(ActionCreator.resetError(``)).toEqual({
+      type: ActionType.RESET_ERROR,
+      payload: ``,
+    });
+  });
 });
 
 describe(`Data Operation work correctly`, () => {
@@ -387,7 +405,7 @@ describe(`Data Operation work correctly`, () => {
 
     return offersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_OFFERS,
           payload: [offersMock[0]],

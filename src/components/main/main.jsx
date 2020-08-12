@@ -23,6 +23,7 @@ const CitiesListWrapped = withActiveItem(CitiesList);
 
 const Main = (props) => {
   const {
+    errorMessage,
     isAuthorized,
     sortType,
     city,
@@ -60,8 +61,8 @@ const Main = (props) => {
         </div>
         <div className="cities">
 
-          {isEmpty
-            ? <MainEmpty city={city.name}/>
+          {isEmpty || errorMessage
+            ? <MainEmpty errorMessage={errorMessage} city={city.name}/>
             : <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
@@ -101,6 +102,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  errorMessage: PropTypes.string.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
   city: cityPropTypes,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,

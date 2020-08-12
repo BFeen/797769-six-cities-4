@@ -11,7 +11,7 @@ import cityPropTypes from "../../prop-types/city-prop-types.js";
 import offerPropTypes from "../../prop-types/offer-prop-types.js";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
 import {getCurrentCity} from "../../reducer/application/selectors.js";
-import {getOffersByCity, getOffers} from "../../reducer/data/selectors.js";
+import {getOffersByCity, getOffers, getError} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
@@ -20,7 +20,6 @@ import history from "../../history.js";
 
 
 const MainWrapped = withActiveCard(Main);
-// const PlaceDetailsWrapped = withActiveCard(PlaceDetails);
 
 class App extends PureComponent {
   constructor(props) {
@@ -31,6 +30,7 @@ class App extends PureComponent {
 
   render() {
     const {
+      errorMessage,
       currentCity,
       offers,
       handleCardTitleClick,
@@ -38,12 +38,17 @@ class App extends PureComponent {
     } = this.props;
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
+    if (errorMessage) {
+      return <Redirect to={AppRoute.ROOT} />;
+    }
+
     return (
       <Router history={history}>
         <Switch>
           <Route exact path={AppRoute.ROOT}
             render={() => (
               <MainWrapped
+                errorMessage={errorMessage}
                 city={currentCity}
                 offers={offers}
                 onCardTitleClick={handleCardTitleClick}
@@ -142,6 +147,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  errorMessage: PropTypes.string.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   offersAll: PropTypes.arrayOf(offerPropTypes).isRequired,
@@ -153,6 +159,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  errorMessage: getError(state),
   authorizationStatus: getAuthorizationStatus(state),
   currentCity: getCurrentCity(state),
   offers: getOffersByCity(state),
