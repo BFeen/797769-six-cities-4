@@ -46,7 +46,9 @@ const withSorting = (Component) => {
     }
   }
 
-  WithSorting.propTypes = {};
+  WithSorting.propTypes = {
+    onSortTypeChange: PropTypes.func.isRequired,
+  };
 
   return WithSorting;
 }

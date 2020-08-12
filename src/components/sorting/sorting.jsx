@@ -51,8 +51,10 @@ class Sorting extends PureComponent {
 }
 
 Sorting.propTypes = {
+  isOpened: PropTypes.bool.isRequired,
   currentSortType: PropTypes.string.isRequired,
-  onSortTypeChange: PropTypes.func.isRequired,
+  onSelectSortType: PropTypes.func.isRequired,
+  onMenuClick: PropTypes.func.isRequired,
 };
 
 export default Sorting;

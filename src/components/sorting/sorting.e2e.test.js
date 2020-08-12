@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Sorting from "./sorting.jsx";
+import {SortType} from "../../common/const.js";
 
 
 Enzyme.configure({
@@ -9,17 +10,20 @@ Enzyme.configure({
 });
 
 describe(`Sorting e2e testing`, () => {
-  it(`Should changing sortType`, () => {
+  it(`Sorting on menu item clicking should changing sortType`, () => {
     const handleSortTypeChange = jest.fn();
 
     const sorting = shallow(
         <Sorting
-          onSortTypeChange={handleSortTypeChange}
+          isOpened={false}
+          currentSortType={SortType.POPULAR}
+          onSelectSortType={handleSortTypeChange}
+          onMenuClick={() => {}}
         />
     );
 
-    const selectedSortType = `to-high`;
-    sorting.find(`select`).simulate(`change`, {target: {value: selectedSortType}});
+    const selectedSortType = `Price: low to high`;
+    sorting.find(`li.places__option`).at(1).simulate(`click`, selectedSortType);
 
     expect(handleSortTypeChange).toHaveBeenCalledTimes(1);
     expect(handleSortTypeChange).toHaveBeenCalledWith(selectedSortType);
