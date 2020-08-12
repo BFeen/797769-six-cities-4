@@ -35,6 +35,10 @@ const offerAdapter = (offer) => {
   };
 };
 
+const nearbyOfferAdapter = (nearbyOffer) => {
+  return nearbyOffer[`id`];
+};
+
 const reviewAdapter = (review) => {
   const user = review[`user`];
 
@@ -62,6 +66,10 @@ const userDataAdapter = (userData) => {
   };
 };
 
+const parseNearbyOffers = (nearbyOffers) => {
+  return nearbyOffers.map((item) => nearbyOfferAdapter(item));
+};
+
 const parseOffers = (offers) => {
   return offers.map((item) => offerAdapter(item));
 };
@@ -75,5 +83,6 @@ export {
   reviewAdapter,
   userDataAdapter,
   parseOffers,
-  parseReviews
+  parseReviews,
+  parseNearbyOffers,
 };

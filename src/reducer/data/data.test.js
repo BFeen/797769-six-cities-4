@@ -410,7 +410,7 @@ describe(`Data Operation work correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_NEARBY,
-          payload: [offersMock[0]],
+          payload: [offersMock[0].id],
         });
       });
   });

@@ -1,5 +1,5 @@
 import {extend} from "../../common/utils.js";
-import {parseOffers, parseReviews} from "../adapters.js";
+import {parseOffers, parseReviews, parseNearbyOffers} from "../adapters.js";
 import {getOffers} from "./selectors.js";
 
 const initialState = {
@@ -69,7 +69,7 @@ const Operation = {
 
     return api.get(`/hotels/${offerId}/nearby`)
       .then((response) => {
-        dispatch(ActionCreator.loadNearby(parseOffers(response.data)));
+        dispatch(ActionCreator.loadNearby(parseNearbyOffers(response.data)));
       });
   },
   loadReviews: (offerId) => (dispatch, getState, api) => {

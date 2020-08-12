@@ -8,7 +8,7 @@ import Header from "../header/header.jsx";
 import ReviewForm from "../review-form/review-form.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withReview from "../../hocs/with-review/with-review.js";
-import {getReviews, getNearbyOffers, getOffers} from "../../reducer/data/selectors.js";
+import {getReviews, getNearbyFromOffers} from "../../reducer/data/selectors.js";
 import {Operation} from "../../reducer/data/data.js";
 import {ClassNames, ScreenType} from "../../common/const.js";
 import {getRatingStars} from "../../common/utils.js";
@@ -200,9 +200,8 @@ PlaceDetails.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: getOffers(state),
   reviews: getReviews(state),
-  nearbyOffers: getNearbyOffers(state),
+  nearbyOffers: getNearbyFromOffers(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

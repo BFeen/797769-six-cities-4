@@ -19,6 +19,16 @@ export const getNearbyOffers = (state) => {
   return state[NameSpace.DATA].nearbyOffers;
 };
 
+export const getNearbyFromOffers = createSelector(
+    getOffers,
+    getNearbyOffers,
+    (offersAll, nearby) => {
+      return nearby.map((item) => {
+        return offersAll.find((offer) => offer.id === item);
+      });
+    }
+);
+
 export const getReviews = (state) => {
   return state[NameSpace.DATA].reviews;
 };
