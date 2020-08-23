@@ -1,45 +1,60 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
-import leaflet from "leaflet";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import cityPropTypes from "../../prop-types/city-prop-types.js";
+import * as React from "react";
+import {
+  Map as LeafletMap,
+  Marker,
+  marker as leafletMarker,
+  map,
+  icon,
+  tileLayer,
+} from "leaflet";
+import {IOffer, ICity} from "../../common/types";
 
 
-class Map extends PureComponent {
-  constructor(props) {
+interface Props {
+  city: ICity;
+  offers: IOffer[];
+  mapClassName: string,
+  activeCard?: IOffer;
+}
+
+class Map extends React.PureComponent<Props, {}> {
+  private map: LeafletMap;
+  private mapRef: React.RefObject<HTMLDivElement>;
+  private markers: Marker[];
+
+  constructor(props: Props) {
     super(props);
 
-    this._map = null;
-    this._mapRef = createRef();
-    this._markers = [];
+    this.map = null;
+    this.mapRef = React.createRef();
+    this.markers = [];
   }
 
   componentDidMount() {
     const {city, offers} = this.props;
     const {coordinates: cityPosition} = city;
-    const currentMap = this._mapRef.current;
+    const currentMap = this.mapRef.current;
 
     const zoom = 12;
-    this._map = leaflet.map(currentMap, {
+    this.map = map(currentMap, {
       center: cityPosition,
       zoom,
       zoomControl: false,
-      marker: true
+      // marker: true
     });
-    this._map.setView(cityPosition, zoom);
+    this.map.setView(cityPosition, zoom);
 
-    leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
-      .addTo(this._map);
+    tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+    })
+    .addTo(this.map);
 
     offers.forEach((offer) => this._createMarker(offer, false));
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (this.props.city !== prevProps.city) {
-      this._map.setView(this.props.city.coordinates, 12);
+      this.map.setView(this.props.city.coordinates, 12);
     }
 
     if (this.props.offers !== prevProps.offers
@@ -47,11 +62,11 @@ class Map extends PureComponent {
       const {offers, activeCard} = this.props;
 
 
-      this._markers.forEach((marker) => {
-        this._map.removeLayer(marker);
+      this.markers.forEach((marker) => {
+        this.map.removeLayer(marker);
       });
 
-      this._markers = [];
+      this.markers = [];
 
       offers.forEach((offer) => {
         const isHovered = offer === activeCard;
@@ -61,26 +76,25 @@ class Map extends PureComponent {
   }
 
   componentWillUnmount() {
-    this._map.remove();
-    this._map = null;
-    this._markers = [];
+    this.map.remove();
+    this.map = null;
+    this.markers = [];
   }
 
-  _createMarker(offer, isHovered) {
+  _createMarker(offer: IOffer, isHovered: boolean) {
     const {coordinates, title} = offer;
     const icon = this._getIcon(isHovered);
 
-    this._markers.push(
-        leaflet
-          .marker(coordinates, {icon})
-          .bindPopup(title).openPopup()
-          .addTo(this._map)
-    );
+    const marker = leafletMarker(coordinates, {icon})
+      .bindPopup(title)
+      .addTo(this.map);
+
+    this.markers.push(marker);
   }
 
-  _getIcon(isHovered) {
+  _getIcon(isHovered: boolean) {
     const path = isHovered ? `/img/pin-active.svg` : `/img/pin.svg`;
-    return leaflet.icon({
+    return icon({
       iconUrl: path,
       iconSize: [27, 39],
     });
@@ -90,21 +104,11 @@ class Map extends PureComponent {
     const {mapClassName} = this.props;
     return (
       <section
-        ref={this._mapRef}
+        ref={this.mapRef}
         className={`${mapClassName}__map map`}
       />
     );
   }
 }
-
-Map.propTypes = {
-  city: cityPropTypes,
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  mapClassName: PropTypes.string.isRequired,
-  activeCard: PropTypes.oneOfType([
-    offerPropTypes,
-    PropTypes.object,
-  ]).isRequired,
-};
 
 export default Map;

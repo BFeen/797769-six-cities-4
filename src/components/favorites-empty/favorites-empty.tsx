@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 
 
-const FavoritesEmpty = () => {
+const FavoritesEmpty: React.FunctionComponent = () => {
   return (
     <section className="favorites favorites--empty">
       <h1 className="visually-hidden">Favorites (empty)</h1>
@@ -12,7 +12,5 @@ const FavoritesEmpty = () => {
     </section>
   );
 };
-
-FavoritesEmpty.propTypes = {};
 
 export default FavoritesEmpty;

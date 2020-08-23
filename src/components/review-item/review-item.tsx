@@ -1,9 +1,13 @@
-import React from "react";
-import reviewPropTypes from "../../prop-types/review-prop-types.js";
-import {formatDate, getRatingStars} from "../../common/utils.js";
+import * as React from "react";
+import {IReview} from "../../common/types";
+import {formatDate, getRatingStars} from "../../common/utils";
 
 
-const ReviewItem = (props) => {
+interface Props {
+  review: IReview;
+}
+
+const ReviewItem: React.FunctionComponent<Props> = (props) => {
   const {review} = props;
   const {user, rating} = review;
   const slicedDate = review.dateTime.toISOString().slice(0, 10);
@@ -42,10 +46,6 @@ const ReviewItem = (props) => {
       </div>
     </li>
   );
-};
-
-ReviewItem.propTypes = {
-  review: reviewPropTypes,
 };
 
 export default ReviewItem;

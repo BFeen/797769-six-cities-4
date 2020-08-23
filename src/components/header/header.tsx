@@ -1,13 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {ClassNames, AppRoute} from "../../common/const.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {getAuthorizationStatus, getUserData} from "../../reducer/user/selectors.js";
+import {ClassNames, AppRoute} from "../../common/const";
+import {IUserWithEmail} from "../../common/types";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {getAuthorizationStatus, getUserData} from "../../reducer/user/selectors";
 
 
-const Header = (props) => {
+interface Props {
+  authorizationStatus: string;
+  user: IUserWithEmail;
+};
+
+const Header: React.FunctionComponent<Props> = (props: Props) => {
   const {
     user,
     authorizationStatus,
@@ -50,20 +55,6 @@ const Header = (props) => {
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  user: PropTypes.oneOfType([
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-    }),
-    PropTypes.object,
-  ]).isRequired,
 };
 
 const mapStateToProps = (state) => ({

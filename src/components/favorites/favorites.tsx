@@ -1,20 +1,26 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import Header from "../header/header.jsx";
-import PlaceCardList from "../place-card-list/place-card-list.jsx";
-import FavoritesEmpty from "../favorites-empty/favorites-empty.jsx";
-import {getFavorites} from "../../reducer/data/selectors.js";
-import {Operation} from "../../reducer/data/data.js";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import {AppRoute, ScreenType} from "../../common/const.js";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import Header from "../header/header";
+import PlaceCardList from "../place-card-list/place-card-list";
+import FavoritesEmpty from "../favorites-empty/favorites-empty";
+import {getFavorites} from "../../reducer/data/selectors";
+import {Operation} from "../../reducer/data/data";
+import {IOffer} from "../../common/types";
+import {AppRoute, ScreenType} from "../../common/const";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
+
+interface Props {
+    favorites: IOffer[];
+    onCardTitleClick: (offer: IOffer) => void;
+    onBookmarkClick: (offerId: number, isFAvorite: boolean) => void;
+    loadFavorites: () => IOffer[] | [];
+}
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 
-class Favorites extends PureComponent {
+class Favorites extends React.PureComponent<Props, {}> {
   componentDidMount() {
     this.props.loadFavorites();
   }
@@ -82,16 +88,6 @@ class Favorites extends PureComponent {
     );
   }
 }
-
-Favorites.propTypes = {
-  favorites: PropTypes.oneOfType([
-    PropTypes.arrayOf(offerPropTypes),
-    PropTypes.array,
-  ]).isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
-  onBookmarkClick: PropTypes.func.isRequired,
-  loadFavorites: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   favorites: getFavorites(state),

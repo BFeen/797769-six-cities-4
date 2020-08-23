@@ -1,15 +1,24 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
-import Header from "../header/header.jsx";
-import {ClassNames} from "../../common/const.js";
+import * as React from "react";
+import Header from "../header/header";
+import {ClassNames} from "../../common/const";
 
 
-class SignIn extends PureComponent {
+interface Props {
+  onSubmit: ({}: {
+    login: string;
+    password: string;
+}) => void;
+}
+
+class SignIn extends React.PureComponent<Props, {}> {
+  private loginRef: React.RefObject<HTMLInputElement>;
+  private passwordRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 
-    this._loginRef = createRef();
-    this._passwordRef = createRef();
+    this.loginRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this._handleSubmit = this._handleSubmit.bind(this);
   }
@@ -20,8 +29,8 @@ class SignIn extends PureComponent {
     evt.preventDefault();
 
     onSubmit({
-      login: this._loginRef.current.value,
-      password: this._passwordRef.current.value,
+      login: this.loginRef.current.value,
+      password: this.passwordRef.current.value,
     });
   }
 
@@ -48,8 +57,7 @@ class SignIn extends PureComponent {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    required=""
-                    ref={this._loginRef}
+                    ref={this.loginRef}
                   />
                 </div>
                 <div className="login__input-wrapper form__input-wrapper">
@@ -59,8 +67,7 @@ class SignIn extends PureComponent {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    required=""
-                    ref={this._passwordRef}
+                    ref={this.passwordRef}
                   />
                 </div>
                 <button
@@ -85,9 +92,5 @@ class SignIn extends PureComponent {
     );
   }
 }
-
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default SignIn;

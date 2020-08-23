@@ -1,25 +1,34 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
-import ReviewItemList from "../review-item-list/review-item-list.jsx";
-import PlaceCardList from "../place-card-list/place-card-list.jsx";
-import Map from "../map/map.jsx";
-import Header from "../header/header.jsx";
-import ReviewForm from "../review-form/review-form.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import withReview from "../../hocs/with-review/with-review.js";
-import {getReviews, getNearbyFromOffers} from "../../reducer/data/selectors.js";
-import {Operation} from "../../reducer/data/data.js";
-import {ClassNames, ScreenType} from "../../common/const.js";
-import {getRatingStars} from "../../common/utils.js";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import reviewPropTypes from "../../prop-types/review-prop-types.js";
+import ReviewItemList from "../review-item-list/review-item-list";
+import PlaceCardList from "../place-card-list/place-card-list";
+import Map from "../map/map";
+import Header from "../header/header";
+import ReviewForm from "../review-form/review-form";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import withReview from "../../hocs/with-review/with-review";
+import {getReviews, getNearbyFromOffers} from "../../reducer/data/selectors";
+import {Operation} from "../../reducer/data/data";
+import {ClassNames, ScreenType} from "../../common/const";
+import {getRatingStars} from "../../common/utils";
+import {IOffer, IReview} from "../../common/types";
 
+
+interface Props {
+  currentOffer: IOffer;
+  nearbyOffers: IOffer[];
+  reviews: IReview[];
+  isAuthorized: boolean;
+  onCardTitleClick: (offer: IOffer) => void;
+  onBookmarkClick: (offerId: number, isFAvorite: boolean) => void;
+  loadNearbyOffers: (offerId: number) => IOffer[];
+  loadReviews: (offerId: number) => IReview[];
+};
 
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 const ReviewFormWrapped = withReview(ReviewForm);
 
-class PlaceDetails extends PureComponent {
+class PlaceDetails extends React.PureComponent<Props> {
   componentDidMount() {
     const {currentOffer, loadReviews, loadNearbyOffers} = this.props;
 
@@ -32,8 +41,8 @@ class PlaceDetails extends PureComponent {
       currentOffer,
       nearbyOffers,
       reviews,
-      onCardTitleClick,
       isAuthorized,
+      onCardTitleClick,
       onBookmarkClick,
     } = this.props;
 
@@ -170,9 +179,9 @@ class PlaceDetails extends PureComponent {
                 offers={nearbyOffers}
                 screenType={ScreenType.DETAILS}
                 onItemClick={onCardTitleClick}
+                onBookmarkClick={onBookmarkClick}
                 onCardMouseEnter={() => {}}
                 onCardMouseLeave={() => {}}
-                onBookmarkClick={onBookmarkClick}
               />
 
             </section>
@@ -182,17 +191,6 @@ class PlaceDetails extends PureComponent {
     );
   }
 }
-
-PlaceDetails.propTypes = {
-  currentOffer: offerPropTypes,
-  nearbyOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
-  onBookmarkClick: PropTypes.func.isRequired,
-  loadNearbyOffers: PropTypes.func.isRequired,
-  loadReviews: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   reviews: getReviews(state),

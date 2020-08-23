@@ -1,17 +1,25 @@
-import React from "react";
-import PropTypes from "prop-types";
-import PlaceCard from "../place-card/place-card.jsx";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import {ClassNames, ScreenType} from "../../common/const.js";
+import * as React from "react";
+import PlaceCard from "../place-card/place-card";
+import {IOffer} from "../../common/types";
+import {ClassNames, ScreenType} from "../../common/const";
 
 
-const PlaceCardList = (props) => {
+interface Props {
+  offers: IOffer[];
+  screenType: string;
+  onCardMouseEnter: (offer: IOffer) => void;
+  onCardMouseLeave: () => void;
+  onItemClick: (offer: IOffer) => void;
+  onBookmarkClick: (offerId: number, isFAvorite: boolean) => void;
+}
+
+const PlaceCardList: React.FunctionComponent<Props> = (props: Props) => {
   const {
     offers,
-    onItemClick,
     screenType,
     onCardMouseEnter,
     onCardMouseLeave,
+    onItemClick,
     onBookmarkClick,
   } = props;
 
@@ -38,15 +46,6 @@ const PlaceCardList = (props) => {
       })}
     </div>
   );
-};
-
-PlaceCardList.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  screenType: PropTypes.string.isRequired,
-  onItemClick: PropTypes.func.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired,
-  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCardList;

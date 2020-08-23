@@ -1,28 +1,41 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import {Router, Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
-import Favorites from "../favorites/favorites.jsx";
-import Main from "../main/main.jsx";
-import PlaceDetails from "../place-details/place-details.jsx";
-import PrivateRoute from "../private-route/private-route.jsx";
-import SignIn from "../sign-in/sign-in.jsx";
-import cityPropTypes from "../../prop-types/city-prop-types.js";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
-import {getCurrentCity} from "../../reducer/application/selectors.js";
-import {getOffersByCity, getOffers, getError} from "../../reducer/data/selectors.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
-import {AppRoute} from "../../common/const.js";
-import history from "../../history.js";
+import Favorites from "../favorites/favorites";
+import Main from "../main/main";
+import PlaceDetails from "../place-details/place-details";
+import PrivateRoute from "../private-route/private-route";
+import SignIn from "../sign-in/sign-in";
+import withActiveCard from "../../hocs/with-active-card/with-active-card";
+import {getCurrentCity} from "../../reducer/application/selectors";
+import {getOffersByCity, getOffers, getError} from "../../reducer/data/selectors";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {Operation as DataOperation} from "../../reducer/data/data";
+import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user";
+import {AppRoute} from "../../common/const";
+import {IOffer, ICity} from "../../common/types";
+import history from "../../history";
 
+
+interface Props {
+  errorMessage: string;
+  authorizationStatus: string;
+  offers: IOffer[];
+  offersAll: IOffer[];
+  currentCity: ICity;
+  handleCardTitleClick: (offer: IOffer) => void;
+  handleBookmarkClick: (offerId: number, status: number) => void;
+  loadFavorites: () => IOffer[];
+  login: (authData: {
+    login: string;
+    password: string;
+  }) => void;
+}
 
 const MainWrapped = withActiveCard(Main);
 
-class App extends PureComponent {
-  constructor(props) {
+class App extends React.PureComponent<Props, {}> {
+  constructor(props: Props) {
     super(props);
 
     this._onBookmarkClick = this._onBookmarkClick.bind(this);
@@ -30,11 +43,11 @@ class App extends PureComponent {
 
   render() {
     const {
+      authorizationStatus,
       errorMessage,
       currentCity,
       offers,
       handleCardTitleClick,
-      authorizationStatus
     } = this.props;
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
@@ -78,7 +91,7 @@ class App extends PureComponent {
     );
   }
 
-  _onBookmarkClick(offerId, isFavorite) {
+  _onBookmarkClick(offerId: number, isFavorite: boolean) {
     if (this.props.authorizationStatus === AuthorizationStatus.NO_AUTH) {
       return <Redirect to={AppRoute.LOGIN} />;
     }
@@ -105,7 +118,7 @@ class App extends PureComponent {
     );
   }
 
-  _renderDetailsScreen(offerId) {
+  _renderDetailsScreen(offerId: string) {
     const isLoading = this.props.offersAll.length === 0;
 
     if (isLoading) {
@@ -116,8 +129,8 @@ class App extends PureComponent {
 
     const {
       offersAll,
-      handleCardTitleClick,
       authorizationStatus,
+      handleCardTitleClick,
     } = this.props;
 
     const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
@@ -145,18 +158,6 @@ class App extends PureComponent {
     );
   }
 }
-
-App.propTypes = {
-  errorMessage: PropTypes.string.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  offersAll: PropTypes.arrayOf(offerPropTypes).isRequired,
-  currentCity: cityPropTypes,
-  handleCardTitleClick: PropTypes.func.isRequired,
-  handleBookmarkClick: PropTypes.func.isRequired,
-  loadFavorites: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   errorMessage: getError(state),

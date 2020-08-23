@@ -1,16 +1,27 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {SortType} from "../../common/const.js";
+import * as React from "react";
+import {SortType} from "../../common/const";
 
-class Sorting extends PureComponent {
+
+interface Props {
+  isOpened: boolean;
+  currentSortType: string;
+  onSelectSortType: (type: string) => void;
+  onMenuClick: () => void;
+}
+
+type SortType = {
+  [key: string]: string;
+}
+
+class Sorting extends React.PureComponent<Props, {}> {
   render() {
     const {
+      isOpened,
       currentSortType,
       onSelectSortType,
       onMenuClick,
     } = this.props;
-
-    const {isOpened} = this.props;
+    const sortTypesList: SortType = Object.assign({}, SortType);
     const defaultSortType = Object.values(SortType).find((item) => item === currentSortType);
     const openedMenuClass = isOpened ? `places__options--opened` : ``;
 
@@ -19,7 +30,7 @@ class Sorting extends PureComponent {
         <span className="places__sorting-caption">Sort by</span>
         <span
           className="places__sorting-type"
-          tabIndex="0"
+          // tabIndex="0"
           onClick={onMenuClick}
         >
           {defaultSortType}
@@ -29,12 +40,12 @@ class Sorting extends PureComponent {
         </span>
         <ul className={`places__options places__options--custom ${openedMenuClass}`}>
 
-          {Object.values(SortType).map((type, index) => {
+          {Object.values(sortTypesList).map((type, index) => {
             const activeOptionClass = type === currentSortType ? `places__option--active` : ``;
             return (
               <li
                 key={type + index}
-                tabIndex="0"
+                // tabIndex="0"
                 className={`places__option ${activeOptionClass}`}
                 onClick={() => {
                   onSelectSortType(type);
@@ -49,12 +60,5 @@ class Sorting extends PureComponent {
     );
   }
 }
-
-Sorting.propTypes = {
-  isOpened: PropTypes.bool.isRequired,
-  currentSortType: PropTypes.string.isRequired,
-  onSelectSortType: PropTypes.func.isRequired,
-  onMenuClick: PropTypes.func.isRequired,
-};
 
 export default Sorting;

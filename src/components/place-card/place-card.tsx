@@ -1,12 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Link} from "react-router-dom";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import {getSlicedClassName, getRatingStars} from "../../common/utils.js";
-import {AppRoute} from "../../common/const.js";
+import {IOffer} from "../../common/types";
+import {getSlicedClassName, getRatingStars} from "../../common/utils";
+import {AppRoute} from "../../common/const";
 
 
-const PlaceCard = (props) => {
+interface Props {
+  offer: IOffer;
+  className: string;
+  isFavoriteScreen: boolean;
+  onCardMouseEnter: (offer: IOffer) => void;
+  onCardMouseLeave: () => void;
+  onItemClick: (offer: IOffer) => void;
+  onBookmarkClick: (offerId: number, isFAvorite: boolean) => void;
+}
+
+const PlaceCard: React.FunctionComponent<Props> = (props: Props) => {
   const {
     offer,
     className,
@@ -84,16 +93,6 @@ const PlaceCard = (props) => {
       </div>
     </article>
   );
-};
-
-PlaceCard.propTypes = {
-  offer: offerPropTypes,
-  className: PropTypes.string.isRequired,
-  isFavoriteScreen: PropTypes.bool.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired,
-  onItemClick: PropTypes.func.isRequired,
-  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;

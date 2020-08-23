@@ -1,15 +1,18 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
-import ReviewItem from "../review-item/review-item.jsx";
-import reviewPropTypes from "../../prop-types/review-prop-types.js";
+import * as React from "react";
+import ReviewItem from "../review-item/review-item";
+import {IReview} from "../../common/types";
 
 
-const ReviewItemList = (props) => {
+interface Props {
+  reviews: IReview[];
+}
+
+const ReviewItemList: React.FunctionComponent<Props> = (props) => {
   const {reviews} = props;
   const reviewsAmount = reviews.length;
 
   return (
-    <Fragment>
+    <React.Fragment>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsAmount}</span></h2>
       <ul className="reviews__list">
         {reviews.slice(0, 10).map((item, index) => {
@@ -21,12 +24,8 @@ const ReviewItemList = (props) => {
           );
         })}
       </ul>
-    </Fragment>
+    </React.Fragment>
   );
-};
-
-ReviewItemList.propTypes = {
-  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired,
 };
 
 export default ReviewItemList;

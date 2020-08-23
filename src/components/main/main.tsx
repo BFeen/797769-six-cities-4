@@ -1,27 +1,42 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
-import PlaceCardList from "../place-card-list/place-card-list.jsx";
-import CitiesList from "../cities-list/cities-list.jsx";
-import Map from "../map/map.jsx";
-import MainEmpty from "../main-empty/main-empty.jsx";
-import Sorting from "../sorting/sorting.jsx";
-import Header from "../header/header.jsx";
-import offerPropTypes from "../../prop-types/offer-prop-types.js";
-import cityPropTypes from "../../prop-types/city-prop-types.js";
-import {ActionCreator} from "../../reducer/application/application.js";
-import {getSortedOffers} from "../../common/utils.js";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import withSorting from "../../hocs/with-sorting/with-sorting.js";
-import {getSortType} from "../../reducer/application/selectors.js";
-import {ClassNames, ScreenType} from "../../common/const.js";
+import PlaceCardList from "../place-card-list/place-card-list";
+import CitiesList from "../cities-list/cities-list";
+import Map from "../map/map";
+import MainEmpty from "../main-empty/main-empty";
+import Sorting from "../sorting/sorting";
+import Header from "../header/header";
+import {IOffer, ICity} from "../../common/types";
+import {ActionCreator} from "../../reducer/application/application";
+import {getSortedOffers} from "../../common/utils";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import withSorting from "../../hocs/with-sorting/with-sorting";
+import {getSortType} from "../../reducer/application/selectors";
+import {ClassNames, ScreenType} from "../../common/const";
 
+
+
+
+interface Props {
+  errorMessage: string;
+  isAuthorized: boolean;
+  city: ICity,
+  offers: IOffer[];
+  sortType: string;
+  activeCard?: IOffer;
+  onCardTitleClick: (offer: IOffer) => void;
+  handleCityChange: (city: ICity) => void;
+  handleSortTypeChange: (sortType: string) => void;
+  onCardMouseEnter: (offer: IOffer) => void;
+  onCardMouseLeave: () => void;
+  onBookmarkClick: (offerId: number, status: number) => void;
+}
 
 const SortingWrapped = withSorting(Sorting);
 const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 const CitiesListWrapped = withActiveItem(CitiesList);
 
-const Main = (props) => {
+const Main: React.FunctionComponent<Props> = (props: Props) => {
   const {
     errorMessage,
     isAuthorized,
@@ -99,24 +114,6 @@ const Main = (props) => {
       </main>
     </div>
   );
-};
-
-Main.propTypes = {
-  errorMessage: PropTypes.string.isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
-  city: cityPropTypes,
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  sortType: PropTypes.string.isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
-  handleCityChange: PropTypes.func.isRequired,
-  handleSortTypeChange: PropTypes.func.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired,
-  activeCard: PropTypes.oneOfType([
-    offerPropTypes,
-    PropTypes.object.isRequired,
-  ]).isRequired,
-  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

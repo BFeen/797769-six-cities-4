@@ -1,14 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {Cities} from "../../common/const.js";
-import cityPropTypes from "../../prop-types/city-prop-types.js";
+import * as React from "react";
+import {Cities} from "../../common/const";
+import {ICity} from "../../common/types";
 
-const CitiesList = (props) => {
+
+interface Props {
+  currentCity: ICity;
+  onItemClick: (city: ICity) => void;
+}
+
+const CitiesList: React.FunctionComponent<Props> = (props: Props) => {
+  const cities: ICity[] = Cities.slice();
   const {currentCity, onItemClick} = props;
 
   return (
     <ul className="locations__list tabs__list">
-      {Object.values(Cities).map((city, index) => {
+      {Object.values(cities).map((city, index) => {
         const activeClassName = currentCity === city ? `tabs__item--active` : ``;
 
         return (
@@ -29,11 +35,6 @@ const CitiesList = (props) => {
       })}
     </ul>
   );
-};
-
-CitiesList.propTypes = {
-  currentCity: cityPropTypes,
-  onItemClick: PropTypes.func.isRequired,
 };
 
 export default CitiesList;

@@ -1,8 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {ICity} from "../../common/types";
 
 
-const MainEmpty = (props) => {
+interface Props {
+  errorMessage: string;
+  city: ICity;
+}
+
+const MainEmpty: React.FunctionComponent<Props> = (props) => {
   const {city, errorMessage} = props;
   const message = errorMessage ? errorMessage : `No places to stay available`;
 
@@ -17,11 +22,6 @@ const MainEmpty = (props) => {
       <div className="cities__right-section"></div>
     </div>
   );
-};
-
-MainEmpty.propTypes = {
-  errorMessage: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired,
 };
 
 export default MainEmpty;

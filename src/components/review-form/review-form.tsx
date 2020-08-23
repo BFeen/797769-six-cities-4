@@ -1,20 +1,35 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
-import {RatingStarsCount} from "../../common/const.js";
-import {ClassNames} from "../../common/const.js";
+import * as React from "react";
+import {ClassNames, RatingStarsCount} from "../../common/const";
 
 
-const ReviewForm = (props) => {
+interface Props {
+  rating: any,
+  comment: string;
+  buttonText: string;
+  isDisabled: boolean;
+  errorMessage: string;
+  onSubmit: () => void;
+  onCommentChange: (review: string) => void;
+  onRatingChange: (value: number) => void;
+};
+
+type RatingStars = {
+  [key: string]: string;
+}
+
+
+const ReviewForm: React.FunctionComponent<Props> = (props) => {
   const {ButtonClassNames} = ClassNames;
+  const ratingStarsCount: RatingStars = Object.assign({}, RatingStarsCount);
   const {
     comment,
     rating,
     buttonText,
     isDisabled,
+    errorMessage,
     onSubmit,
     onCommentChange,
     onRatingChange,
-    errorMessage,
   } = props;
 
   return (
@@ -31,11 +46,11 @@ const ReviewForm = (props) => {
 
       <div className="reviews__rating-form form__rating">
 
-        {Object.values(RatingStarsCount).map((item, i, array) => {
+        {Object.values(ratingStarsCount).map((item, i, array) => {
           const count = array.length - i;
 
           return (
-            <Fragment key={item + i}>
+            <React.Fragment key={item + i}>
               <input
                 className="form__rating-input visually-hidden"
                 name="rating"
@@ -53,7 +68,7 @@ const ReviewForm = (props) => {
                   <use xlinkHref="#icon-star" />
                 </svg>
               </label>
-            </Fragment>
+            </React.Fragment>
           );
         })}
 
@@ -92,17 +107,6 @@ const ReviewForm = (props) => {
       </div>
     </form>
   );
-};
-
-ReviewForm.propTypes = {
-  rating: PropTypes.any,
-  comment: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
-  isDisabled: PropTypes.bool.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onCommentChange: PropTypes.func.isRequired,
-  onRatingChange: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string.isRequired,
 };
 
 export default ReviewForm;
