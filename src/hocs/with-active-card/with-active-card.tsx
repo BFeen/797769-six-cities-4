@@ -1,14 +1,22 @@
 import * as React from "react";
-import {Subtract} from "utility-types";
-import {IOffer} from "../../common/types";
+import {IOffer, ICity} from "../../common/types";
 
+
+interface Props {
+  errorMessage: string;
+  city: ICity;
+  offers: IOffer[];
+  onCardTitleClick: (offer: IOffer) => void;
+  isAuthorized: boolean;
+  onBookmarkClick: (offerId: number, isFavorite: boolean) => void;
+}
 
 interface State {
   activeCard: IOffer | {};
 }
 
 const withActiveCard = (Component) => {
-  class WithActiveCard extends React.PureComponent<{}, State> {
+  class WithActiveCard extends React.PureComponent<Props, State> {
     constructor(props) {
       super(props);
 

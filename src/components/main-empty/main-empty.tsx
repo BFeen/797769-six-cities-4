@@ -4,7 +4,7 @@ import {ICity} from "../../common/types";
 
 interface Props {
   errorMessage: string;
-  city: ICity;
+  city: string;
 }
 
 const MainEmpty: React.FunctionComponent<Props> = (props) => {
