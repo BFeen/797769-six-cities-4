@@ -1,7 +1,6 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {connect} from "react-redux";
-import {Operation} from "../../reducer/data/data.js";
+import {Operation} from "../../reducer/data/data";
 
 
 const CharsAmount = {
@@ -9,13 +8,32 @@ const CharsAmount = {
   MAX: 300,
 };
 
-const ButtonText = {
-  SUBMIT: `Submit`,
-  SENDING: `Sending...`,
-};
+enum ButtonText {
+  SUBMIT = `Submit`,
+  SENDING = `Sending...`,
+}
+
+type Review = {
+  rating: number;
+  comment: string;
+}
+
+interface Props {
+  offerId: number;
+  handleSubmit: (offerId: number, review: Review) => Promise<{}>;
+}
+
+interface State {
+  isSending: boolean;
+  isDisabled: boolean;
+  rating: number | null;
+  comment: string;
+  errorMessage: string;
+  buttonText: ButtonText;
+}
 
 const withReview = (Component) => {
-  class WithReview extends PureComponent {
+  class WithReview extends React.PureComponent<Props, State> {
     constructor(props) {
       super(props);
 
@@ -73,7 +91,7 @@ const withReview = (Component) => {
         comment,
       };
 
-      handleSubmit(offerId, review, this.handleError)
+      handleSubmit(offerId, review)
         .then(() => {
           this._clearForm();
         })
@@ -138,11 +156,6 @@ const withReview = (Component) => {
       );
     }
   }
-
-  WithReview.propTypes = {
-    offerId: PropTypes.number.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-  };
 
   const mapDispatchToProps = (dispatch) => ({
     handleSubmit: (offerId, review) => {

@@ -1,14 +1,26 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Subtract} from "utility-types";
+import {IOffer} from "../../common/types";
 
+
+interface State {
+  activeItem: IOffer | {};
+}
+
+interface InjectedProps {
+  onItemClick: (newItem: IOffer) => void;
+}
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  class WithActiveItem extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
       this.state = {
-        activeItem: null,
+        activeItem: {},
       };
 
       this._handleItemClick = this._handleItemClick.bind(this);
@@ -33,10 +45,6 @@ const withActiveItem = (Component) => {
       onItemClick(newItem);
     }
   }
-
-  WithActiveItem.propTypes = {
-    onItemClick: PropTypes.func.isRequired,
-  };
 
   return WithActiveItem;
 };

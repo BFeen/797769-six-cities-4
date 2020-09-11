@@ -1,9 +1,20 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Subtract} from "utility-types";
 
+
+interface State {
+  isOpened: boolean;
+}
+
+interface InjectingProps {
+  onSortTypeChange: (sortType: string) => void;
+}
 
 const withSorting = (Component) => {
-  class WithSorting extends PureComponent {
+  type P = React.ComponentProps<typeof Component>
+  type T = Subtract<P, InjectingProps>
+
+  class WithSorting extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -45,10 +56,6 @@ const withSorting = (Component) => {
       );
     }
   }
-
-  WithSorting.propTypes = {
-    onSortTypeChange: PropTypes.func.isRequired,
-  };
 
   return WithSorting;
 };

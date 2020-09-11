@@ -1,8 +1,14 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {Subtract} from "utility-types";
+import {IOffer} from "../../common/types";
 
+
+interface State {
+  activeCard: IOffer | {};
+}
 
 const withActiveCard = (Component) => {
-  class WithActiveCard extends PureComponent {
+  class WithActiveCard extends React.PureComponent<{}, State> {
     constructor(props) {
       super(props);
 
@@ -39,8 +45,6 @@ const withActiveCard = (Component) => {
       );
     }
   }
-
-  WithActiveCard.propTypes = {};
 
   return WithActiveCard;
 };
